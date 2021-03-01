@@ -1,0 +1,54 @@
+<div class="modal-dialog  modal-lg ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close"  data-bind="click: close" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.todoDuplicate.title"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form data-bind="with:command">
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="select-project" data-i18n="app:pages.todoDuplicate.project"></label>
+                            <select id="select-project"  data-bind="select2Data:targetProjectId, select2:  $root.autocomplete.getSelect2OptionsForProjects(1)" class="form-control"></select>
+
+                            
+                        </div>
+                    </div>
+                    <div class="row" data-bind="if: targetProjectId">
+                        <div class="form-group  col-sm-12" >
+                            <label for="select-task" data-i18n="app:pages.todoDuplicate.task"></label>
+                            <select id="select-task"  data-bind="disable: targetProjectId() == null,select2Data: targetTaskId, select2:   $root.getTaskTypeahead" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cbl-todolists" data-i18n="app:pages.todoDuplicate.todoLists"></label>
+                        <div data-bind="foreach: $root.todoLists()">
+                            <div class="checkbox-custom">
+                                <input type="checkbox" data-bind=" attr: { value: $data.id, id: 'status_' + $data.id }, checked: $parent.sourceListsIds">
+                                <label data-bind="text:name"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-custom checkbox-default">
+                            <input type="checkbox" id="cb-copywithitems" data-bind="checked: copyWithItems" autocomplete="off">
+                            <label for="cb-copywithitems" data-i18n="app:pages.todoDuplicate.copyWithItems"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click:$root.close"
+                                        class="btn btn-default btn-outline" data-i18n="app:pages.todoDuplicate.cancel">
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bind="activity: $root.duplicateTodoListsCommand.isExecuting, command: $root.duplicateTodoListsCommand" data-i18n="app:pages.todoDuplicate.duplicate"></button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

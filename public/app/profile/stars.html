@@ -1,0 +1,58 @@
+<div class="left-column durandal-column" data-bind="css:$root.prefs.middleColumnSizeClass">
+    <div class="panel panel-bordered panel-column-header panel-search" data-bind="panelActions :{}" id="search-header-panel">
+        <div class="panel-heading" style="background-color:white">
+            <h3 class="panel-title">
+                <i class="icon fa-user" aria-hidden="true"></i>
+                <span data-i18n2="app:pages.search.title">Profile</span>
+            </h3>
+            <div class="panel-actions">
+
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-column-content" data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main'}">
+        <div class="panel-body">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Starred Projects</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group list-group-dividered list-group-full" data-bind="foreach:staredProjects">
+                        <li class="list-group-item active">
+                            <a href="" data-bind="href:'#projects/'+$data.project.id,text:$data.project.name"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Starred Tasks</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group list-group-dividered list-group-full" data-bind="foreach:staredTasks">
+                        <li class="list-group-item active">
+                            <a href="" data-bind="href:'#projects/'+$data.task.projectId+'/tasks/'+$data.task.id,text:$data.task.name"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Starred Searches</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group list-group-dividered list-group-full" data-bind="foreach:staredSearchs">
+                        <li class="list-group-item active">
+                            <a href="" data-bind="href:'#search?t=saved&id='+$data.search.id,text:$data.search.name"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="middle-column durandal-column" data-bind="css:$root.prefs.rightColumnSizeClass">
+
+
+</div>

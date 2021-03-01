@@ -1,0 +1,401 @@
+<div>
+
+    <div class="panel" data-bind="fadeVisible:shouldShowSearchForm">
+        <div class="panel-heading">
+            <div class="pull-right padding-top-10">
+                <button type="button" data-bind="click: buildCriteriaAndSearch" class="btn btn-primary"
+                        data-i18n="app:pages.taskSearch.btnSearch"></button>
+                <button type="reset" data-bind="click: clear" class="btn btn-pure btn-default"
+                        data-i18n="app:pages.taskSearch.btnClear"></button>
+                <!-- Single button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-pure icon wb-more-vertical" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+
+                    </button>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250">
+                        <li><a href="#" data-bind="click: saveSearch" data-i18n="app:pages.taskSearch.btnSaveSearch"></a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <h3 class="panel-title"><span data-i18n="app:pages.taskSearch.title"></span> <i data-bind="visible:filter.isDirty()" class="icon fa-filter red-800" title="filter applied"></i></h3>
+
+        </div>
+        <div class="panel-body">
+
+            <form role="form">
+
+                <div class="form-group">
+                    <label for="txt-task-name" class="control-label" data-i18n="app:pages.taskSearch.taskname"></label>
+                    <input type="text" id="txt-task-name" class="form-control"
+                           data-i18n="[placeholder]app:pages.taskSearch.taskname" data-bind="value: filter.taskName"/>
+                </div>
+                <div class="form-group">
+                    <label for="select-projects" class="control-label"
+                               data-i18n="app:pages.taskSearch.projectname"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.projectIds, select2: $root.autocomplete.getSelect2OptionsForProjects(10)"
+                            class="form-control" id="select-projects"></select>
+
+                   
+                </div>
+
+                <div class="form-group">
+                    <label for="select-collaborators" class="control-label" data-i18n="app:pages.taskSearch.collaborators"></label>
+                    
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.collaborators, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-collaborators"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-taskassignees" class="control-label"
+                           data-i18n="app:pages.taskSearch.taskassignee"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.assignees, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-taskassignees"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-coassignees" class="control-label"
+                           data-i18n="app:pages.taskSearch.taskcoassignees"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.coassignees, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-coassignees"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-owner" class="control-label" data-i18n="app:pages.taskSearch.taskowner"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.owners, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-owner"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-coowners" class="control-label"
+                           data-i18n="app:pages.taskSearch.taskcoowners"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.coowners,  select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-coowners"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-followers1" class=" control-label"
+                           data-i18n="app:pages.taskSearch.taskfollowers1"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.cat1followers,  select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-followers1"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-followers2" class=" control-label"
+                           data-i18n="app:pages.taskSearch.taskfollowers2"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.cat2followers, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-followers2"></select>
+                </div>
+                <div class="form-group">
+                    <label for="select-followers3" class="control-label"
+                           data-i18n="app:pages.taskSearch.taskfollowers3"></label>
+                    <select multiple="multiple"
+                            data-bind="select2Data: filter.cat3followers, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                            class="form-control" id="select-followers3"></select>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="control-label" data-i18n="app:pages.taskSearch.activity"></label>
+                        <div style="margin-bottom: 5px;">
+                            <div class="radio-custom radio-default radio-inline">
+                                <input name="rd-activity-type" type="radio" id="rd-activity-create" value="create"
+                                       data-bind="checked: filter.activityType"/>
+                                <label for="rd-activity-create" data-i18n="app:pages.taskSearch.activityCreate"></label>
+                            </div>
+                            <div class="radio-custom radio-default radio-inline">
+                                <input name="rd-activity-type" type="radio" id="rd-activity-update" value="update"
+                                       data-bind="checked: filter.activityType"/>
+                                <label for="rd-activity-update" data-i18n="app:pages.taskSearch.activityUpdate"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select class="form-control" data-bind="value: filter.activityPeriodType">
+                            <option value="WithinLast"  data-i18n="app:pages.taskSearch.activityWithinLast"></option>
+                            <option value="Between"  data-i18n="app:pages.taskSearch.activityBetween"></option>
+                        </select>
+                    </div>
+                    <div data-bind="visible: filter.activityPeriodType() !== 'Between'">
+                        <div class="form-group col-sm-4" data-bind="validationElement: filter.activityDateValue">
+                            <input type="text" class="form-control " data-bind="value: filter.activityDateValue">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <select class="form-control" data-bind="value: filter.activityPeriodType">
+                                <option value="days" data-i18n="app:pages.taskSearch.days"></option>
+                                <option value="weeks" data-i18n="app:pages.taskSearch.weeks"></option>
+                                <option value="months" data-i18n="app:pages.taskSearch.months"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div data-bind="visible: filter.activityPeriodType() === 'Between'">
+                        <div class="form-group col-sm-4" data-bind="validationElement: filter.activityDateStart">
+                            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                </span>
+                                <input type="text" readonly="" class="form-control"
+                                       data-bind="datepicker: filter.activityDateStart, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                </span>
+                                <input type="text" readonly="" class="form-control"
+                                       data-bind="datepicker: filter.activityDateEnd, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="control-label" data-i18n="app:pages.taskSearch.taskstartdate"></label>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select class="form-control" data-bind="value: filter.startDatePeriodType">
+                            <option value="WithinNext" data-i18n="app:pages.taskSearch.startwithinthenext"></option>
+                            <option value="WithinLast" data-i18n="app:pages.taskSearch.startwithinthelast"></option>
+                            <option value="Between" data-i18n="app:pages.taskSearch.startbetween"></option>
+                        </select>
+                    </div>
+                    <div data-bind="visible: filter.startDatePeriodType() !== 'Between'">
+                        <div class="form-group col-sm-4" data-bind="validationElement: filter.startDateValue">
+                            <input type="text" class="form-control " data-bind="value: filter.startDateValue">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <select class="form-control" data-bind="value: filter.startDatePeriodUnit">
+                                <option value="days" data-i18n="app:pages.taskSearch.days"></option>
+                                <option value="weeks" data-i18n="app:pages.taskSearch.weeks"></option>
+                                <option value="months" data-i18n="app:pages.taskSearch.months"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div data-bind="visible: filter.startDatePeriodType() === 'Between'">
+                            <div class="form-group col-sm-4" data-bind="validationElement: filter.startDateStart">
+                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                <input type="text" readonly="" class="form-control"
+                                       data-bind="datepicker: filter.startDateStart, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                            <div class="form-group col-sm-4" data-bind="validationElement: filter.startDateEnd">
+                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                <input type="text" readonly="" class="form-control"
+                                       data-bind="datepicker: filter.startDateEnd, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="control-label" data-i18n="app:pages.taskSearch.taskduedate"></label>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select class="form-control" data-bind="value: filter.dueDatePeriodType">
+                            <option value="WithinNext" data-i18n="app:pages.taskSearch.duewithinthenext"></option>
+                            <option value="WithinLast" data-i18n="app:pages.taskSearch.duewithinthelast"></option>
+                            <option value="Between" data-i18n="app:pages.taskSearch.duebetween"></option>
+                        </select>
+                    </div>
+                    <div data-bind="visible: filter.dueDatePeriodType() !== 'Between'">
+                        <div class="form-group col-sm-4" data-bind="validationElement: filter.dueDateValue">
+                            <input type="text" class="form-control " data-bind="value: filter.dueDateValue">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <select class="form-control" data-bind="value: filter.dueDatePeriodUnit">
+                                <option value="days" data-i18n="app:pages.taskSearch.days"></option>
+                                <option value="weeks" data-i18n="app:pages.taskSearch.weeks"></option>
+                                <option value="months" data-i18n="app:pages.taskSearch.months"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div data-bind="visible: filter.dueDatePeriodType() === 'Between'">
+                            <div class="form-group col-sm-4" data-bind="validationElement: filter.dueDateStart">
+                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                <input type="text" readonly="" class="form-control"
+                                       data-bind="datepicker: filter.dueDateStart, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                            <div class="form-group col-sm-4" data-bind="validationElement: filter.dueDateEnd">
+                            <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="icon wb-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                <input type="text" readonly="" class="form-control"
+                                       data-bind="datepicker: filter.dueDateEnd, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="select-tags" class="control-label" data-i18n="app:pages.taskSearch.tasktags"></label>
+                    </div>
+                    <div class="form-group col-sm-8">
+                        <select id="select-tags" class="form-control" multiple="multiple"
+                                data-bind="select2Data: filter.tags, select2: $root.autocomplete.getSelect2OptionsForTags()">
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select class="form-control" data-bind="value: filter.tagOperation">
+                            <option value="or" data-i18n="app:pages.taskSearch.or"></option>
+                            <option value="and" data-i18n="app:pages.taskSearch.and"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="cbl-status" class="control-label" data-i18n="app:pages.taskSearch.taskstatus"></label>
+                        <div id="cbl-status" data-bind="foreach: $root.lookups.taskStatus.getAll()">
+                            <div class="checkbox-custom checkbox-primary">
+                                <input type="checkbox"
+                                       data-bind=" attr: { value: $data.value, id: 'status_' + $data.value }, checked: $parent.filter.status"/>
+                                <label data-bind="text: text,for:'status_'+$data.value"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="cbl-category" class="control-label"
+                               data-i18n="app:pages.taskSearch.taskcategories"></label>
+                        <div id="cbl-category" data-bind="foreach: $root.lookups.categories.getAll()">
+                            <div class="checkbox-custom checkbox-primary" data-bind="visible:$data.value > 0">
+                                <input type="checkbox"
+                                       data-bind="attr: { value: $data.value, id: 'category_' + $data.value }, checked: $parent.filter.categories"/>
+                                <label data-bind="html: text,for:'category_'+$data.value"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="cbl-category" class="control-label" data-i18n="app:pages.taskSearch.priority"></label>
+                        <div id="cbl-priority" data-bind="foreach: $root.lookups.taskPriority.getAll()">
+                            <div class="checkbox-custom checkbox-primary">
+                                <input type="checkbox"
+                                       data-bind="attr: { value: $data.value, id: 'priority_' + $data.value }, checked: $parent.filter.priorities"/>
+                                <label data-bind="text: text,for:'priority_'+$data.value"></label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="cbl-tasktypes" class="control-label" data-i18n="app:pages.taskSearch.taskTypes"></label>
+                        <div id="cbl-tasktypes" data-bind="foreach: $root.lookups.taskType.getAll()">
+                            <div class="checkbox-custom checkbox-primary">
+                                <input type="checkbox"
+                                       data-bind="attr: { value: $data.value, id: 'tasktype_' + $data.value }, checked: $parent.filter.taskTypes"/>
+                                <label data-bind="text: text,for:'tasktype_'+$data.value"></label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <div class="checkbox-custom checkbox-primary">
+                            <input id="cb-isBlocked" type="checkbox" data-bind="checked: filter.isBlocked"/>
+                            <label for="cb-isBlocked"  data-i18n="app:pages.taskSearch.isBlocked"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="panel-group panel-group-simple margin-bottom-0" id="accordion-custom-fields"
+                         aria-multiselectable="true" role="tablist">
+                        <div class="panel">
+                            <div class="panel-heading" id="heading-custom-fields" role="tab">
+                                <a class="panel-title collapsed " data-parent="#accordion-custom-fields" data-toggle="collapse"
+                                   href="#collapse-custom-fields" aria-controls="collapse-custom-fields" aria-expanded="false">
+                                    <label for="collapse-custom-fields" class="control-label"   data-i18n="app:pages.taskSearch.customFieldFilters"></label>
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse-custom-fields"
+                                 aria-labelledby="heading-custom-fields" role="tabpanel" aria-expanded="false"
+                                 style="height: 0px;">
+                                <div class="panel-body clearfix">
+                                    <div class="pull-right">
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <select class="form-control"
+                                                        data-bind="value: filter.customFieldOperation">
+                                                    <option value="or" data-i18n="app:pages.taskSearch.or"></option>
+                                                    <option value="and" data-i18n="app:pages.taskSearch.and"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-bind="foreach: $root.context.customFields()">
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox"
+                                                   data-bind="attr: { value: id, id: 'cf_cb_' + id }, checked: $root.filter.selectedCustomFieldIds,click:$root.filter.modifyCustomField"/>
+                                            <label data-bind="text: title,for:'cf_cb_'+id"></label>
+                                        </div>
+                                        <div data-bind="with:$root.filter.getCustomFieldDetail(id)" class="form-inline">
+                                            <div class="form-group">
+                                                <select class="form-control" data-bind="value: form.filterType">
+                                                    <option data-i18n="app:pages.taskSearch.contains" value="contains"></option>
+                                                    <option data-i18n="app:pages.taskSearch.startsWith" value="startswith"></option>
+                                                    <option data-i18n="app:pages.taskSearch.endsWith" value="endswith"></option>
+                                                    <option data-i18n="app:pages.taskSearch.moreThan" value="morethan"></option>
+                                                    <option data-i18n="app:pages.taskSearch.lessThan" value="lessthan"></option>
+                                                    <option data-i18n="app:pages.taskSearch.equalTo" value="equalto"></option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control"
+                                                       data-bind="id:'cf_cb_'+detail.id,value:form.value"
+                                                       autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="pull-right clearfix">
+                        <button type="button" data-bind="click: buildCriteriaAndSearch" class="btn btn-primary"
+                                data-i18n="app:pages.taskSearch.search"></button>
+                        <button type="reset" data-bind="click: clear" class="btn btn-pure btn-default"
+                                data-i18n="app:pages.taskSearch.clear"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel" data-bind="fadeVisible:!shouldShowSearchForm()">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <a class="btn btn-primary btn-outline" href="" data-bind="toggleClick:shouldShowSearchForm"
+                   role="button"><i class="icon fa-arrow-left" aria-hidden="true"></i> <span data-i18n="app:pages.taskSearch.backToSearchForm"></span></a>
+                <br>
+                <br>
+
+                <h3 class="font-size-18" data-i18n="app:pages.taskSearch.searchResults"></h3>
+
+            </div>
+        </div>
+        <div class="panel-body">
+            <div 
+                 data-bind="widget: {kind:'taskgrid',toolbarTemplate:'#grid-toolbar-template',columns:['project','name','assignee','status','dueDate'], tasks:results,filter:viewFilter,gridId: $root.gridUniqueName}"></div>
+        </div>
+    </div>
+
+</div>
+

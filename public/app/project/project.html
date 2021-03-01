@@ -1,0 +1,187 @@
+﻿<div class="left-column durandal-column" data-bind="css:$root.prefs.middleColumnSizeClass" id="project-detail">
+    <div class="panel panel-bordered panel-column-header panel-project"
+         data-bind="panelActions :{ collapseStatus: $root.headerCollapseStatus,collapseTarget:'.js--project-panel-toolbar' }"
+         id="project-tree-header-panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <i class="icon fa-list-alt" aria-hidden="true"></i> <a href="#"
+                                                                       data-bind="click: loadProjectDetail, text: details.name.cached"></a>
+            </h3>
+            <div class="panel-actions">
+
+                <a class="panel-action icon btn btn-sm btn-icon btn-default btn-outline btn-round wb-expand"
+                   data-toggle="panel-fullscreen" aria-hidden="true"></a>
+                <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-chevron-up"
+                   data-toggle="panel-collapse" aria-expanded="true" aria-hidden="true"></a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-more-vertical"
+                       data-toggle="dropdown" href="#" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250"
+                        role="menu">
+                        <li class="dropdown-header" data-i18n="app:pages.project.statusFilter"></li>
+                        <!-- ko foreach:$root.lookups.taskStatus.getAll() -->
+                        <li role="presentation"
+                            data-bind="css:{'active': $root.filter.selectedStatus.contains($data.value.toString())}">
+                            <a href="#" data-bind="dataToggleClick:{target:$root.filter.selectedStatus,value:$data.value.toString()}">
+                                <i data-bind="'class':$data.icon" aria-hidden="true"></i> <span data-bind="text:$data.text"></span>
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                        <li role="presentation"
+                            data-bind="css:{'active': $root.filter.selectedStatus.contains('archived')}">
+                            <a href="#" data-bind="dataToggleClick:{preventDefault:true,target:$root.filter.selectedStatus,value:'archived'}">
+                                <i class="icon fa-archive" aria-hidden="true"></i> <span>Archived</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-toolbar js--project-panel-toolbar panel-collapse" role="toolbar">
+            <div id="project-toolbar-container" class="btn-toolbar" role="toolbar" aria-label="Toolbars">
+
+                <!-- Status filter button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-outline btn-icon"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-bind="css:{'active':isStatusFilterInUse(),'btn-success': !isStatusFilterInUse() }">
+                        <span class="icon fa fa-hourglass-start"></span>
+                        <span class="hidden-xs" data-i18n="app:pages.project.statusFilter"></span>
+
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!-- ko foreach:$root.lookups.taskStatus.getAll() -->
+                        <li role="presentation" data-bind="css:{'active': $root.filter.selectedStatus.contains($data.value.toString())}">
+                            <a href="#" data-bind="dataToggleClick:{preventDefault:true,target:$root.filter.selectedStatus,value:$data.value.toString()}">
+                                <i data-bind="'class':$data.icon" aria-hidden="true"></i> <span data-bind="text:$data.text"></span>
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+                <!-- / Status filter button -->
+                <!-- Type filter button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-outline btn-icon"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-bind="css:{'active':isWorkItemFilterInUse(), 'btn-success':!isWorkItemFilterInUse()}">
+                        <span class="icon fa fa-tasks"></span>
+                        <span class="hidden-xs" data-i18n="app:pages.project.typeFilter"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!-- ko foreach:$root.lookups.taskType.getAll() -->
+                        <li role="presentation"
+                            data-bind="css:{'active': $root.filter.selectedTaskType.contains($data.value.toString())}">
+                            <a href="#" data-bind="dataToggleClick:{preventDefault:true,target:$root.filter.selectedTaskType,value:$data.value.toString()}">
+                                <i data-bind="css:$data.icon,style:$data.iconStyle" aria-hidden="true"></i> <span data-bind="text:$data.text"></span>
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+                <!-- / Type filter button -->
+                <!-- Other Tools button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-icon btn-outline"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-bind="css:{'active': !isOtherToolsFilterInUseVar(), 'btn-success':isOtherToolsFilterInUseVar()}">
+                        <span class="icon fa fa-dot-circle-o"></span>
+                        <span class="hidden-xs" data-i18n="app:pages.project.otherTools"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li role="presentation" data-toggle="buttons"
+                            data-bind="toggleClick:viewOptions.showCompletionPercentage,css: {'active':viewOptions.showCompletionPercentage }">
+                            <a class="" href="#" aria-hidden="true">
+                                <strong> %</strong> <span data-i18n="app:pages.project.otherToolsItems.percent"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-toggle="buttons"
+                            data-bind="toggleClick:viewOptions.showTags,css: {'active':viewOptions.showTags }">
+                            <a class="" href="#" aria-hidden="true">
+                                <span class="icon fa-tags"></span> <span data-i18n="app:pages.project.otherToolsItems.tags"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-toggle="buttons"
+                            data-bind="toggleClick:viewOptions.showStartDate,css: {'active':viewOptions.showStartDate }">
+                            <a class="" href="#" aria-hidden="true">
+                                <span class="icon fa-calendar"></span> <span data-i18n="app:pages.project.otherToolsItems.startDate"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-toggle="buttons"
+                            data-bind="toggleClick:viewOptions.showOwner,css: {'active':viewOptions.showOwner }">
+                            <a class="" href="#" aria-hidden="true">
+                                <span class="icon fa-black-tie"></span> <span data-i18n="app:pages.project.otherToolsItems.owner"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-toggle="buttons"
+                            data-bind="toggleClick:viewOptions.showIsBlocked,css: {'active':viewOptions.showIsBlocked }">
+                            <a class="" href="#" aria-hidden="true">
+                                <span class="icon fa-unlink"></span> <span data-i18n="app:pages.project.otherToolsItems.showIsBlocked"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- / Other Tools button -->
+                <!-- Customfields button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-outline btn-icon"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            data-bind="css:{'active': isCustomFieldFilterInUse(), 'btn-success':!isCustomFieldFilterInUse()}">
+                        <span class="icon fa-plug"></span>
+                        <span class="hidden-xs" data-i18n="app:pages.project.customFieldsFilter"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <!-- ko foreach:$root.customFieldDefinations -->
+                        <li role="presentation"
+                            data-bind="css:{'active': $root.viewOptions.selectedCustomFields.contains($data.id)}">
+                            <a href="#" data-bind="dataToggleClick:{preventDefault:true,target:$root.viewOptions.selectedCustomFields,value:$data.id}">
+                                <span data-bind="text:$data.title"></span>
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+                <!-- / Customfields button -->
+                <div class="btn-group" data-bind="radio:taskView" data-toggle="buttons" role="group">
+                    <label class="btn btn-outline btn-default btn-sm  btn-icon">
+                        <input type="radio" name="options" autocomplete="off" value="tree_view"><i class="fa fa-indent"></i>
+                    </label>
+                    <label class="btn btn-outline btn-default btn-sm  btn-icon">
+                        <input type="radio" name="options" autocomplete="off" value="flatten_view"><i class="fa fa-list-ul"></i>
+                    </label>
+                    <label class="btn btn-outline btn-default btn-sm  btn-icon">
+                        <input type="radio" name="options" autocomplete="off" value="grid_view"><i class="fa fa-table"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body" style="padding:0">
+            <div class="panel panel-column-content panel-column-content-project"
+                 data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main',onScroll:$root.onTaskTreeScroll }">
+                <div class="panel-body">
+                    <div data-bind="if:taskView() == 'tree_view'">
+                        <div data-bind="widget: {kind:'tasktree', tasks:$root.tasks, filter:$root.filter,projectId: $root.projectId,customFields:$root.customFieldDefinations(),selectedTask:$root.selectedTaskId,viewOptions:$root.viewOptions }"></div>
+                    </div>
+
+                    <div data-bind="if:taskView()=='grid_view'">
+                        <div id="tasks-grid"
+                             data-bind="widget: {kind:'taskgrid',excludeColumns:['project'], tasks:$root.tasks,filter:$root.filter,projectId: $root.projectId,gridId: 'tasks-grid',viewOptions:$root.viewOptions,customFields:$root.customFieldDefinations()}"></div>
+                    </div>
+                    <div data-bind="if:taskView()=='flatten_view'">
+                        <div data-bind="widget: {kind:'taskflat', tasks:$root.tasks, filter:$root.filter,projectId: $root.projectId,customFields:$root.customFieldDefinations(),selectedTask:$root.selectedTaskId,viewOptions:$root.viewOptions }"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="middle-column durandal-column" data-bind="css:$root.prefs.rightColumnSizeClass">
+    <!-- ko if: projectView -->
+    <!-- ko compose:{ view:'project/project-details-content.html' } -->
+    <!-- /ko-->
+    <!-- /ko-->
+    <!--ko compose:{ model:newTask} -->
+    <!--/ko-->
+    <div data-bind="compose:selectedTaskView"></div>
+</div>

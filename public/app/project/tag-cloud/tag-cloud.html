@@ -1,0 +1,43 @@
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.tagCloud.title"></h3>
+        <div class="panel-actions">
+                <div class="btn-group" data-i18n="[title]app:pages.tagCloud.sort">
+                        <button type="button" class="btn panel-action btn-pure btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="icon fa-sort"></span>
+                            <span><span data-i18n="app:pages.tagCloud.sort"></span>: <span data-bind="i18n:'app:pages.tagCloud.sortBy'+$root.sort()"></span></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" id="dropdown-group-filter">
+                            <li>
+                                <a href="#" data-sort="count" data-i18n="app:pages.tagCloud.sortBycount" data-bind="click:$root.changeSort"></a>
+                            </li>
+                            <li>
+                                <a href="#" data-sort="name" data-i18n="app:pages.tagCloud.sortByname" data-bind="click:$root.changeSort"></a>
+                            </li>
+                        </ul>
+                    </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel" id="messge">
+          <div class="panel-heading hide">
+              <div class="panel-actions">
+                  <a class="text-action" href="javascript:void(0)"><i class="icon wb-edit" aria-hidden="true"></i></a>
+              </div>
+              <h3 class="panel-title" data-i18n="app:pages.tagCloud.users"></h3>
+          </div>
+          <div class="panel-body">
+              <ul class="list-group list-group-full" data-bind="foreach:filteredTagCloud">
+                  <li class="list-group-item">
+                      <span data-bind="text:key"></span> <span class="badge" data-bind="text:doc_count"></span>
+                  </li>
+                 
+              </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+      

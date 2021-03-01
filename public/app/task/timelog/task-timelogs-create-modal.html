@@ -1,0 +1,81 @@
+﻿<div class="modal-dialog ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.timeLogsCreate.addTimeLog"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form data-bind="with: model">
+                    <!-- ko if: $root.taskId == null -->
+                    <div class="row">
+                        <div class="form-group col-sm-12" data-bind="validationElement: taskId">
+                            <label class="control-label" for="input-task" data-i18n="app:pages.timeLogsCreate.task"></label>
+                            <select id="select-task"  data-i18n="[placeholder]app:pages.timeLogsCreate.enterTaskName" placeholder="Enter task name"  data-bind="select2Data: taskId, select2: $root.autoComplete4Task()" class="form-control"></select>
+
+                            
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- Text input-->
+                    <div class="form-group" data-bind="validationElement: userId">
+                        <label class="control-label" for="txt-person" data-i18n="app:pages.timeLogsCreate.person"></label>
+                        <select id="txt-person" data-bind=" select2Data:userId,  optionsCaption: i18n.t('app:main.choose'), select2: $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group" data-bind="validationElement: date">
+                        <label class="control-label" for="txt-date" data-i18n="app:pages.timeLogsCreate.date"></label>
+                        <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                </span>
+                                <input name="txt-date" id="txt-date" type="text" readonly="" class="form-control" data-bind="datepicker: date, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label" for="txt-description" data-i18n="app:pages.timeLogsCreate.description"></label>
+                        <input id="txt-description" name="txt-description" type="text" placeholder="" data-i18n="[placeholder]app:pages.timeLogsCreate.description" class="form-control" data-bind="value: description">
+                    </div>
+                    <div class="form-group" data-bind="validationElement: durationMinutes">
+                        <label class="control-label" for="txt-minutes" data-i18n="app:pages.timeLogsCreate.durationTime"></label>
+                        <div class="input-group">
+                            <input id="txt-minutes" name="txt-minutes" type="number" step="0.01" min="0" class="form-control" data-bind="value: durationMinutes">
+                            <span class="input-group-addon" data-i18n="app:pages.timeLogsCreate.hours">
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="validationElement: status">
+                        <label class="control-label" for="select-status" data-i18n="app:pages.timeLogsCreate.status"></label>
+                        <select class="form-control js--select2-clearable" data-bind="value: status, options: $root.lookups.timeLogStatus.getAll(), optionsText: 'text', optionsValue: 'value', optionsCaption: i18n.t('app:main.choose')"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" control-label" for="radio-billable" data-i18n="app:pages.timeLogsCreate.billable"></label>
+                        <div>
+                            <div class="radio-custom radio-default radio-inline">
+                              <input type="radio" id="radio-billable-yes" value="true"  data-bind="checked: isBillable">
+                              <label for="radio-billable-yes" data-i18n="app:pages.timeLogsCreate.checkBillable"></label>
+                            </div>
+                            <div class="radio-custom radio-default radio-inline">
+                              <input type="radio" id="radio-billable-no" value="false" data-bind="checked: isBillable">
+                              <label for="radio-billable-no" data-i18n="app:pages.timeLogsCreate.checkNonbillable"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <div class=" pull-right">
+                            <button class="btn btn-default btn-outline"  type="reset" data-bind="click: $root.cancel" data-i18n="app:pages.timeLogsCreate.cancel"></button>
+                            <button class="btn btn-primary" data-bind="activity: $root.save.isExecuting, command: $root.save" data-i18n="app:pages.timeLogsCreate.save"></button>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

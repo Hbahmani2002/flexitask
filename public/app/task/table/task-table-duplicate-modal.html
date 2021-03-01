@@ -1,0 +1,54 @@
+<div class="modal-dialog  modal-lg ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close"  data-bind="click: close" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.tableDuplicate.title"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form data-bind="with:command">
+                    <div class="row">
+                        <div class="form-group  col-sm-12" data-bind="validationElement:targetProjectId">
+                            <label class="control-label" data-i18n="app:pages.tableDuplicate.selectProject"></label>
+                            <select id="select-project"  placeholder="write a project name" data-bind="select2Data: targetProjectId, select2:  $root.autocomplete.getSelect2OptionsForProjects(1)" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="row" data-bind="if: targetProjectId">
+                        <div class="form-group  col-sm-12" data-bind="validationElement:targetProjectId">
+                            <label class="control-label" data-i18n="app:pages.tableDuplicate.selectTask"></label>
+                            <select id="select-task"  placeholder="write a task name" data-bind="disable: targetProjectId() == null,select2Data:targetTaskId, select2: $root.getTaskTypeahead" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="if: targetProjectId() && targetTaskId()">
+                        <label for="txt-table-name" class="control-label" data-i18n="app:pages.tableDuplicate.tableName"></label>
+                        <input type="text" class="form-control  input-lg" id="txt-table-name" placeholder="table name" data-bind="value: name" />
+                    </div>
+                    <div class="form-group" data-bind="if: targetProjectId() && targetTaskId()">
+                        <label for="txt-note-description" class="control-label" data-i18n="app:pages.tableDuplicate.tableDesc"></label>
+                        <textarea rows="3" id="txt-note-description" class="form-control  input-lg" placeholder="note description" data-bind="value: description"></textarea>
+                    </div>
+                    <div class="row" data-bind="if: targetProjectId() && targetTaskId()">
+                        <label  class="control-label col-sm-12" ></label>
+                        <div class="form-group col-sm-6" >
+                            <div>
+                           
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-copywithdata" data-bind="checked: copyWithData" />
+                                    <label for="cb-copywithdata" data-i18n="app:pages.tableDuplicate.copyWithData"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group pull-right">
+                        <button type="button" class="btn btn-default btn-outline" data-bind="click:close" data-dismiss="modal" data-i18n="app:pages.tableDuplicate.cancel"></button>
+                        <button type="button" class="btn btn-primary" data-bind="activity: $root.duplicateTableCommand.isExecuting, command: $root.duplicateTableCommand" data-i18n="app:pages.tableDuplicate.duplicate" ></button>
+                         
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="panel panel-task-flat-list" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3>&nbsp;</h3>
+        <div class="panel-actions">
+
+
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right" data-bind=" click: createNewTask">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+
+
+
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="vertical-align text-center" data-bind="visible: showLoadingIndicatorThrottled">
+            <div class="loader loader-grill active"></div>
+        </div>
+        <div data-bind="visible: !showLoadingIndicatorThrottled()">
+            <table class="table flat-task-table table-hover">
+                <thead>
+                    <tr>
+                        <th class="hidden-xs">Status</th>
+                        <th>Name</th>
+                        <th>Dates</th>
+                        <th>Members</th>
+                        <!-- <th>Actions</th> -->
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach:filteredTasks">
+                    <tr class="task-link" data-bind="visible:visibleState,id:'ti'+id(),css: getVm().getTaskCssClasses($data)">
+                        <td class="field-status hidden-xs">
+                            <span class="label label-primary" data-bind="text:getVm().lookups.taskStatus.get(status).text, css:getVm().helpers.getTaskStatusClass(status)"></span>
+                            <div class="table-content">
+                                <span class="label label-success label-round" data-bind="visible:getVm().viewOptions.showCompletionPercentage() && completionPercentage() !== null,text:completionPercentage()+'%'">
+                                </span>
+
+                                <span data-bind="visible: isBlocked() && getVm().viewOptions.showIsBlocked">
+                                    <i class="fa fa-unlink"></i>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="field-name ">
+
+                            <div class="table-content">
+                                <span data-bind="'data-task-id':id,text: name().trunc($root.prefs.middleColumnSize() * 20)"></span>
+
+
+                            </div>
+                            <div class="table-content visible-xs">
+                                <span class="label label-primary" data-bind="text:getVm().lookups.taskStatus.get(status).text, css:getVm().helpers.getTaskStatusClass(status)"></span>
+                                <div class="table-content">
+                                    <span class="label label-success label-round" data-bind="visible:getVm().viewOptions.showCompletionPercentage() && completionPercentage() !== null,text:completionPercentage()+'%'">
+                                    </span>
+
+                                    <span data-bind="visible: isBlocked() && getVm().viewOptions.showIsBlocked">
+                                        <i class="fa fa-unlink"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                        </td>
+                        <td class="field-dates">
+                            <div class="table-content">
+                                <span class="label" data-bind="visible:getVm().viewOptions.showStartDate,text:startDate() ? getVm().utils.formatDate(startDate): '-- | --',css:getVm().helpers.getTaskStartDateColor($data,getVm().lookups)"></span>
+
+                                <span class="label " data-bind="text: dueDate() ?getVm().utils.formatDate(dueDate) : '-- | --', css:getVm().helpers.getTaskDueDateColor($data,getVm().lookups)"></span>
+                            </div>
+                        </td>
+                        <td class="field-members">
+                            <div class="table-content">
+                                <ul class="member-list">
+                                    <li class="member-list-item" data-bind="visible:getVm().viewOptions.showOwner, with:$data.getVm().getUser($data.owner)">
+                                        <img class="avatar avatar-xs avatar-scale" data-bind="src:$parent.getVm().helpers.getAvatarOrDefault($data),alt:fullName">
+                                    </li>
+                                    <li class="member-list-item" data-bind="with:$data.getVm().getUser($data.assignee)">
+                                        <img class="avatar avatar-xs avatar-scale" data-bind="src:$parent.getVm().helpers.getAvatarOrDefault($data),alt:fullName">
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </td>
+                        <!-- <td class="actions">
+                            <button data-url="panel.tpl" data-toggle="slidePanel" type="button" class="btn btn-outline btn-success ">Achievements</button>
+                            <div class="table-content">
+                                <i class="icon wb-menu" data-url="panel.tpl" data-toggle="slidePanel"></i>
+                            </div>
+                        </td> -->
+                    </tr>
+                    <tr class="task-detail task-link" data-bind="visible:visibleState,id:'ti'+id()">
+                        <td colspan="5">
+
+                            <div class="table-content custom-fields" data-bind="with:getVm().getCustomFieldsDataList($data)">
+                                <dl data-bind="foreach:$data">
+                                    <dt data-bind="text:title"></dt>
+                                    <dd data-bind="text:value"></dd>
+                                </dl>
+                            </div>
+                            <div class="table-content tags" data-bind="visible:getVm().viewOptions.showTags() && ko.unwrap($data.tags).length>0">
+                                <ul data-bind="foreach:$data.tags" class="list-inline">
+                                    <li class="task-tag">
+                                        <span class="label label-primary label-round label-outline" data-bind="text:$data"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

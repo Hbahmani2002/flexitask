@@ -1,0 +1,648 @@
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.taskDetails.title"></h3>
+
+    </div>
+    <div class="panel-body">
+        <div class="panel">
+            <ul class="list-group list-group-dividered">
+
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-name"
+                            aria-controls="form-edit-task-name" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.name"></span> <span
+                            data-bind="text:$root.details.name.cached"></span></h4>
+                    <form class="collapse" id="form-edit-task-name" aria-expanded="false">
+                        <div class="form-group">
+                            <input type="text" class="form-control" data-bind="value:$root.details.name2">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskName"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <h4 class="list-group-item-heading"><span>Id:</span> <span data-bind="text:$root.details.id"></span>
+                    </h4>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.projectName"></span>
+                        <span data-bind="text:$root.details.projectName"></span></h4>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-parent"
+                            aria-controls="form-edit-task-parent" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskParent"></span> <span
+                            data-bind="text:$root.getTextOrEmptyText('parenttask')"></span></h4>
+                    <form class="collapse" id="form-edit-task-parent" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select id="select-task"  data-bind="select2Data: details.parentTaskId, select2:  $root.getTaskAutocomplete()" class="form-control"></select>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeParentTask"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-type" aria-expanded="false"
+                            aria-controls="form-edit-task-type">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskType"></span> <span
+                            data-bind="text:$root.getTextOrEmptyText('tasktype')"></span></h4>
+                    <form class="collapse" id="form-edit-task-type" aria-expanded="false">
+                        <div class="form-group">
+                            <select class="form-control" data-bind="options: lookups.taskType.getAll(),
+                               optionsText: 'text',
+                               optionsValue:'value',
+                               value: $root.details.taskType"></select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskType"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-status" aria-expanded="false"
+                            aria-controls="form-edit-task-status">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskStatus"></span> <span
+                            data-bind="text:$root.getTextOrEmptyText('status')"></span></h4>
+                    <form class="collapse" id="form-edit-task-status" aria-expanded="false">
+                        <div class="form-group">
+                            <select class="form-control" data-bind="options: lookups.taskStatus.getAll(),
+                               optionsText: 'text',
+                               optionsValue:'value',
+                               value: $root.details.status"></select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskStatus"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-priority"
+                            aria-controls="form-edit-task-priority" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskPriority"></span>
+                        <span data-bind="text:$root.getTextOrEmptyText('priority')"></span></h4>
+                    <form class="collapse" id="form-edit-task-priority" aria-expanded="false">
+                        <div class="form-group">
+                            <select class="form-control" data-bind="options: lookups.taskPriority.getAll(),
+                               optionsText: 'text',
+                               optionsValue:'value',
+                               value: $root.details.priority"></select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskPriority"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="list-group-item list-group-item-form"
+                    data-bind="visible:$root.details.taskType.cached() !== $root.lookups.taskType.MILESTONE.value">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-startdate"
+                            aria-controls="form-edit-task-startdate" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskStartDate"></span>
+                        <span data-bind="text:$root.details.startDateText"></span></h4>
+                    <form class="collapse" id="form-edit-task-startdate" aria-expanded="false">
+                        <div class="form-group">
+                            <div class="input-group date" data-bind="dateTimepicker: $root.details.startDate">
+                                <input type='text' class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="icon wb-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.reschedule"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-duedate"
+                            aria-controls="form-edit-task-duedate" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskDueDate"></span>
+                        <span data-bind="text:$root.details.dueDateText"></span></h4>
+                    <form class="collapse" id="form-edit-task-duedate" aria-expanded="false">
+                        <div class="form-group">
+                            <div class="input-group date" data-bind="dateTimepicker: $root.details.dueDate">
+                                <input type='text' class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="icon wb-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.reschedule"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-completion"
+                            aria-controls="form-edit-task-completion" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskCompletion"></span>
+                        <span data-bind="text:$root.getTextOrEmptyText('completionpercentage')"></span></h4>
+                    <form class="collapse" id="form-edit-task-completion" aria-expanded="false">
+                        <div class="form-group">
+                            <input type="number" max="100" min="0" class="form-control"
+                                   data-bind="value:details.completionPercentage">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary"
+                                    data-bind="click:$root.changeCompletionPercentage"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                            <button type="button" class="btn btn-danger"
+                                    data-bind="click:$root.clearCompletionPercentage"
+                                    data-i18n="app:pages.taskDetails.clear"></button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-assignee"
+                            aria-controls="form-edit-task-assignee" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskAssignee"></h4>
+                    <ul class="list-inline">
+                        <li data-bind="with:$root.getUser(details.assignee.cached)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-assignee" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select data-bind="select2Data: details.assignee, select2:  $root.autocomplete.getSelect2OptionsForCollaborators()"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskAssignee"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-owner"
+                            aria-controls="form-edit-task-owner" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskOwner"></h4>
+                    <ul class="list-inline">
+                        <li data-bind="with:$root.getUser(details.owner.cached)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-owner" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select data-bind="select2Data: details.owner,select2:  $root.autocomplete.getSelect2OptionsForCollaborators()"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskOwner"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-coowners"
+                            aria-controls="form-edit-task-coowners" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskCoOwners"></h4>
+                    <ul class="list-inline" data-bind="foreach:details.coOwners.cached">
+                        <li data-bind="with:$root.getUser($data)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-coowners" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple"
+                                        data-bind="select2Data: details.coOwners, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskCoOwners"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-assignees"
+                            aria-controls="form-edit-task-assignees" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskCoAssignees"></h4>
+                    <ul class="list-inline" data-bind="foreach:details.coAssignees.cached">
+                        <li data-bind="with:$root.getUser($data)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-assignees" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple"
+                                        data-bind=" select2Data: details.coAssignees, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskCoAssignees"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-followers1"
+                            aria-controls="form-edit-task-followers1" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskFollowers1"></h4>
+                    <ul class="list-inline" data-bind="foreach:details.category1Followers.cached">
+                        <li data-bind="with:$root.getUser($data)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-followers1" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple"
+                                        data-bind=" select2Data: details.category1Followers,select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskFollowers1"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-followers2"
+                            aria-controls="form-edit-task-followers2" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskFollowers2"></h4>
+                    <ul class="list-inline" data-bind="foreach:details.category2Followers.cached">
+                        <li data-bind="with:$root.getUser($data)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-followers2" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple"
+                                        data-bind="select2Data: details.category2Followers,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskFollowers2"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-followers3"
+                            aria-controls="form-edit-task-followers3" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskFollowers3"></h4>
+                    <ul class="list-inline" data-bind="foreach:details.category3Followers.cached">
+                        <li data-bind="with:$root.getUser($data)">
+                            <small>
+                                <a class="" href="javascript:void(0)">
+                                    <img class="avatar avatar-sm avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-task-followers3" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple"
+                                        data-bind="select2Data: details.category3Followers,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)"
+                                        class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskFollowers3"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-durationdays"
+                            aria-controls="form-edit-task-durationdays" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.estimations"></h4>
+                    <form class="collapse" id="form-edit-task-durationdays" aria-expanded="false">
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.taskDurationDays"></label>
+                            <input type="number" class="form-control" data-bind="value:details.estimatedDurationDays">
+                        </div>
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.taskEstimatedEffort"></label>
+                            <input type="number" class="form-control" data-bind="value:details.estimatedEffordHours">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                 <label class=" control-label" data-i18n="app:pages.taskDetails.taskEstimatedBudget"></label>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="number" class="form-control" data-bind="value:details.estimatedBudget">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <select class="form-control"
+                                        data-bind="options: $root.lookups.currencyTypes, value: details.estimatedBudgetCurrencyCode, optionsText: 'currencyCode',optionsValue:'currencyCode'">
+                                </select>
+
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary"
+                                    data-bind="click:$root.changeTaskEstimations"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+
+        
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-modules"
+                            aria-controls="form-edit-task-modules" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.taskDetails.taskModules"></span>
+                        <span data-bind="text:$root.getTextOrEmptyText('taskmodules')"></span></h4>
+                    <form class="collapse" id="form-edit-task-modules" aria-expanded="false">
+                        <div class="form-group">
+                            <ul data-bind="foreach: $root.selectableModuleList " class="list-inline">
+                                <li>
+                                    <input type="checkbox"
+                                           data-bind="attr: { disabled:$root.details.activeModules.cached.indexOf($data.value) !== -1  },checkedValue: value, checked: $root.details.activeModules">&nbsp;<span
+                                        data-bind="text:text"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskModules"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                 <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-module-options"
+                            aria-controls="form-edit-task-module-options" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.commentOptions"></h4>
+                    <form class="collapse" id="form-edit-task-module-options" aria-expanded="false">
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.taskCommentReplyLevel"></label>
+                            <select class="form-control" data-bind="value:details.moduleOptions.commentReplyLevel">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.commentVoting"></label>
+                            <select class="form-control"
+                                data-bind="options: lookups.commentVoteStatus.getAll(),value:details.moduleOptions.commentVoteStatus,optionsText:'text',optionsValue:'value'">
+                            </select>
+                        </div>
+                        <div class="form-group" data-bind="visible:details.moduleOptions.commentVoteStatus.cached().toString()==='1'">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.commentVotingMode"></label>
+                            <select class="form-control"
+                                data-bind="options: lookups.commentVoteModes.getAll(),value:details.moduleOptions.commentVoteMode,optionsText:'text',optionsValue:'value'">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.commentSorting"></label>
+                            <select class="form-control"
+                                data-bind="options: lookups.commentSortModes.getAll(),value:details.moduleOptions.commentDefaultSortingMode,optionsText:'text',optionsValue:'value'">
+                            </select>
+                        </div>
+                        <div class="form-group" data-bind="visible:details.moduleOptions.commentReplyLevel.cached()>0">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.commentViewMode"></label>
+                            <select class="form-control"
+                                data-bind="options: lookups.commentViewModes.getAll(),value:details.moduleOptions.commentViewMode,optionsText:'text',optionsValue:'value'">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskModuleOptions"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                 </li>
+            </ul>
+        </div>
+
+
+        
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-constraints"
+                            aria-controls="form-edit-task-constraints" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskConstraints"></h4>
+                    <form class="collapse" id="form-edit-task-constraints" aria-expanded="false">
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.taskDetails.taskDeadline"></label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" class="form-control"
+                                       data-bind="datepicker: $root.details.constraints.deadline, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" data-i18n="app:pages.taskDetails.taskConstraintType"> </label>
+                            <select class="form-control" data-bind="options: lookups.taskConstraintTypes.getAll(),
+                               optionsText: 'text',
+                               optionsValue:'value',
+                               value: $root.details.constraints.constraintType">
+                            </select>
+                        </div>
+                        <div class="form-group"
+                             data-bind="visible:$root.isConstraintDateVisible($root.details.constraints.constraintType)">
+                            <label class="control-label" data-i18n="app:pages.taskDetails.taskConstraintDate"></label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" class="form-control"
+                                       data-bind="datepicker: $root.details.constraints.constraintDate, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeTaskConstraints"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-task-reporting"
+                            aria-controls="form-edit-task-reporting" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.taskReportingSettings"></h4>
+                    <form class="collapse " id="form-edit-task-reporting" aria-expanded="false">
+                        <div class="form-group">
+                            <div class="checkbox-custom checkbox-default">
+                                <input type="checkbox" id="cb-show-in-calendar" name="inputCheckbox"
+                                       data-bind="inverseChecked:details.reportingOptions.doNotIncludeToCalendar"
+                                       autocomplete="off">
+                                <label for="cb-show-in-calendar"
+                                       data-i18n="app:pages.taskDetails.taskShowInCalendar"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-custom checkbox-default">
+                                <input type="checkbox" id="cb-show-in-gantt-chart" name="inputCheckbox"
+                                       data-bind="inverseChecked:details.reportingOptions.doNotIncludeToGanttChart"
+                                       autocomplete="off">
+                                <label for="cb-show-in-gantt-chart"
+                                       data-i18n="app:pages.taskDetails.taskShowInGantt"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary"
+                                    data-bind="click:$root.saveReportingOptions"
+                                    data-i18n="app:pages.taskDetails.save"></button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item" data-bind="if:details.audit.createdBy">
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.createdByTitle"></h4>
+                    <div class="list-group-item-text">
+                        <div class="avatar avatar-xs avatar-scale"><img style="margin-top:-1px;" class="img-responsive"
+                                                                        data-bind="src:$root.helpers.getAvatarOrDefault(details.audit.createdBy),alt:details.audit.createdBy.fullName">
+                        </div>
+                        <span data-bind="i18n:'app:pages.taskDetails.createdByFormat','i18n-options':{user:details.audit.createdBy.fullName,date:$root.utils.formatDateTime(details.audit.createdAt)}"></span>
+                    </div>
+                </li>
+                <li class="list-group-item" data-bind="if:details.audit.updatedBy">
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.taskDetails.updatedByTitle"></h4>
+                    <div class="list-group-item-text">
+                        <div class="avatar avatar-xs avatar-scale"><img style="margin-top:-1px;" class="img-responsive"
+                                                                        data-bind="src:$root.helpers.getAvatarOrDefault(details.audit.updatedBy),alt:details.audit.updatedBy.fullName">
+                        </div>
+                        <span data-bind="i18n:'app:pages.taskDetails.updatedByFormat','i18n-options':{user:details.audit.updatedBy.fullName,date:$root.utils.formatDateTime(details.audit.updatedAt)}"></span>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,85 @@
+@import "site.less";
+
+
+
+
+
+.panel-activity{
+	>.panel-heading{
+		background-color: @panel-activity-heading-bg;
+	}
+}
+
+.panel-projects{
+	>.panel-heading{
+		background-color: @panel-projects-heading-bg;
+	}
+}
+.panel-search{
+	>.panel-heading{
+		background-color: @panel-search-heading-bg;
+	}
+}
+.panel-project{
+	>.panel-heading{
+		background-color: @panel-project-heading-bg;
+	}
+}
+
+.panel-task {
+	>.panel-heading{
+		background-color: @panel-task-heading-bg;
+	}
+}
+
+.panel-project-detail {
+	>.panel-heading{
+		background-color: @panel-project-detail-heading-bg;
+	}
+}
+
+.panel-column-content {
+	background-color: transparent;
+}
+
+.panel-column-header {
+	> .panel-heading {
+		.panel-title{
+			color:@panel-heading-title-color;
+		}
+	}
+}
+
+.panel-card-activity {
+	>.panel-heading.task-active{
+		>.media.media-author>.media-body {
+			.author{
+				color: @panel-card-media-author-color;
+			}
+			.meta {
+				color: @panel-card-media-author-meta-color;
+			}
+		}
+	}
+}
+// Task Tree   ====================================================================
+.task-tree{
+    .task-content{
+        background-color: @task-tree-task-bg;
+         border: 1px solid @task-tree-task-border-color;
+        &:hover {
+            background-color:@task-tree-task-hover-bg; ;
+            border-color: @task-tree-task-hover-border-color;
+            cursor: pointer;
+        }
+
+        &.active {
+            background-color:@task-tree-task-active-bg!important;
+            border-color: @task-tree-task-active-border-color;
+			>a {
+                color: @task-tree-task-active-color;
+            }
+			
+        }
+    }
+}

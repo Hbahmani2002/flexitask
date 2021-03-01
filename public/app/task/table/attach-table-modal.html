@@ -1,0 +1,34 @@
+<div class="modal-dialog  modal-lg ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only" data-i18n="app:pages.table.close"></span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.table.attachTable"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form>
+                    <div class="form-group">
+                        <label for="select-sourceType" class="control-label" data-i18n="app:pages.table.sourceType"></label>
+                        <select class="form-control" id="select-sourceType" data-bind="options: lookups.tableSourcesTypes.getAll(),optionsText:'text',optionsValue:'value',value:  selectedSourceType "></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="select-source-table" class="control-label" data-i18n="app:lookups.taskModules.tables"></label>
+                        <select class="form-control" id="select-source-table" data-bind="options: tables,optionsText:'name',optionsValue:'id',value:selectedTable"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-outline" data-bind="click: cancel" data-i18n="app:pages.table.close">Cancel</button>
+                            <button data-bind="click: save" class="btn btn-primary" data-i18n="app:pages.table.add">Save</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

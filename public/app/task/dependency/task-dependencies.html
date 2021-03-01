@@ -1,0 +1,206 @@
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.linkedTasks.title"></h3>
+        <div class="panel-actions">
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#"
+                   aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250"
+                    role="menu">
+                    <li role="presentation" data-bind="css:{'active':showSuccessors}">
+                        <a href="#" data-bind="toggleClick:showSuccessors"
+                           data-i18n="app:pages.linkedTasks.showSuccessors"></a>
+                    </li>
+                    <li role="presentation" data-bind="css:{'active':showDependedTasksToThisTask}">
+                        <a href="#" data-bind="toggleClick:showDependedTasksToThisTask"
+                           data-i18n="app:pages.linkedTasks.showDependedTasksToThisTask"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p class="clearfix">
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right"
+                    data-bind=" click: addNewDependency">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+        </p>
+
+        <div class="panel  panel-default table-responsive">
+            <div class="panel-heading">
+                <h5 class="panel-title" data-i18n="app:pages.linkedTasks.predecessors"></h5>
+
+            </div>
+            <table class="table  table-hover">
+                <thead>
+                <tr>
+                    <th data-i18n="app:pages.linkedTasks.taskName"></th>
+                    <th data-i18n="app:pages.linkedTasks.description"></th>
+                    <th data-i18n="app:pages.linkedTasks.linkType"></th>
+                    <!--<th data-i18n="app:pages.linkedTasks.taskStatus"></th>-->
+                    <th data-i18n="app:pages.linkedTasks.taskStatus"></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:dependedObjects">
+                <tr>
+                    <td>
+                        <span data-bind="visible:$root.projectId!==project.id">
+                        <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a>
+                        |
+                            </span>
+                        <div data-bind="if:task">
+                            <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl(project.id, task.id), text: task.name"></a>
+                        </div>
+                    </td>
+                    <td>
+                        <span data-bind="text:description"></span>
+                    </td>
+                    <td>
+                        <span data-bind="text:$root.lookups.dependencies.get(dependencyType).text"></span>
+                    </td>
+                    <td>
+                        <div data-bind="if:task">
+
+                            <!--<span data-bind="text:task.status"></span>-->
+                            <span data-bind="text:$root.lookups.taskStatus.get(task.status).text"></span>
+                        </div>
+                        <div data-bind="if:task==null && project.status">
+                            <span data-bind="text:$root.lookups.projectStatus.get(project.status).text"></span>
+                        </div>
+                    </td>
+                    <td><a href="#" data-bind="click:$root.editDependency" data-i18n="app:pages.linkedTasks.edit"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-default table-responsive">
+            <div class="panel-heading">
+                <h5 class="panel-title" data-i18n="app:pages.linkedTasks.relatedTasks"></h5>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th data-i18n="app:pages.linkedTasks.taskName"></th>
+                    <th data-i18n="app:pages.linkedTasks.description"></th>
+                    <th data-i18n="app:pages.linkedTasks.taskStatus"></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:relatedObjects">
+                <tr>
+                    <td>
+                        <span data-bind="visible:$root.projectId!==project.id">
+                        <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a>
+                        |
+                            </span>
+                        <div data-bind="if:task">
+                            <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl(project.id, task.id), text: task.name"></a>
+                        </div>
+                    </td>
+                    <td>
+                        <span data-bind="text:description"></span>
+                    </td>
+                    <td>
+                        <div data-bind="if:task">
+                            <span data-bind="text:task.status.text"></span>
+                        </div>
+                        <div data-bind="if:task==null && project.status">
+                            <span data-bind="text:project.status.text"></span>
+                        </div>
+                    </td>
+                    <td><a href="#" data-bind="click:$root.editRelation" data-i18n="app:pages.linkedTasks.edit"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel  panel-default table-responsive" data-bind="visible:showSuccessors">
+            <div class="panel-heading">
+                <h5 class="panel-title" data-i18n="app:pages.linkedTasks.successors"></h5>
+            </div>
+            <table class="table  table-hover">
+                <thead>
+                <tr>
+                    <th data-i18n="app:pages.linkedTasks.taskName"></th>
+                    <th data-i18n="app:pages.linkedTasks.description"></th>
+                    <th data-i18n="app:pages.linkedTasks.linkType"></th>
+                    <th data-i18n="app:pages.linkedTasks.taskStatus"></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:successorDependedObjects">
+                <tr>
+                    <td>
+                            <span data-bind="visible:$root.projectId!==project.id">
+                            <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a> |
+                                </span>
+                        <div data-bind="if:task">
+                            <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl(project.id, task.id), text: task.name"></a>
+                        </div>
+                    </td>
+                    <td>
+                        <span data-bind="text:description"></span>
+                    </td>
+                    <td>
+                        <span data-bind="text:$root.lookups.dependencies.get(dependencyType).text"></span>
+                    </td>
+                    <td>
+                        <div data-bind="if:task">
+                            <span data-bind="text:task.status.text"></span>
+                        </div>
+                        <div data-bind="if:task==null && project.status">
+                            <span data-bind="text:project.status.text"></span>
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-default table-responsive" data-bind="visible:showDependedTasksToThisTask()">
+            <div class="panel-heading">
+                <h5 class="panel-title" data-i18n="app:pages.linkedTasks.relatedToThisTask"></h5>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th data-i18n="app:pages.linkedTasks.taskName"></th>
+                    <th data-i18n="app:pages.linkedTasks.description"></th>
+                    <th data-i18n="app:pages.linkedTasks.taskStatus"></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:successorRelatedObjects">
+                <tr>
+                    <td>
+                        <span data-bind="visible:$root.projectId!==project.id">
+                        <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a>
+                            </span>
+                        |
+                        <div data-bind="if:task">
+                            <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl(project.id, task.id), text: task.name"></a>
+                        </div>
+                    </td>
+                    <td>
+                        <span data-bind="text:description"></span>
+                    </td>
+                    <td>
+                        <div data-bind="if:task">
+                            <span data-bind="text:task.status.text"></span>
+                        </div>
+                        <div data-bind="if:task==null && project.status">
+                            <span data-bind="text:project.status.text"></span>
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

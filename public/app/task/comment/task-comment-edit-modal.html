@@ -1,0 +1,120 @@
+﻿<div class="modal-dialog modal-dialog-borderless modal-lg ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.commentEdit.title"></h4>
+        </div>
+        <div class="modal-body">
+           
+            <div class="row">
+                <form data-bind="with:comment" >
+                   <div class="form-group" data-bind="validationElement:commentText">
+                        <label for="txt-comment" data-i18n="app:pages.commentEdit.comment"></label>
+                        <textarea data-bind="value:commentText" class="hide"></textarea>
+                        <div data-bind="markdownEditor: {data:commentText,init:true,saveButton:false,cancelButton:false,onChange:true,onPreview:$parent.onEditCommentPreview,height:300}">
+                            <div class="editor" data-bind="atwho:commentText,atwhoOptions:$parent.atjsOptions"></div>
+                        </div>
+                      
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group fileupload-buttonbar">
+                                    <span class="btn btn-default fileinput-button">
+                                        <i class="icon fa-plus"></i>
+                                        <span data-i18n="app:pages.comment.addfiles"></span>
+                                        <input data-bind="fileUploader:$root.getUploadComponentOptions(),fileUploadSelector:'.js--form-upload-new-attachments',attr: { multiple:$root.utils.browser.isIOS() ? null : 'multiple' }" type="file" name="files[]" >
+                                    </span>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6 form-inline">
+                                <div class="form-group">
+                                    <label for="select-position" data-i18n="app:pages.commentEdit.position"></label>
+                                    <select class="form-control" id="select-position"
+                                            data-bind="options:$root.positionArray,value: position"></select>
+                                </div>
+                        </div>
+                        <div class="col-sm-3 form-inline">
+
+                        </div>
+                    </div>
+                    <div class="form-group list-group list-group-dividered js--form-upload-new-attachments" >
+
+                    </div>
+
+
+                    <div class="form-group" data-bind="visible:attachments">
+                        <ul class="list-group" data-bind="foreach: attachments">
+                            <li class="list-group-item" data-bind="css: {'todo-item-completed': $data.delete() } ">
+                                    <a href="" data-bind="href: $data.downloadUrl, text: $data.name"></a>
+
+                                    <div class="pull-right">
+                                        <ul class="list-inline">
+                                            <li data-bind="visible:!$data.delete()">
+                                                <a href="javascript:void(0);" data-bind="popover: {
+                                                    options: { title: 'Add new version', placement: 'top' },
+                                                    template: 'file-attachment-new-version',
+                                                    popoverToggle: newVersionWindowToggle,
+                                                    data: $data }"
+                                                   data-i18n="app:pages.commentEdit.addNewAttachmentVersion"></a>
+                                            </li>
+                                            <li data-bind="visible:!$data.delete()">|</li>
+                                            <li data-bind="visible:!$data.delete()">
+                                                <a href="#" data-bind="toggleClick: $data.delete"
+                                                   data-i18n="app:pages.commentEdit.deleteAttachment"></a>
+                                            </li>
+                                            <li data-bind="visible:$data.delete">
+                                                <a href="#" data-bind="toggleClick: $data.delete" data-i18n="app:pages.commentEdit.undeleteAttachment"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <div class=" pull-right">
+                            <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click: $root.cancel"
+                                        class="btn btn-default btn-outline" data-i18n="app:pages.commentEdit.cancel">
+                            </button>
+                            <button id="btn-save" name="btn-save" type="button" data-bind="activity: $root.saveCommentCommand.isExecuting, command: $root.saveCommentCommand"
+                                        class="btn btn-primary" data-i18n="app:pages.commentEdit.save">
+                            </button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/html" id="file-attachment-new-version">
+    <button class="close pull-right" type="button" data-dismiss="popover">×</button>
+    <form data-bind="fileUpload:$root.getVersionUpdateUploadOptions($data),fileUploadSelector:'.js--file-upload'"  >
+
+
+        <fieldset>
+            <div class="form-group">
+                <input id="txt-description" type="text" name="description[]" placeholder="description" class="form-control js--serializable" />
+            </div>
+            <div class="form-group">
+                   <span  class="btn btn-default fileinput-button">
+                                <i class="icon fa-plus"></i>
+                                <span data-bind="i18n:'app:pages.commentEdit.addFile'"></span>
+                                <input data-bind="'data-progress-selector':'.js--file-upload-progress_'+$data.attachmentId,attr: { multiple:$root.utils.browser.isIOS() ? null : 'multiple' }"
+                                       class="js--file-upload" type="file" name="files[]">
+                  </span>
+            </div>
+
+            <div class="progress hide-it js--file-upload-progress_{{$data.attachmentId}} ">
+                <div class="progress-bar progress-bar-success " role="progressbar" aria-valuemin="0"
+                     aria-valuemax="100"></div>
+            </div>
+        </fieldset>
+
+    </form>
+
+</script>

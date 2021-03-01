@@ -1,0 +1,165 @@
+﻿<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:lookups.projectModules.attachments"></h3>
+        <div class="panel-actions" data-bind="visible:$root.isTaskView()">
+
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="css:{'active':filter.includeSubTasks},visible:$root.isTaskView()">
+                        <a href="#" data-bind="toggleClick:filter.includeSubTasks" data-i18n="app:pages.todo.includeSubTasks"></a>
+                    </li>
+                    <li role="presentation" data-bind="css:{'active': $root.filter.types.contains('task/comment')}">
+                        <a href="#" data-bind="dataToggleClick:{preventDefault:true,target:$root.filter.types,value:'task/comment'}">
+                            <span data-i18n="app:pages.comment.showCommentAttachments"></span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="panel-body">
+       <p class="clearfix" data-bind="visible:isTaskView()">
+              <button type="button" class="btn btn-floating btn-danger btn-xs fileinput-button pull-right">
+               <i class="icon wb-plus" aria-hidden="true"></i>
+               <form>
+                    <input data-bind="fileUploader:$root.getUploadComponentOptions(),fileUploadSelector:'.js--form-upload-attachments',attr: { multiple:$root.utils.browser.isIOS() ? null : 'multiple' }" class="js--file-selector" type="file" name="files[]" >
+
+
+               </form>
+            </button>
+            <div class="list-group list-group-dividered js--form-upload-attachments" >
+
+            </div>
+       </p>
+        <div data-bind="foreach: { data: attachments }">
+            <div class="panel panel-card panel-card-attachment">
+                <div class="panel-heading">
+                    <div class="media media-author">
+                        <div class="media-left">
+                            <a class="avatar avatar-scale" href="javascript:void(0)">
+                                <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault(author),alt:author.alias">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="author" data-bind="text:author.fullName"></a>
+                            <div class="meta new-line font-size-12">
+                                <span class="date" data-bind="text:$root.utils.timeFromNow(createdAt)"></span>
+                            </div>
+                        </div>
+                         <div class="media-right">
+                             <span class="badge badge-danger" data-bind="visible:lastVersion.version>1,text:'v'+(lastVersion.version)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="media media-attachment">
+                        <div class="media-left">
+                            <i class="icon fa-file attachment-icon" style="font-size:24px;" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading" data-bind="text:viewName"></h4>
+                            <div>
+                                <span class="label label-round label-primary" data-bind="text:lastVersion.contentType"></span>
+                                <span class="badge badge-dark" data-bind="text:$root.utils.humanizeBytes(lastVersion.length)"></span>
+                            </div>
+                                <ul class="list-inline" data-bind="foreach:tags.cached">
+                                    <li><span class="label label-success label-round label-outline" data-bind="text:$data"></span></li>
+                                </ul>
+
+                                <ul class="list-unstyled" data-bind="visible:$root.isMultiTaskView">
+                                    <li class="text-wrap" data-bind="visible:taskId">
+                                        <i class="icon fa-list"></i>&nbsp;<a href="#/projects/{{$root.projectId}}/tasks/{{taskId}}">{{taskName}}</a>
+                                    </li>
+                                </ul>
+
+
+                            <div class="well well-sm bg-yellow-100" data-bind="visible:description.cached">
+                                <p class=" word-break" data-bind="text:description.cached"></p>
+                            </div>
+                            <blockquote data-bind="visible:verDescription" class="blockquote blockquote-warning">
+                                <small>
+                                    <strong >Version description</strong>
+                                    <p class=" word-break" data-bind="text:verDescription"></p>
+                                </small>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-section hide" data-bind="id:'list-'+ attachmentId + '-versions'">
+
+                        <ul class="list-group list-group-bordered" data-bind="visible:versions.length>=1,foreach: $root.sortFiles($data.versions)">
+                            <li class="list-group-item">
+                                <div class="media" >
+                                     <div class="media-left">
+                                       <a class="avatar avatar-scale avatar-xs" href="javascript:void(0)" data-bind="with:author">
+                                           <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:$data.alias">
+                                       </a>
+                                     </div>
+                                     <div class="media-body">
+                                       <h4 class="media-heading" data-bind="text:author.fullName"></h4>
+                                       <small data-bind="text:$root.utils.formatDateTime(uploadedAt)"></small>
+                                       <p>
+                                            <a href="" class="list-group-item-heading" data-bind="href: downloadUrl, i18n: 'app:pages.attachment.fileversion','i18n-options':{version: index  }"></a>
+                                             <blockquote data-bind="visible:description" class="blockquote blockquote-warning">
+                                                <small>
+                                                    <p class=" word-break" data-bind="text:description"></p>
+                                                </small>
+                                            </blockquote>
+                                       </p>
+                                     </div>
+
+                                </div>
+                            </li>
+                        </ul>
+
+                </div>
+                <div class="panel-toolbar" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <a class="btn" data-bind="href: downloadUrl, title: name, download: name">
+                            <i class="icon wb-download"></i>
+                            <span data-i18n="app:pages.attachment.download"></span>
+                        </a>
+                        <a class="btn" data-bind="href: viewUrl, title: name" target="_blank">
+                            <i class="icon wb-eye"></i>
+                            <span data-i18n="app:pages.attachment.view"></span>
+                        </a>
+                        <a class="btn" data-bind="visible:associatedCommentId,click:$root.showAssociatedComment">
+                            <i class="icon wb-chat"></i>
+                            <span data-i18n="app:pages.comment.showAssociatedComment">Show associated comment</span>
+                        </a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn  pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu animation-scale-up animation-top-left animation-duration-250">
+                            <li role="presentation" >
+                                <a href="#" data-bind="click: $root.editAttachment" data-i18n="app:pages.attachment.edit"></a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" data-bind="click: $root.deleteAttachment" data-i18n="app:pages.attachment.delete"></a>
+                            </li>
+                            <li role="presentation" data-bind="visible:!associatedCommentId">
+                                <a href="#" data-bind="click: $root.newVersion" data-i18n="app:pages.attachment.addnewversion"></a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" data-bind="click: $root.showVersions" data-i18n="app:pages.attachment.showversions"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-footer" data-bind="visible:comment">
+                    <div data-bind="with:comment">
+                        <strong>Associated comment</strong>
+                        <div data-bind="markdown:  {text:commentText,options:{truncate:true, maxLength:1200,highlight:true }}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

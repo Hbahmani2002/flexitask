@@ -1,0 +1,59 @@
+﻿<div class="wrapper-login">
+    <div class="page-login-v2 layout-full page-dark" style="background-image: url('assets/images/workplace-office-technology.jpg');background-repeat:no-repeat;background-size:80%;background-position-x:-10%;">
+        <!-- Page -->
+        <div class="page animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
+            <div class="page-content">
+                <div class="page-brand-info" style="margin-top:120px;">
+                    <div class="brand">
+                        <img id="imgLogo" class="brand-img" src="../assets/images/pemLOGO.png" alt="...">
+                        <!--<h2 class="brand-text font-size-40">FlexiTask</h2>-->
+                    </div>
+                    <p class="font-size-20" data-i18n="app:pages.login.slogan" style="color:#333333">Increase your productivity</p>
+                </div>
+                <div class="page-login-main">
+                    <div class="brand visible-xs">
+                        <img class="brand-img" src="../assets/images/logo.png" alt="..." style="width:25% !important;">
+                        <h3 class="brand-text font-size-40">FlexiTask</h3>
+                    </div>
+                    <h3 class="font-size-24" data-i18n="app:pages.login.signInHeader">Sign In</h3>
+                    <p data-i18n="app:pages.login.loginFlexiTask">Login FlexiTask </p>
+                    <form method="post" action="login-v2.html">
+                        <div class="form-group" data-bind="validationElement: username">
+                            <label class="sr-only" for="txt-username" data-i18n="app:pages.login.userName">Username</label>
+                            <input type="text" class="form-control" id="txt-username" name="email" placeholder="Username" data-bind="value: username" data-i18n="[placeholder]app:pages.login.userNamePlaceholder">
+                        </div>
+                        <div class="form-group" data-bind="validationElement: password">
+                            <label class="sr-only" for="txt-password" data-i18n="app:pages.login.password">Password</label>
+                            <input type="password" class="form-control" id="txt-password" name="password" placeholder="Password" data-bind="value: password" data-i18n="[placeholder]app:pages.login.passwordPlaceholder">
+                        </div>
+                        <!-- <div class="form-group clearfix">
+                        <div class="checkbox-custom checkbox-inline checkbox-primary pull-left">
+                            <input type="checkbox" id="remember" name="checkbox">
+                            <label for="inputCheckbox">Remember me</label>
+                        </div>
+                        <a class="pull-right" href="forgot-password.html">Forgot password?</a>
+                    </div> -->
+                        <button type="submit" class="btn btn-block" data-bind="click: login" data-i18n="app:pages.login.signIn" style="background-color: #be1724;color:white">Sign in</button>
+                    </form>
+                    <p><span data-i18n="app:pages.login.noAccount">No account?</span> <a href="#" onclick="javascript:alert('Not yet');" data-i18n="app:pages.login.signUp">Sign Up</a></p>
+                    <footer class="page-copyright">
+                        <p>2pi</p>
+                        <p data-i18n="app:pages.login.allRightsReserved">© 2015. All RIGHT RESERVED.</p>
+                        <div class="social">
+                            <!--<a class="btn btn-icon btn-round social-twitter" href="javascript:void(0)">
+                                <i class="icon bd-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-icon btn-round social-facebook" href="javascript:void(0)">
+                                <i class="icon bd-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-icon btn-round social-google-plus" href="javascript:void(0)">
+                                <i class="icon bd-google-plus" aria-hidden="true"></i>
+                            </a>-->
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <!-- End Page -->
+    </div>
+</div>

@@ -1,0 +1,966 @@
+<style>
+    .pie-legend ul {
+        list-style: none;
+    }
+
+    .pie-legend li span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+</style>
+<div class="panel panel-task-content" data-bind="panelActions: {}">
+    <div class="panel-heading" style="background-color:#777777">
+        <h6 class="panel-title" data-i18n="app:pages.report.reportModuleTitle"> </h6>
+
+        <div class="panel-actions">
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+        </div>
+    </div>
+    <div class="panel-body">
+
+            <div class="row" style="display:none">
+
+
+                    <div class="col-md-12">
+                        <div class="panel panel-bordered panel-dark">
+                            <div class="panel-heading" style="background-color:#a7a6a6">
+                                <h6 class="panel-title" data-i18n="app:pages.report.startDateAll">Yarın başlayacak işler </h6>
+                            </div>
+                            <div class="panel-body">
+                            <table class="table table-bordered">
+        
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="app:pages.report.workItemTh">İş</th>
+                                        <th data-i18n="app:pages.report.workItemStatusTh">Durum</th>
+                                        <th data-i18n="app:pages.report.assigneeTh">Atanan</th>
+                                        <th data-i18n="app:pages.report.startDateTh">StartDate</th>
+                                        <th data-i18n="app:pages.report.dueDateTh">DueDate</th>
+                                    </tr>
+                                </thead>
+        
+                                <tbody data-bind="with: report7Source">
+                                      <!-- ko if: tasks().length > 0 -->
+                                    <tr>
+                                        <th colspan="5" bgcolor="#961515" data-i18n="app:pages.report.problematicStartDateList" style="color:black;font-size: bold;">Oldu Bu iş</th>
+        
+                                    </tr>
+                                        <!-- /ko -->
+                                    <!-- ko foreach: tasks -->
+        
+        
+                                    <tr>
+                                        <td>
+                                            <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                        </td>
+                                        <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+        
+                                        <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                        <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                        <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+        
+        
+                                    </tr>
+                                    <!-- /ko -->
+        
+                                </tbody>
+                                <tbody data-bind="with: report8Source">
+                                                <!-- ko if: tasks().length > 0 -->
+                                    <tr>
+                                        <th colspan="5"  bgcolor="#b35900" data-i18n="app:pages.report.startDateToday" style="color:black;font-size: bold;">Oldu Bu iş</th>
+        
+                                    </tr>
+                                       <!-- /ko -->
+                                    <!-- ko foreach: tasks -->
+        
+        
+                                    <tr>
+                                        <td>
+                                            <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                        </td>
+                                        <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+        
+                                        <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                        <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                        <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+        
+        
+                                    </tr>
+                                    <!-- /ko -->
+        
+                                </tbody>
+                                <tbody data-bind="with: report9Source">
+                                       <!-- ko if: tasks().length > 0 -->
+                                    <tr>
+                                        <th colspan="5" bgcolor="#b2b235" data-i18n="app:pages.report.startDateTomorrow" style="color:black;font-size: bold;">Oldu Bu iş</th>
+        
+                                    </tr>
+                                        <!-- /ko -->
+                                    <!-- ko foreach: tasks -->
+        
+        
+                                    <tr>
+                                        <td>
+                                            <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                        </td>
+                                        <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+        
+                                        <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                        <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                        <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+        
+        
+                                    </tr>
+                                    <!-- /ko -->
+        
+                                </tbody>
+        
+                                <tbody data-bind="with: report10Source">
+                                       <!-- ko if: tasks().length > 0 -->
+                                    <tr>
+                                        <th colspan="5"  bgcolor="#51a346" data-i18n="app:pages.report.startDateInaWeek" style="color:black;font-size: bold;">Oldu Bu iş</th>
+        
+                                    </tr>
+                                               <!-- /ko -->
+                                    <!-- ko foreach: tasks -->
+        
+        
+                                    <tr>
+                                        <td>
+                                            <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                        </td>
+                                        <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+        
+                                        <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                        <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                        <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+        
+        
+                                    </tr>
+                                    <!-- /ko -->
+        
+                                </tbody>
+        
+        
+                            </table>
+        
+        
+        
+                        </div>
+                        </div>
+                    </div>
+        
+                </div>
+
+        <div class="row"  style="display:none">
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.dueDateAll">Yarın başlayacak işler </h6>
+                    </div>
+                    <div class="panel-body">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th data-i18n="app:pages.report.workItemTh">İş</th>
+                                <th data-i18n="app:pages.report.workItemStatusTh">Durum</th>
+                                <th data-i18n="app:pages.report.assigneeTh">Atanan</th>
+                                <th data-i18n="app:pages.report.startDateTh">StartDate</th>
+                                <th data-i18n="app:pages.report.dueDateTh">DueDate</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody data-bind="with: report3Source">
+                                 <!-- ko if: tasks().length > 0 -->
+                            <tr>
+                                
+                                <th colspan="5"  bgcolor="#961515" data-i18n="app:pages.report.overdueItemsList" style="color:black;font-size: bold;">Oldu Bu iş</th>
+                            </tr>
+                                 <!-- /ko -->
+                            <!-- ko foreach: tasks -->
+
+
+                            <tr>
+                                <td>
+                                    <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                </td>
+                                <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+
+                                <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+
+                            </tr>
+                            <!-- /ko -->
+
+                        </tbody>
+
+                        <tbody data-bind="with: report4Source">
+                                   <!-- ko if: tasks().length > 0 -->
+                            <tr>
+                              
+                                <th colspan="5"  bgcolor="#b35900" data-i18n="app:pages.report.dueDateToday" style="color:black;font-size: bold;">Oldu Bu iş</th>
+                            </tr>
+                                 <!-- /ko -->
+                            <!-- ko foreach: tasks -->
+
+
+                            <tr>
+                                <td>
+                                    <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                </td>
+                                <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+
+                                <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+
+                            </tr>
+                            <!-- /ko -->
+
+                        </tbody>
+                        <tbody data-bind="with: report5Source">
+                                  <!-- ko if: tasks().length > 0 -->
+                            <tr>
+                      
+                                <th colspan="5"  bgcolor="#b2b235" data-i18n="app:pages.report.dueDateTomorrow" style="color:black;font-size: bold;">Oldu Bu iş</th>
+                            </tr>
+                                   <!-- /ko -->
+                            <!-- ko foreach: tasks -->
+
+
+                            <tr>
+                                <td>
+                                    <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                </td>
+                                <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+
+                                <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+
+                            </tr>
+                            <!-- /ko -->
+
+                        </tbody>
+
+                        <tbody data-bind="with: report6Source">
+                               <!-- ko if: tasks().length > 0 -->
+                            <tr>
+                            
+                                <th colspan="5"  bgcolor="#51a346" data-i18n="app:pages.report.dueDateInaWeek" style="color:black;font-size: bold;">Oldu Bu iş</th>
+                            </tr>
+                                <!-- /ko -->
+                            <!-- ko foreach: tasks -->
+
+
+                            <tr>
+                                <td>
+                                    <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                </td>
+                                <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+
+                                <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+
+                            </tr>
+                            <!-- /ko -->
+
+                        </tbody>
+
+
+
+                    </table>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+    
+
+
+
+
+
+        <div class="row">
+            <div class=" col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <!-- Default panel contents -->
+
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+
+                        <div class="panel-actions" data-bind="with:$root.report1Source">
+                            <span class="badge badge-danger" data-bind="text:allTasks().length"></span>
+                        </div>
+                        <h6 class="panel-title" data-i18n="app:pages.report.summaryPartTitle"></h6>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="col-md-12 col-lg-12" data-bind="with:report1Source">
+
+                            <!-- Widgets-->
+                            <!--ROW 1-->
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(32), opacity: completedTasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.completed"></div>
+
+                                                <span class="counter-number" data-bind="text: completedTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(64), opacity: waitingForApprovalTasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.waitingForApproval">
+                                                </div>
+
+                                                <span class="counter-number" data-bind="text: waitingForApprovalTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(4), opacity: inProgressTasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.inProgress"></div>
+
+                                                <span class="counter-number" data-bind="text: inProgressTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(1), opacity: notStartedTasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.notStarted"></div>
+
+                                                <span class="counter-number" data-bind="text: notStartedTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!--End of ROW1-->
+
+                            <!--ROW 2-->
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(8), opacity: inPlanningTasks().length===0 ? $root.getOpacityLevel() : 1}">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.inPlanning"></div>
+
+                                                <span class="counter-number" data-bind="text: inPlanningTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(2), opacity: onHoldTasks().length===0 ? $root.getOpacityLevel() : 1}">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.onHold"></div>
+
+                                                <span class="counter-number" data-bind="text: onHoldTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(16), opacity: cancelledTasks().length===0 ? $root.getOpacityLevel() : 1}">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.cancelled"></div>
+
+                                                <span class="counter-number" data-bind="text: cancelledTasks().length"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(0), opacity: noneTasks().length===0 ? $root.getOpacityLevel() : 1}">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:lookups.taskStatus.none"></div>
+
+                                                <span class="counter-number" data-bind="text: noneTasks().length"></span>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End of ROW2-->
+
+                            <!-- End of Widgets-->
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+                            <canvas id="mypie"></canvas>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 text-left">
+                            <div id="project-pie-chart-legend" class="pie-legend"></div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Table -->
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        <!-- ------------------------------ -->
+        <div class="row">
+            <div class=" col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <!-- Default panel contents -->
+
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.subSummary"></h6>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div>
+
+                            <!-- Widgets-->
+                            <!--ROW 1-->
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(32), opacity: $root.report22Source() && $root.report22Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryProblematicStartDate">Başlaması Gecikmiş</div>
+
+                                                <span class="counter-number" data-bind="text:$root.report22Source() && $root.report22Source().tasks() ? $root.report22Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(64), opacity: $root.report23Source() && $root.report23Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryOverDue">Bitmesi Gecikmiş
+                                                </div>
+
+                                                <span class="counter-number" data-bind="text:$root.report23Source() && $root.report23Source().tasks() ? $root.report23Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(1), opacity: $root.report4Source() && $root.report4Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryDueDateToday">Bugün Bitecek</div>
+
+                                                <span class="counter-number" data-bind="text:$root.report4Source() && $root.report4Source().tasks() ? $root.report4Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(4), opacity: $root.report10Source() && $root.report10Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryStartInAWeek">1 Hafta İçinde Başlayacak</div>
+
+                                                <span class="counter-number" data-bind="text:$root.report10Source() && $root.report10Source().tasks() ? $root.report10Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(8), opacity: $root.report5Source() && $root.report5Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryDueDateTomorrow">Yarın Bitecek</div>
+
+                                                <span class="counter-number" data-bind="text:$root.report5Source() && $root.report5Source().tasks() ?$root.report5Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(2), opacity: $root.report6Source() && $root.report6Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryDueInAWeek">1 Hafta İçinde Bitecek
+                                                </div>
+
+                                                <span class="counter-number" data-bind="text:$root.report6Source() && $root.report6Source().tasks() ? $root.report6Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(0), opacity: $root.report8Source() && $root.report8Source().tasks().length===0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryStartDateToday">Bug Başlayacak</div>
+
+                                                <span class="counter-number" data-bind="text:$root.report8Source() && $root.report8Source().tasks() ? $root.report8Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="widget">
+                                        <div class="widget-content padding-5" data-bind="style:{'background-color':$root.helpers.getColorByStatus(16), opacity: $root.report9Source() && $root.report9Source().tasks().length === 0 ? $root.getOpacityLevel() : 1 }">
+                                            <div class="counter counter-sm counter-inverse">
+                                                <div class="counter-label text-uppercase" data-i18n="app:pages.report.subSummaryStartDateTomorrow">Yarın Başlayacak</div>
+
+                                                <span class="counter-number" data-bind="text:$root.report9Source() && $root.report9Source().tasks() ? $root.report9Source().tasks().length : '0'"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- End of  Row 2 -->
+
+                        </div>
+
+                    </div>
+
+                    <!-- Table -->
+
+                </div>
+            </div>
+        </div>
+        <!-- ------------------------------ -->
+
+
+        <!-- ----------- -->
+
+        <div class="row"  style="display:none">
+
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.groupByAssgineeChart"></h6>
+                        <div class="panel-actions" data-bind="with:$root.report12Source">
+                            <span class="badge badge-danger" data-bind="text:allTasks().length"></span>
+
+
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-right">
+                                <canvas id="reportAllTasksByAssignee"></canvas>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <div id="reportAllTasksByAssignee-legend" class="pie-legend"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ----------- -->
+
+
+        <div class="row"  style="display:none">
+
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.groupByAssgineeProbStartChart">Başlaması gecikmiş işlerin kişiye göre dağılımı </h6>
+                        <div class="panel-actions" data-bind="with:$root.report21Source">
+                            <span class="badge badge-danger" data-bind="text:tasks().length"></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-right">
+                                <canvas id="reportByStartDate21Problem"></canvas>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <div id="reportByStartDate21Problem-legend" class="pie-legend"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row"  style="display:none">
+
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.groupByStatusProbStartChart">Başlaması gecikmiş işlerin duruma göre dağılımı </h6>
+                        <div class="panel-actions" data-bind="with:$root.report22Source">
+                            <span class="badge badge-danger" data-bind="text:tasks().length"></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-right">
+                                <canvas id="reportByStartDate22Problem"></canvas>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <div id="reportByStartDate22Problem-legend" class="pie-legend"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row"  style="display:none">
+
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.groupByAssgineeOverdueChart">Bitmesi gecikmiş işlerin kişiye göre dağılımı </h6>
+                        <div class="panel-actions" data-bind="with:$root.report23Source">
+                            <span class="badge badge-danger" data-bind="text:tasks().length"></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-md-12">
+                            <div class="col-md-6 text-right">
+                                <canvas id="reportByDueDate23Problem"></canvas>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <div id="reportByDueDate23Problem-legend" class="pie-legend"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--</div>-->
+
+        <!--<div class="row" id="reportBy24Container">-->
+        <div class="row"  style="display:none">
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.groupByStatusOverdueChart">Bitmesi gecikmiş işlerin duruma göre dağılımı</h6>
+                        <div class="panel-actions" data-bind="with:$root.report24Source">
+                            <span class="badge badge-danger" data-bind="text:tasks().length"></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <!--<div class="col-md-1 text-center"></div>-->
+                        <div class="col-md-6 text-right">
+                            <canvas id="reportByDueDate24Problem"></canvas>
+                        </div>
+                        <!--<div class="col-md-1 text-center"></div>-->
+                        <div class="col-md-6 text-left">
+                            <div id="reportByDueDate24Problem-legend" class="pie-legend"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row"  >
+
+
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <h6 class="panel-title" data-i18n="app:pages.report.overDueDate">Yarın başlayacak işler </h6>
+                    </div>
+                    <div class="panel-body">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th data-i18n="app:pages.report.workItemTh">İş</th>
+                                <th data-i18n="app:pages.report.workItemStatusTh">Durum</th>
+                                <th data-i18n="app:pages.report.assigneeTh">Atanan</th>
+                                <th data-i18n="app:pages.report.startDateTh">StartDate</th>
+                                <th data-i18n="app:pages.report.dueDateTh">DueDate</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody data-bind="with: report3Source">
+                                 <!-- ko if: tasks().length > 0 -->
+                            <tr>
+                                
+                                <th colspan="5"  bgcolor="#961515" data-i18n="app:pages.report.overdueItemsList" style="color:black;font-size: bold;">Oldu Bu iş</th>
+                            </tr>
+                                 <!-- /ko -->
+                            <!-- ko foreach: tasks -->
+
+
+                            <tr>
+                                <td>
+                                    <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                </td>
+                                <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+
+                                <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                                <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+
+                            </tr>
+                            <!-- /ko -->
+
+                      
+
+
+
+                    </table>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!-- Due date in a week -->
+
+
+            <div class="col-md-12">
+
+                <div class="panel panel-bordered panel-dark">
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <!--<div class="panel-actions"><input type="text" data-bind="value:$root.report62SourceDays" class="form-control input-xs"></div>-->
+                        <div class="panel-actions">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" id="examplePanelDropdown" data-toggle="dropdown" href="#" aria-expanded="true" role="button">
+                                    <span data-bind="text:$root.report62SourceDays"></span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu bullet dropdown-menu-right" aria-labelledby="examplePanelDropdown" role="menu">
+                                    <li role="presentation">
+                                        <input type="text" data-bind="value:$root.report62SourceDays" class="form-control input-xs">
+                                        <!--<a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i> Reply</a>-->
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h6 class="panel-title" data-i18n="app:pages.report.dueDateInXDays">X günde bitecek işler</h6>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="col-md-12">
+
+                            <table class="table table-bordered" data-bind="with: report62Source">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="app:pages.report.workItemTh">İş</th>
+                                        <th data-i18n="app:pages.report.workItemStatusTh">Durum</th>
+                                        <th data-i18n="app:pages.report.assigneeTh">Atanan</th>
+                                        <th data-i18n="app:pages.report.dueDateTh">DueDate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <!-- ko foreach: tasks -->
+
+
+                                    <tr>
+                                        <td>
+                                            <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                        </td>
+                                        <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+                                        <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+
+                                        <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+
+                                    </tr>
+                                    <!-- /ko -->
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- end of due date in a user defined count -->
+
+
+        </div>
+
+
+
+
+
+        <div class="row">
+
+
+
+            <!-- 10 - 2 -->
+            <div class="col-md-12">
+                <div class="panel panel-bordered panel-dark">
+                    <div class="panel-heading" style="background-color:#a7a6a6">
+                        <div class="panel-actions">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" id="examplePanelDropdown2" data-toggle="dropdown" href="#" aria-expanded="true" role="button">
+                                    <span data-bind="text:$root.report102SourceDays"></span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu bullet dropdown-menu-right" aria-labelledby="examplePanelDropdown2" role="menu">
+                                    <li role="presentation">
+                                        <input type="text" data-bind="value:$root.report102SourceDays" class="form-control input-xs">
+                                        <!--<a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i> Reply</a>-->
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <h6 class="panel-title" data-i18n="app:pages.report.startDateInXDays">X gün içinde başlayacak işler</h6>
+                    </div>
+                    <table class="table table-bordered" data-bind="with: report102Source">
+                        <thead>
+                            <tr>
+                                <th data-i18n="app:pages.report.workItemTh">İş</th>
+                                <th data-i18n="app:pages.report.workItemStatusTh">Durum</th>
+                                <th data-i18n="app:pages.report.assigneeTh">Atanan</th>
+                                <th data-i18n="app:pages.report.startDateTh">StartDate</th>
+                                <th data-i18n="app:pages.report.dueDateTh">DueDate</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- ko foreach: tasks -->
+
+
+                            <tr>
+                                <td>
+                                    <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                                </td>
+                                <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+                                <td data-bind="text: $root.context.getUserById(assignee).fullName || i18n.t('app:pages.report.noAssigneeText')"></td>
+                                <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+
+
+                            </tr>
+                            <!-- /ko -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 10 - 2 -->
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+</div>
+</div>

@@ -1,0 +1,435 @@
+<div class="panel panel-project-content">
+     <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.projectDetails.title"></h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="panel">
+            <ul class="list-group list-group-dividered">
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-name" aria-controls="form-edit-project-name" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectName"></span> <span data-bind="text:$root.details.name.cached"></span></h4>
+                    <form class="collapse" id="form-edit-project-name" aria-expanded="false">
+                        <div class="form-group">
+                            <input type="text" class="form-control" data-bind="value:$root.details.name">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectName" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>            
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectType"></span> <span data-bind="text:$root.getTextOrEmptyText('type')"></span></h4>
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-status" aria-expanded="false" aria-controls="form-edit-project-status">
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectStatus"></span> <span data-bind="text:$root.getTextOrEmptyText('status')"></span></h4>
+                    <form class="collapse" id="form-edit-project-status" aria-expanded="false">
+                        <div class="form-group">
+                            <select class="form-control" data-bind="options: lookups.projectStatus.getAll(),
+                               optionsText: 'text',
+                               optionsValue:'value',
+                               value: $root.details.status"></select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectStatus" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>            
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-startdate" aria-controls="form-edit-project-startdate" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectStartDate"></span> <span data-bind="text:$root.details.startDateText"></span></h4>
+                    <form class="collapse" id="form-edit-project-startdate" aria-expanded="false">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                </span>
+                                <input type="text"  class="form-control" data-bind="datepicker: $root.details.startDate, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.reschedule" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>            
+                </li>
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-duedate" aria-controls="form-edit-project-duedate" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectDueDate"></span> <span data-bind="text:$root.details.dueDateText"></span></h4>
+                    <form class="collapse" id="form-edit-project-duedate" aria-expanded="false">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                </span>
+                                <input type="text"  class="form-control" data-bind="datepicker: $root.details.dueDate, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.reschedule" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>            
+                </li>                
+            </ul>
+
+        </div>
+
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-manager" aria-controls="form-edit-project-manager" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectManager"></span></h4>
+                    <ul class="list-inline">
+                        <li data-bind="with:$root.getUser(details.manager.cached)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-manager" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select  data-bind=" select2Data: details.manager,select2:  $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectManager" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-owner" aria-controls="form-edit-project-owner" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectOwner"> </span> </h4>
+                    <ul class="list-inline">
+                        <li data-bind="with:$root.getUser(details.owner.cached)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-owner" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select data-bind="select2Data: details.owner, select2:  $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p data-i18n="app:pages.projectDetails.projectOwnerDesc">
+                                
+                            </p>
+                          </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectOwner" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-coowners" aria-controls="form-edit-project-coowners" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectCoowners"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.coOwners.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-coowners" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.coOwners,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p data-i18n="app:pages.projectDetails.projectCoOwnerDesc">
+                                
+                            </p>
+                          </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectCoOwners" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-comanagers" aria-controls="form-edit-project-comanagers" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectComanagers"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.coManagers.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-comanagers" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.coManagers,select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p data-i18n="app:pages.projectDetails.projectCoManagersrDesc">
+                                
+                            </p>
+                          </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectCoManagers" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-followers1" aria-controls="form-edit-project-followers1" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectFollowers1"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.category1Followers.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-followers1" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.category1Followers, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p data-i18n="app:pages.projectDetails.projectFollowers1Desc">
+                                
+                            </p>
+                          </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectFollowers1" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+              <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-followers2" aria-controls="form-edit-project-followers2" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectFollowers2"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.category2Followers.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-followers2" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.category2Followers, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p data-i18n="app:pages.projectDetails.projectFollowers2Desc">
+                                
+                            </p>
+                          </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectFollowers2" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li> 
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-followers3" aria-controls="form-edit-project-followers3" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectFollowers3"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.category3Followers.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-followers3" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.category3Followers, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p data-i18n="app:pages.projectDetails.projectFollowers3Desc">
+                                
+                            </p>
+                          </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectFollowers3" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li> 
+                <li class="list-group-item"  data-bind="visible:isTeamBasedProject()">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-members" aria-controls="form-edit-project-members" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectMembers"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.members.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-members" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.members,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectMembers" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-externalUsers" aria-controls="form-edit-project-externalUsers" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectExternalUsers"></span></h4>
+                    <ul class="list-inline" data-bind="foreach:details.externalUsers.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-externalUsers" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.externalUsers, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectExternalUsers" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>
+                <li class="list-group-item"  data-bind="visible:isHierarcialProject()">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-stopHierarchyUsers" aria-controls="form-edit-project-stopHierarchyUsers" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectStopHierarchyUsers"></span> </h4>
+                    <ul class="list-inline" data-bind="foreach:details.stopHierarchyUsers.cached">
+                        <li data-bind="with:$root.getUser($data)">
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-stopHierarchyUsers" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.stopHierarchyUsers, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectStopHierarchyUsers" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item"  data-bind="visible:isHierarcialProject()">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit" data-toggle="collapse" data-target="#form-edit-project-excludedUsers" aria-controls="form-edit-project-excludedUsers" aria-expanded="false" >
+                    </button>
+                    <h4 class="list-group-item-heading"><span data-i18n="app:pages.projectDetails.projectExcludedUsers"></span></h4>
+                    <ul class="list-inline" data-bind="foreach:details.excludedUsers.cached">
+                        <li data-bind="with:$root.getUser($data)"> 
+                            <small>
+                                <a class="" href="javascript:void(0)" >
+                                    <img class="avatar avatar-sm avatar-scale" data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                    <span data-bind="text:fullName"></span>
+                                </a>
+                            </small>
+                        </li>
+                    </ul>
+                    <form class="collapse" id="form-edit-project-excludedUsers" aria-expanded="false">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <select multiple="multiple" data-bind="select2Data: details.excludedUsers,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.changeProjectExcludedUsers" data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>   
+                </li>                                                                                                  
+            </ul>
+        </div>
+        
+        <div class="panel">
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item list-group-item-form">
+                    <button type="button" class="btn btn-xs btn-pure btn-default pull-right icon wb-edit"
+                            data-toggle="collapse" data-target="#form-edit-project-durationdays"
+                            aria-controls="form-edit-project-durationdays" aria-expanded="false">
+                    </button>
+                    <h4 class="list-group-item-heading" data-i18n="app:pages.projectDetails.estimations"></h4>
+                    <form class="collapse" id="form-edit-project-durationdays" aria-expanded="false">
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.projectDetails.projectDurationDays"></label>
+                            <input type="number" class="form-control" data-bind="value:details.estimatedDurationDays">
+                        </div>
+                        <div class="form-group">
+                            <label class=" control-label" data-i18n="app:pages.projectDetails.projectEstimatedEffort"></label>
+                            <input type="number" class="form-control" data-bind="value:details.estimatedEffordHours">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class=" control-label" data-i18n="app:pages.projectDetails.projectEstimatedBudget"></label>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="number" class="form-control" data-bind="value:details.estimatedBudget">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <select class="form-control"
+                                        data-bind="options: $root.lookups.currencyTypes, value: details.estimatedBudgetCurrencyCode, optionsText: 'currencyCode',optionsValue:'currencyCode'">
+                                </select>
+
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary"
+                                    data-bind="click:$root.changeProjectEstimations"
+                                    data-i18n="app:pages.projectDetails.btnSave"></button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</div>

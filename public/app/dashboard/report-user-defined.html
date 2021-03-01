@@ -1,0 +1,116 @@
+<div>
+    <div class="panel panel-bordered panel-column-header panel-primary">
+        <div class="panel-heading" style="background-color:#777777">
+            <h3 class="panel-title" data-bind="text:$root.selectedSearchModuleName"></h3>
+            <div class="panel-actions">
+
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" style="background-color: #777777;" id="dataSetDropdown" data-toggle="dropdown" aria-expanded="false"
+                        data-i18n="app:pages.dashboard.selectReport">
+
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dataSetDropdown" role="menu">
+                        <!-- ko foreach:topMenuSearches -->
+                        <li role="presentation">
+                            <a href="javascript:void(0)" role="menuitem" data-bind="text:$data.name, value: $data, click: $root.selectSearchSet"></a>
+                        </li>
+                        <!-- /ko -->
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="panel-body">
+
+
+
+            <div class="row">
+
+
+
+                <div class="col-md-6 col-sm-6 col-xs-6">
+
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="true">
+                            <span data-bind="i18n:'app:pages.dashboard.reportby'"></span>
+                            <span data-bind="text:$root.selectedReport()"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+
+
+                            <!-- ko foreach: $root.subMenuSearchList -->
+                            <li>
+                                <a data-bind="click:$root.selectSearchSet,css:{'active': $root.getButtonCss($data)}">
+                                    <!--<i class="icon wb-star" aria-hidden="true"></i>-->
+                                    <!--<br>-->
+                                    <!--<span class="text-uppercase hidden-xs" data-bind="text:name"></span>-->
+                                    <!---->
+                                    <!--<i class="icon wb-star hidden-xs" aria-hidden="true"></i>-->
+
+                                    <span style="white-space: normal;" data-bind="text:name"></span>
+                                </a>
+                            </li>
+
+
+                            <!-- /ko -->
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="panel-actions  display-options">
+
+                        <label>
+                            <span data-i18n="app:pages.dashboard.display"></span>
+                        </label>
+                        <!-- ko foreach:getReportModulesByTextMatch("gantt",false) -->
+
+                        <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon " data-bind="click:$root.activateModule">
+                            <span data-bind="'class':$data.icon"></span>
+                        </a>
+
+                        </a>
+
+
+                        <!-- /ko -->
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-more-vertical" data-toggle="dropdown"
+                                href="#" aria-expanded="false" role="buttons">
+                            </a>
+                            <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                                <!-- ko foreach:getReportModulesByTextMatch("gantt",true) -->
+                                <li role="presentation">
+                                    <a href="javascript:void(0)" role="menuitem" data-bind="text:$data.text,click:$root.activateModule"></a>
+                                </li>
+
+                                <!-- /ko -->
+
+                            </ul>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main' ,onScroll:$root.onProjectModuleScroll}">
+            <div data-bind="compose:activeModuleVm">
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:lookups.taskModules.accessList"></h3>
+        <div class="panel-actions">
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel" id="messge">
+          <div class="panel-heading hide">
+              <div class="panel-actions">
+                  <a class="text-action" href="javascript:void(0)"><i class="icon wb-edit" aria-hidden="true"></i></a>
+              </div>
+              <h3 class="panel-title" data-i18n="app:lookups.projectModules.accessList"></h3>
+          </div>
+          <div class="panel-body">
+              <ul class="list-group list-group-full" data-bind="foreach:accessList">
+                  <li class="list-group-item">
+                      <div class="media">
+                          <div class="media-left">
+                              <span class="avatar avatar-small avatar-scale">
+                              <img data-bind="src:$root.helpers.getAvatarOrDefault($data.user)" alt="">
+                              <i></i>
+                            </span>
+                          </div>
+                          <div class="media-body">
+                              <h5 class="list-group-item-heading">
+                              <small class="pull-right hide">3 days ago</small>
+                              <a href="click:showUserTaskAccessDetails"><span data-bind="text:$data.user.fullName"></span></a>
+                            </h5>
+                              <p class="list-group-item-text hide"></p>
+                          </div>
+                      </div>
+                  </li>
+                 
+              </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+      

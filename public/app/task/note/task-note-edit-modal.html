@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close"  data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-bind="visible:!note.noteId">Create a note</h4>
+            <h4 class="modal-title" data-bind="visible:note.noteId">Edit note</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form >
+                    <div class="form-group">
+                        <label for="text-note-name" data-i18n="app:pages.note.name"></label>
+                        <input type="text" class="form-control" id="text-note-name" placeholder="" data-i18n="[placeholder]app:pages.note.nameplaceholder" data-bind="value: note.name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="text-note-description" data-i18n="app:pages.note.description"></label>
+                        <textarea rows="3" id="text-note-description" class="form-control" placeholder="" data-i18n="[placeholder]app:pages.note.descriptionplaceholder" data-bind="value: note.description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea data-bind="summernote: note.body, summerOptions: { height: 400 }"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="dropdown pull-left" data-bind="visible:note.name.cached">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-note-versions" data-toggle="dropdown">
+                                <span data-i18n="app:pages.note.versions"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-note-versions" data-bind="foreach:note.versions">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="click:$root.loadVersion,text:$root.utils.formatDateTime($data.editedAt)"></a></li>
+                            </ul>
+                        </div>
+                        <div class="pull-right">
+                            <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click: $root.cancel"
+                                        class="btn btn-default btn-outline" data-i18n="app:pages.attachment.cancel">Cancel
+                            </button>
+                            <button id="btn-save" name="btn-save" type="button"
+                                        data-bind="click:$root.save"
+                                        class="btn btn-primary" >Save
+                            </button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

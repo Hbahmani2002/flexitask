@@ -1,0 +1,182 @@
+﻿<div class="panel panel-card  panel-card-comment " data-bind="css:{'panel-card-comment-reply': parentCommentId() && $root.isHierarchicalView() },id:'comment_'+commentId()">
+    <div class="panel-heading" >
+        <div class="media media-author" data-bind="visible:$root.showingOnlyComment()==false">
+            <div class="media-left">
+                <a class="avatar avatar-scale" href="javascript:void(0)">
+                    <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault(author),alt:author.alias">
+                </a>
+            </div>
+            <div class="media-body">
+                <a class="author" data-bind="text:author.fullName"></a>
+                <div class="meta new-line font-size-12">
+
+                    <span class="date" data-bind="text:$root.getCommentTime(createdAt)"></span>
+                </div>
+                <!-- ko if:isEdited -->
+                 <div class="meta new-line font-size-10" >
+
+                     <span class="date" data-bind="text:$root.getCommentTime(updatedAt) + ' by ' + $root.getUserFullName(updatedBy)"></span>&nbsp;<i data class="fa fa-edit text-muted date" title="edited"></i>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="media-right">
+                <i class="icon fa-thumb-tack red-800 font-size-20" aria-hidden="true"  data-bind="visible:$data.commentViewType || false" ></i>
+            </div>
+        </div>
+        <div class="padding-top-30" data-bind="visible:$root.showingOnlyComment"></div>
+    </div>
+    <div class="panel-body">
+        <div data-bind="markdown:  {text:commentText,options:{truncate:true, expanded: $root.showingUntruncatedComments,highlight:true }}"></div>
+
+        <ul class="list-group">
+            <li class="list-group-item" data-bind="visible:viewableAttachments().length>0">
+                <ul class="list-unstyled list-gallery" data-bind="foreach:viewableAttachments,lightbox:{type:'gallery'}">
+                    <li class="gallery-item">
+                        <a  data-bind="href:$data.viewUrl,title: $data.name" >
+                            <img data-bind="src:$data.viewUrl,title: $data.name,alt:$data.name" class="img-responsive " />
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="list-group-item" data-bind="visible:attachments()!=null && attachments().length > 0">
+
+                <ul class="list-group list-group-gap" data-bind="foreach:attachments">
+                    <li class="list-group-item bg-grey-100">
+                        <div class="media media-attachment">
+                          <div class="media-left">
+                            <i class="icon fa-file attachment-icon" style="font-size:24px;" aria-hidden="true"></i>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading"><a class="file" data-bind="href: downloadUrl, title: name, text: viewName, download: actualName"></a></h4>
+                             <small class="text-uppercase font-size-10" data-bind="text:String.format('{0} {1}',$root.utils.humanizeBytes(length),contentType())"></small>
+                          </div>
+                          <div class="media-right">
+                            <small><a  data-bind="href: viewUrl, title: name" target="_blank" data-i18n="app:pages.comment.view"></a></small>
+                          </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item" data-bind="visible:versions().length>0" >
+                <hr>
+                <ul class="list-unstyled" data-bind="foreach:versions">
+                    <li class="well well-sm">
+                        <a class="file" href="javascript:void(0);" data-bind="click: $root.loadEntry.bind($root,$parent,$data),visible: author,text:String.format('{0} / {1}',author ? author.fullName : '',$root.utils.formatDateTime(editedAt,$root.prefs.dateTimeFormat()))"></a>
+
+                        <p class="" data-bind="markdown:  {text:body,options:{truncate:true, maxLength:1200 }}"></p>
+                    </li>
+                </ul>
+            </li>
+            <!-- ko if:canParentCommentTextVisible -->
+            <li class="list-group-item word-break">
+                <blockquote class="blockquote blockquote-info parent-comment">
+                    <small data-bind="visible: parentAuthor,text:String.format('{0} / {1}',ko.unwrap(parentAuthor) !==null ? parentAuthor.fullName : '',$root.utils.timeFromNow(parentCreatedAt))"></small>
+                    <footer data-bind="markdown:  {text:parentCommentText,options:{ truncate:true,maxLength:1200 }}"></footer>
+
+                </blockquote>
+            </li>
+            <!-- /ko -->
+        </ul>
+
+    </div>
+
+    <div class="panel-toolbar" role="toolbar" data-bind="visible:$root.showingOnlyComment()==false" > <!-- data-bind="visible:!$root.replyComment()" -->
+        <div class="btn-group"  role="group">
+            <a class="btn" data-bind="click:$root.newReplyForm,visible:canReply">
+                <i class="icon fa-reply"></i>
+            </a>
+            <a class="btn " data-bind="visible:$data.replyCount() > 0 && $data.canReply(),click:$root.loadReplyComments,css:{'active':replies().length>0 }">
+                <i class="icon fa-comments-o"></i>
+                <span data-bind="text:$data.replyCount"></span>
+                <i class="icon fa-angle-down" data-bind="visible:replies().length===0"></i>
+                <i class="icon fa-angle-up" data-bind="visible:replies().length>0"></i>
+            </a>
+            <a class="btn" data-bind="visible:$root.isVoteEnabled(),activity: voteUpCommand.isExecuting, command: voteUpCommand,css: { active: getMyVoteValue() == 1 }">
+                <span data-bind="text: totalUpVote"></span>&nbsp;
+                <i class="icon fa-thumbs-o-up"></i>
+            </a>
+
+            <a class="btn" data-bind="visible:$root.isVoteEnabled() && ($root.votingMode === $root.lookups.commentVoteModes.UpDown || $root.votingMode === $root.lookups.commentVoteModes.UpDownWithAnonymous),activity: voteDownCommand.isExecuting, command: voteDownCommand,css: { active: getMyVoteValue() == -1 }">
+                <span data-bind="text: totalDownVote"></span>&nbsp;
+                <i class="icon fa-thumbs-o-down"></i>
+            </a>
+
+
+        </div>
+
+            <div class="btn-group pull-right " role="group">
+                <a href="#" class="btn  pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu animation-scale-up animation-top-left animation-duration-250">
+                    <li role="presentation"  data-bind="visible:isPinned()"><a href="#" role="menuitem" data-bind="click: $root.unpinComment" data-i18n="app:pages.comment.unPin"></a></li>
+                    <li role="presentation"  data-bind="visible:isPinned()==false"><a href="#" role="menuitem" data-bind="click: $root.pinComment" data-i18n="app:pages.comment.pin"></a></li>
+                    <li role="presentation"><a href="#" role="menuitem" data-bind="click: $root.editComment,i18n:'app:pages.comment.edit'"></a></li>
+                    <li role="presentation"><a href="#" role="menuitem" data-bind="click: $root.deleteComment,i18n:'app:pages.comment.delete'"></a></li>
+                    <li role="presentation" data-bind="visible:canShowAttachmentImages()==false"><a href="javascript:void(0);" role="menuitem" data-bind="click:showAttachmentImages,i18n:'app:pages.comment.showimages'"></a></li>
+                    <li role="presentation" data-bind="visible:canShowAttachmentImages"><a href="javascript:void(0);" role="menuitem" data-bind="click:showAttachmentImages,i18n:'app:pages.comment.hideimages'"></a></li>
+                    <li role="presentation" data-bind="visible:isEdited">
+                    <a href="#" data-bind="click:$root.loadVersions,i18n:'app:pages.comment.showversions'" ></a>
+                    </li>
+                    <li role="presentation" data-bind="visible:$root.isVoteEnabled()" ><a href="#" data-bind="click:$root.showCommentVoters" data-i18n="app:pages.comment.showVotes"></a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation" class="dropdown-header" data-i18n="app.pages.comment.createdat"></li>
+                    <li role="presentation"><a data-bind="text:$root.utils.formatDateTime(createdAt,$root.prefs.dateTimeFormat())"></a></li>
+                </ul>
+            </div>
+    </div>
+
+    <div class="panel-section" data-bind="visible:$root.showingOnlyComment()==false">
+        <div data-bind="if:$root.replyComment() && $root.replyComment().isMyReply($data)">
+            <div data-bind="with:$root.replyComment">
+                <form role="form" data-bind="with: $root.replyComment">
+                    <ul class="list-group">
+                        <li class="list-group-item" >
+                            <noscript>
+                                <input type="hidden" name="redirect" value="/">
+                            </noscript>
+                            <div class="form-group" data-bind="validationElement: commentText">
+                                <div data-bind="markdownEditor: {data:commentText,init:true,saveButton:false,cancelButton:false,onChange:true,onPreview:$root.onNewCommentReplyPreview}">
+                                    <div class="editor" data-bind="atwho:commentText,atwhoOptions:$root.atjsOptions"></div>
+                                </div>
+
+                            </div>
+                            <div class="new-comment-reply-preview-js hide markdown-content" data-bind="markdown:  {text:commentText,options:{truncate:false,highlight:true }}"></div>
+
+                            <div class="form-group pull-right">
+                            <button type="reset" data-bind="click:$root.cancelReplyForm" class="btn btn-default btn-outline" data-i18n="app:pages.comment.cancel"></button>
+                                <button type="submit" class="btn btn-primary" data-bind="activity: $root.addReplyCommentCommand.isExecuting, command: $root.addReplyCommentCommand" data-i18n="app:pages.comment.send"></button>
+                                
+                            </div>
+                            <div class="form-group fileupload-buttonbar">
+                                <span class="btn btn-default fileinput-button">
+                                    <i class="icon fa-plus"></i>
+                                    <span data-i18n="app:pages.comment.addfiles"></span>
+                                    <input data-bind="fileUploader:$root.getUploadComponentOptions(),fileUploadSelector:'.js--form-upload-attachments-reply',attr: { multiple:$root.utils.browser.isIOS() ? null : 'multiple' }" class="js--file-selector" type="file" name="files[]" >
+                                </span>
+                            </div>
+                            <div class="form-group list-group list-group-dividered js--form-upload-attachments-reply" >
+
+                            </div>
+                        </li>
+                        <li class="list-group-item" data-bind="visible:attachments().length>0">
+                            <ul class="list-group" data-bind="foreach: attachments">
+                                <li class="list-group-item">
+                                    <a href="" data-bind="href: $data.downloadUrl, text: $data.name"></a>
+                                    <div class="pull-right">
+                                        <a href="" data-bind="click: $root.deleteAttachment.bind($data, $parent)" data-i18n="app:pages.table.delete"></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel-footer" data-bind="foreach: replies,visible:replies().length>0" >
+        <div  data-bind=" compose: { view: 'task/comment/comment-view.html' }"></div>
+    </div>
+</div>

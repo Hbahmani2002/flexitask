@@ -1,0 +1,102 @@
+<div >
+
+    <div class="panel" data-bind="fadeVisible:shouldShowSearchForm">
+        <div class="panel-heading">
+            <h3 class="panel-title" data-i18n="app:pages.attachmentSearch.title"></h3>
+            <div class="panel-actions">
+
+            </div>
+        </div>
+        <div class="panel-body">
+            <form  role="form">
+                <div class="form-group">
+                    <label for="select-project" class="control-label" data-i18n="app:pages.attachmentSearch.projectName"></label>
+                    <select id="select-project"  data-bind="select2Data: filter.projectId, select2:  $root.autocomplete.getSelect2OptionsForProjects(1)" class="form-control"></select>
+                </div>
+
+                <div class="row"  data-bind="with:filter.projectId">
+                    <div class="form-group col-sm-12">
+                        <label for="select-task" class="control-label" data-i18n="app:pages.attachmentSearch.taskName"></label>
+                        <select id="select-task"  data-bind="select2Data: $parent.filter.taskId, select2:  $root.autocomplete.getSelect2OptionsForTasks($parent.filter.projectId,1)" class="form-control"></select>
+
+                     
+                    </div>
+                </div>
+               
+
+                <div class="form-group" >
+                    <label for="txt-attachment-name" class="control-label" data-i18n="app:pages.attachmentSearch.name"></label>
+                    <input type="text" class="form-control" id="txt-attachment-name" data-i18n="[placeholder]app:pages.attachmentSearch.name" data-bind="value: filter.name"/>
+                </div>
+
+                <div class="form-group" >
+                    <label for="select-attachment-uploadedby" class="control-label" data-i18n="app:pages.attachmentSearch.uploadBy"></label>
+                    <select  multiple="multiple" data-bind="select2Data: filter.authors, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control" id="select-attachment-uploadedby"></select>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label  class="control-label" data-i18n="app:pages.attachmentSearch.uploadedDate"></label>
+                    </div>
+                    <div class="form-group col-sm-6" data-bind="validationElement: filter.uploadDateStart">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="icon wb-calendar" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" readonly="" class="form-control" data-bind="datepicker: filter.uploadDateStart, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6" data-bind="validationElement: filter.uploadDateEnd">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="icon wb-calendar" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" readonly="" class="form-control" data-bind="datepicker: filter.uploadDateEnd, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="select-tags" class="control-label" data-i18n="app:pages.attachmentSearch.tags"></label>
+                    </div>
+                    <div class="form-group col-sm-8">
+      
+                            <select id="select-tags" class="form-control" multiple="multiple"
+                            data-bind="select2Data: filter.tags, select2: $root.autocomplete.getSelect2OptionsForTags()">
+                    </select>
+                    
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select class="form-control" data-bind="value: filter.tagOperation">
+                            <option value="or" data-i18n="app:pages.attachmentSearch.or"></option>
+                            <option value="and" data-i18n="app:pages.attachmentSearch.and"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="pull-right clearfix">
+                        <button type="button" data-bind="click: buildCriteriaAndSearch" class="btn btn-primary" data-i18n="app:pages.attachmentSearch.search"></button>
+                        <button type="reset" data-bind="click: clear"   class="btn btn-pure btn-default" data-i18n="app:pages.attachmentSearch.clear"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel" data-bind="fadeVisible:!shouldShowSearchForm()">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <a class="btn btn-primary btn-outline" href="" data-bind="toggleClick:shouldShowSearchForm" role="button"><i class="icon fa-arrow-left" aria-hidden="true"></i>&nbsp;<span data-i18n="app:pages.attachmentSearch.backToSearchForm"></span></a>
+                <br>
+                <h3 class="font-size-18" data-i18n="app:pages.attachmentSearch.searchResults"></h3>
+        
+            </div>
+        </div>
+        <div class="panel-body">
+            <div id="attachment-grid" data-bind="widget: {kind:'attachmentgrid', results:results,gridId:$root.gridUniqueName}"></div>
+        </div>
+
+    </div>
+</div>
+

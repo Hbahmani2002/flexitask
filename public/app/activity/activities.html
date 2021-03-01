@@ -1,0 +1,379 @@
+﻿<div class="left-column durandal-column" data-bind="css:$root.prefs.middleColumnSizeClass">
+    <div class="panel panel-bordered panel-column-header panel-activity" data-bind="panelActions:{ collapseStatus: $root.headerCollapseStatus,onRefresh:$root.refreshActivities,loadingAreaSelector:'.panel-column-content' }" id="activity-header-panel">
+        <div class="panel-heading" style="background-color:#777777">
+            <h3 class="panel-title"><i class="icon ion-ios-pulse" aria-hidden="true"></i> <span data-i18n="app:pages.activities.header"></span></h3>
+            <div class="panel-actions">
+                <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon icon fa-pie-chart" style="background-color: #a7a6a6;" data-bind="click:$root.showReport"></a>
+                <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon icon wb-refresh" style="background-color: #a7a6a6;" data-toggle="panel-refresh" aria-hidden="true"></a>
+                <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-chevron-up" style="background-color: #a7a6a6;" data-toggle="panel-collapse" aria-expanded="true" aria-hidden="true"></a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-more-vertical" style="background-color: #a7a6a6;" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                    </a>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                        <li role="presentation" data-bind="css:{'active':$root.filter.status.contains('unread') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'unread',target:$root.filter.status}">
+                                <i class="icon wb-envelope" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showUnreadActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.status.contains('read') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'read',target:$root.filter.status}">
+                                <i class="icon wb-envelope-open" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showReadActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.status.contains('pinned') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'pinned',target:$root.filter.status}">
+                                <i class="icon wb-flag" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showFlaggedActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.priority.contains('low') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'low',target:$root.filter.priority}">
+                                <i class="icon wb-small-point" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showLowSubscriptionActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.priority.contains('medium') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'medium',target:$root.filter.priority}">
+                                <i class="icon wb-medium-point" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showMediumSubscriptionActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.priority.contains('high') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'high',target:$root.filter.priority}">
+                                <i class="icon wb-large-point" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showHighSubscriptionActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.priority.contains('mention') }">
+                            <a href="#" data-bind="dataToggleClick:{value:'mention',target:$root.filter.priority}">
+                                <i style="font-weight: bold;" class="icon fa-at" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showMentionedSubscriptionActivities"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li class="dropdown-header" data-i18n="app:pages.activities.grouping"></li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.grouping()==='none' }">
+                            <a href="#" data-bind="dataToggleClick:{value:'none',target:$root.filter.grouping}">
+                                <span data-i18n="app:pages.activities.groupingNone"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.grouping()==='project' }">
+                            <a href="#" data-bind="dataToggleClick:{value:'project',target:$root.filter.grouping}">
+                                <span data-i18n="app:pages.activities.groupingProject"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" data-bind="css:{'active':$root.filter.grouping()==='projecttask' }">
+                            <a href="#" data-bind="dataToggleClick:{value:'projecttask',target:$root.filter.grouping}">
+                                <span data-i18n="app:pages.activities.groupingProjectTask"></span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click:markScreenAsRead"><i class="icon fa-check"></i> <span data-i18n="app:pages.activities.markScreenAsRead"></span></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click:markAllLowsAsRead"><i class="icon fa-check"></i> <span data-i18n="app:pages.activities.markAllLowsAsRead"></span></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click:markAllMediumsAsRead"><i class="icon fa-check"></i> <span data-i18n="app:pages.activities.markAllMediumsAsRead"></span></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click:markAllAsRead"><i class="icon fa-check"></i> <span data-i18n="app:pages.activities.markAllAsRead"></span></a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" data-bind="css: {'active':useShortenDateFormat() } "><a role="menuitem" tabindex="-1" data-bind="toggleClick:useShortenDateFormat" href="#"><i class="icon fa-clock-o" aria-hidden="true"></i> <span data-i18n="app:pages.comment.relativeTimeFormat"></span></a></li>
+                        <li role="presentation" data-bind="css: {'active':canShowAttachmentImages() } "><a role="menuitem" tabindex="-1" data-bind="toggleClick:canShowAttachmentImages" href="#"><i class="icon fa-image" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showCommentImages"></span></a></li>
+                        <li role="presentation" data-bind="css: {'active':aggregateActivities() } "><a role="menuitem" tabindex="-1" data-bind="toggleClick:aggregateActivities" href="#"><i class="icon fa-object-group" aria-hidden="true"></i> <span data-i18n="app:pages.activities.aggregateResults"></span></a></li>
+                        <li role="presentation" data-bind="visible:displayFilters()==false"><a href="javascript:void(0)" role="menuitem" data-bind="toggleClick:displayFilters"><i class="icon fa-filter" aria-hidden="true"></i> <span data-i18n="app:pages.activities.showAdvancedFilter"></span></a></li>
+                        <li role="presentation" data-bind="visible:displayFilters"><a href="javascript:void(0)" role="menuitem" data-bind="toggleClick:displayFilters"><i class="icon fa-filter" aria-hidden="true"></i> <span data-i18n="app:pages.activities.hideAdvancedFilter"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-collapse">
+            <div class="panel-toolbar" role="toolbar">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbars">
+                    <div class="btn-group" data-bind="checkbox: filter.status" data-toggle="buttons" role="group" data-i18n="[title]app:pages.activities.viewTitle;[aria-label]app:pages.activities.viewTitle">
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.showUnreadActivities')">
+                            <input type="checkbox" autocomplete="off" value="unread"><i class="icon wb-envelope" aria-hidden="true"></i>
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon  " data-bind="tooltip:t('app:pages.activities.tooltips.showReadActivities')">
+                            <input type="checkbox" autocomplete="off" value="read"><i class="icon wb-envelope-open" aria-hidden="true"></i>
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.showFlaggedActivities')">
+                            <input type="checkbox" autocomplete="off" value="pinned"><i class="icon wb-flag" aria-hidden="true"></i>
+                        </label>
+                    </div>
+                    <div class="btn-group visible-xs" data-toggle="buttons">
+                        <hr>
+                    </div>
+                    <div class="btn-group" data-bind="checkbox: filter.priority" data-toggle="buttons" role="group" data-i18n="[title]app:pages.activities.subscriptionTitle;[aria-label]app:pages.activities.subscriptionTitle">
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.showLowSubscriptionActivities')">
+                            <input type="checkbox" autocomplete="off" value="low"><i class="icon wb-small-point" aria-hidden="true"></i>
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.showMediumSubscriptionActivities')">
+                            <input type="checkbox" autocomplete="off" value="medium"><i class="icon wb-medium-point" aria-hidden="true"></i>
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.showHighSubscriptionActivities')">
+                            <input type="checkbox" autocomplete="off" value="high"><i class="icon wb-large-point" aria-hidden="true"></i>
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.showMentionedSubscriptionActivities')">
+                            <input type="checkbox" autocomplete="off" value="mention"><i style="font-weight: bold;" class="icon fa-at" aria-hidden="true"></i>
+                        </label>
+                    </div>
+                    <div class="btn-group" data-bind="radio:filter.grouping" data-toggle="buttons" role="group" data-i18n="[title]app:pages.activities.groupingTitle;[aria-label]app:pages.activities.groupingTitle">
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.groupingNone')">
+                            <input type="radio" name="options" autocomplete="off" value="none">N
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.groupingProject')">
+                            <input type="radio" name="options" autocomplete="off" value="project">P
+                        </label>
+                        <label class="btn btn-default btn-outline btn-sm btn-icon " data-bind="tooltip:t('app:pages.activities.tooltips.groupingProjectTask')">
+                            <input type="radio" name="options" autocomplete="off" value="projecttask">P+T
+                        </label>
+                    </div>
+                    <div class="btn-group" data-toggle="buttons" role="group">
+                        <button type="button" class="btn btn-default btn-outline btn-sm btn-icon " data-bind="toggle:canShowAttachmentImages,tooltip:t('app:pages.activities.tooltips.showCommentImages')"><i class="icon fa-image" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="btn-group" data-toggle="buttons" role="group">
+                        <button type="button" class="btn btn-default btn-outline btn-sm btn-icon " data-bind="toggle:aggregateActivities,tooltip:t('app:pages.activities.tooltips.aggregateResults')"><i class="icon fa-object-group" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="pull-right">
+                        <button data-bind="visible:$root.advancedFilterActive" type="button" class="btn btn-pure btn-pure icon fa-filter"></button>
+                        <button class="btn btn-default btn-outline btn-sm btn-icon " data-bind="click:filter.changeSorting,tooltip:t('app:pages.activities.tooltips.sorting_'+filter.sorting())">
+                            <i data-bind="visible:filter.sorting()=='oldest' " class="icon wb-sort-asc"></i>
+                            <i data-bind="visible:filter.sorting()=='newest'" class="icon wb-sort-des"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-section" data-bind="collapseVisible:$root.displayFilters">
+                <h5 class="list-group-item-heading"><i class="icon fa-filter" aria-hidden="true"></i> <span data-i18n="app:pages.activities.filterTitle"></span></h5>
+                <form>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="txt-project-name" class="control-label" data-i18n="app:pages.activities.filterProjectName"></label>
+                            <select id="select-project" data-bind="select2Data: filter.projectId, select2:  $root.autocomplete.getSelect2OptionsForProjects(1)" class="form-control"></select>
+
+                        </div>
+                    </div>
+                    <div class="row" data-bind="if: filter.projectId">
+                        <div class="form-group col-sm-12">
+                            <label class="control-label" for="txt-task-name" data-i18n="app:pages.activities.filterTaskName"></label>
+                            <select id="txt-task-name" class="form-control" data-bind="disable: filter.projectId() == null,select2Data: filter.taskId, select2:  $root.getTaskTypeahead"></select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label class="control-label" for="txt-user-name" data-i18n="app:pages.activities.filterUser"></label>
+
+                            <select data-bind="select2Data: filter.actorId, select2:  $root.autocomplete.getSelect2OptionsForCollaborators()"
+                                    class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-outline" data-bind="click: $root.applyFilter"><span class="icon fa-filter"></span>&nbsp;<span data-i18n="app:pages.activities.filterApply"></span></button>
+                        <button type="reset" class="btn btn-default btn-outline" data-bind="click: $root.resetFilter "><span class="gicon fa-repeat"></span>&nbsp;<span data-i18n="app:pages.activities.filterReset"></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-column-content" data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main'},customScroll : window.FlexiTaskWindowSize()">
+        <div class="panel-body">
+            <!-- ko foreach:{data: filteredActivities,beforeRemove:removeItem} -->
+            <div class="panel panel-card panel-card-activity" data-bind="css:{'panel-primary':$root.isSelected($data)}">
+                <div class="panel-heading" style="background-color:white">
+                    <div class="media media-author">
+                        <div class="media-left">
+                            <a class="avatar avatar-scale" href="javascript:void(0)">
+                                <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault($data.actor),alt:$data.actor.initials">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="author" data-bind="text:actor.fullName"></a>
+                            <div class="meta new-line">
+                                <span class="date" data-bind="text:publishedTimeText"></span>
+                            </div>
+                        </div>
+                        <div class="media-right">
+                            <div class="mark-action-div">
+                                <button type="button" data-bind="click: $root.markAsRead, visible: status != 1" class="btn btn-icon  btn-floating btn-primary btn-round"
+                                        style="background-color:white;border:none">
+                                    <i class="icon wb-envelope-open" aria-hidden="true" style="color:#777777"></i>
+                                </button>
+                                <button type="button" data-bind="click: $root.markAsUnRead, visible: status == 1" class="btn btn-icon  btn-floating  btn-round"><i class="icon wb-envelope" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li class="text-wrap">
+                            <i class="icon fa-list-alt"></i>&nbsp;<a href="#/projects/{{projectId}}">{{projectName}}</a>
+                        </li>
+                        <li class="text-wrap" data-bind="visible:taskId">
+                            <i class="icon fa-list"></i>&nbsp;<a href="#/projects/{{projectId}}/tasks/{{taskId}}">{{taskName}}</a>
+                        </li>
+                    </ul>
+                    <div class="block-activity-content" data-bind="if:relatedActivities().length === 0">
+                        <div class="alert alert-alt alert-success alert-dismissible activity-header text-wrap">
+                            <p data-bind="text: localizationResource.header"></p>
+                        </div>
+                        <p class="blue-grey-500 activity-content" data-bind="visible: localizationResource.content, markdown:  {text:localizationResource.content,options:{ highlight:true }}"></p>
+                        <div data-bind="visible:tableRow,highlight:{}">
+                            <pre data-bind="text:ko.toJSON($data.tableRow)">
+
+                            </pre>
+                        </div>
+                        <div data-bind="visible:viewableAttachments().length>0">
+                            <ul class="list-unstyled list-gallery" data-bind="foreach:viewableAttachments,lightbox:{type:'gallery'}">
+                                <li class="gallery-item">
+                                    <a data-bind="href:$data.viewUrl,title: $data.name">
+                                        <img data-bind="src:$data.viewUrl,title: $data.name,alt:$data.name" class="img-responsive " />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="list-group list-group-gap" data-bind="foreach:attachments">
+                            <li class="list-group-item bg-grey-100">
+                                <div class="media media-attachment" data-bind="with:fileInfo">
+                                    <div class="media-left">
+                                        <i class="icon fa-file attachment-icon" style="font-size:24px;" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a class="file" data-bind="href: $parent.downloadUrl, title: name, text: $parent.viewName, download: actualName"></a></h4>
+                                        <small class="text-uppercase font-size-10" data-bind="text:String.format('{0} {1}',$root.utils.humanizeBytes(length),contentType)"></small>
+                                    </div>
+                                    <div class="media-right">
+                                        <small><a data-bind="href: $parent.viewUrl, title: $parent.name" target="_blank" data-i18n="app:pages.activities.viewAttachment"></a></small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div data-bind="if:relatedActivities().length>0">
+                        <div data-bind="foreach:sortedRelatedActivities">
+                            <div class="block-activity-content">
+                                <hr>
+                                <div data-bind="with:localizationResource">
+                                    <div class="alert alert-alt alert-success alert-dismissible activity-header text-wrap">
+                                        <p data-bind="html: header"></p>
+                                    </div>
+                                    <p class="blue-grey-500 activity-content" data-bind="markdown:  {text:content,options:{ highlight:true }}"></p>
+                                </div>
+                                <div data-bind="visible:tableRow">
+                                    <pre data-bind="text:ko.toJSON($data.tableRow),highlight:{}">
+
+                                    </pre>
+                                </div>
+
+                                <div data-bind="visible:viewableAttachments().length>0">
+                                    <ul class="list-unstyled list-gallery" data-bind="foreach:viewableAttachments,lightbox:{type:'gallery'}">
+                                        <li class="gallery-item">
+                                            <a data-bind="href:$data.viewUrl,title: $data.name">
+                                                <img data-bind="src:$data.viewUrl,title: $data.name,alt:$data.name" class="img-responsive" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="list-group list-group-gap" data-bind="foreach:attachments">
+                                    <li class="list-group-item bg-grey-100">
+                                        <div class="media media-attachment" data-bind="with:fileInfo">
+                                            <div class="media-left">
+                                                <i class="icon fa-file attachment-icon" style="font-size:24px;" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a class="file" data-bind="href: $parent.downloadUrl, title: name, text:$parent.viewName , download: actualName"></a></h4>
+                                                <small class="text-uppercase font-size-10" data-bind="text:String.format('{0} {1}',$root.utils.humanizeBytes(length),contentType)"></small>
+                                            </div>
+                                            <div class="media-right">
+                                                <small><a data-bind="href: $parent.viewUrl, title: $parent.name" target="_blank" data-i18n="app:pages.activities.viewAttachment"></a></small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-toolbar" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <a class="btn" href="javascript:void(0)" data-bind="click:$root.markAsPin,css:{'red-800':flagged,'disabled':flagged}">
+                            <i class="icon wb-flag" aria-hidden="true"></i> <span data-bind="i18n:flagged() ? 'app:pages.activities.flagged' : 'app:pages.activities.flag'"></span>
+                        </a>
+                        <a class="btn" data-toggle="collapse" data-bind="visible:taskId && isReplyCommentEnabled,'data-target': '#collapse'+$data.activityId " href="javascript:void(0)">
+                            <i class="icon wb-chat-working" aria-hidden="true"></i> <span data-i18n="app:pages.activities.comment"></span>
+                        </a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu animation-scale-up animation-top-left animation-duration-250">
+                            <li role="presentation" data-bind="visible:taskId">
+                                <a href="#" role="menuitem" data-bind="click: $root.markTaskAsRead" data-i18n='app:pages.activities.markTaskAsRead'></a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" role="menuitem" data-bind="click: $root.markProjectAsRead" data-i18n='app:pages.activities.markProjectAsRead'></a>
+                            </li>
+                            <li role="presentation" data-bind="visible:projectId">
+                                <a href="#" role="menuitem" data-bind="click: $root.markProjectActorEvent" data-i18n="app:pages.activities.markProjectUserEvent"></a>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation" data-bind="visible:taskId">
+                                <a href="#" role="menuitem" data-bind="click: $root.showTask" data-i18n='app:pages.activities.showTask'></a>
+                            </li>
+                            <li role="presentation" data-bind="visible:taskId == false">
+                                <a href="#" role="menuitem" data-bind="click: $root.showProject" data-i18n='app:pages.activities.showProject'></a>
+                            </li>
+                            <li role="presentation" data-bind="css: {'active':canShowAttachmentImages() } ">
+                                <a role="menuitem" tabindex="-1" data-bind="toggleClick:canShowAttachmentImages" href="#" data-i18n="app:pages.activities.showCommentImages"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group pull-right" role="group">
+                        <a href="#" class="btn" data-bind="visible:projectId && !taskId,click:$root.showProject"><i class="icon fa-arrow-right"></i></a>
+                        <a href="#" class="btn" data-bind="visible:taskId,click:$root.showTask"><i class="icon fa-arrow-right"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-footer collapse" data-bind="id: 'collapse'+ $data.activityId">
+                    <div class="row no-space">
+                        <br>
+                        <div class="media">
+                            <div class="media-left">
+                                <a class="avatar avatar-lg  avatar-scale" href="javascript:void(0)">
+                                    <img data-bind="src:$root.context.user().avatar()">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <form role="form">
+                                    <div class="form-group" data-bind="validationElement: commentText">
+                                        <textarea class="form-control " rows="3" data-bind="value: commentText,hasFocus: true"></textarea>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <button type="submit" class="btn btn-default btn-primary " data-bind="activity: $root.addCommentCommand.isExecuting, command: $root.addCommentCommand" data-i18n="app:pages.activities.sendComment"></button>
+                                        <button type="reset" class="btn btn-pure btn-default " data-bind="click: $root.cancelComment.bind($data)" data-i18n="app:pages.activities.cancelComment"></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+            <button data-bind="visible:hasNewPage, click: loadMore" type="button" class="btn btn-primary btn-block">
+                <span class="icon fa-refresh"></span><span data-i18n="app:pages.activities.loadMore"></span>
+            </button>
+            <br>
+        </div>
+    </div>
+</div>
+<div class="right-column durandal-column" data-bind="css:$root.prefs.rightColumnSizeClass">
+    <!-- ko compose: reportModule -->
+    <!-- /ko -->
+    <!-- ko compose: selectedTask -->
+    <!--/ko-->
+    <!-- ko if: selectedProject -->
+    <!-- ko compose:  { model:selectedProject, view:'project/project-details-content.html' } -->
+    <!--/ko-->
+    <!--/ko-->
+</div>

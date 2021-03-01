@@ -1,0 +1,142 @@
+<style>
+
+    .k-nav-current > .k-link span + span {
+        max-width: 200px;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        vertical-align: top;
+    }
+
+    #team-schedule {
+        height: auto;
+        position: relative;
+        margin: 0 auto 10px 0;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+    }
+
+    #alex {
+        position: absolute;
+        left: 4px;
+        top: 81px;
+    }
+
+    #bob {
+        position: absolute;
+        left: 119px;
+        top: 81px;
+    }
+
+    #charlie {
+        position: absolute;
+        left: 234px;
+        top: 81px;
+    }
+
+    .custom-task-template {
+        font-size: .8em;
+    }
+
+    .peopleContainer {
+        display: block;
+        overflow: auto;
+        padding: 5px;
+        height: 90px;
+    }
+
+    .peopleContainerElement {
+        display: flex;
+        flex-direction: column;
+        margin: 2px 5px;
+        justify-content: right;
+        align-items: flex-end;
+        float: right;
+        width: 60px;
+    }
+
+    .avatarContainer img {
+        display: inline-block;
+        margin-top: 2px;
+        border-radius: 50%;
+        vertical-align: middle;
+        align-items: center;
+        align-self: center;
+        height: 45px;
+        width: 45px;
+        text-align: center;
+    }
+
+    .avatarContainer {
+        display: inline-block;
+        vertical-align: middle;
+        height: 50px;
+        overflow: hidden;
+        align-self: center;
+        align-items: center;
+
+    }
+
+    .activatePersonContainer {
+        width: 100%;
+        border: 1px solid green;
+        text-align: center;
+        align-self: center;
+
+    }
+</style>
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.calendar.title"></h3>
+
+
+        <div class="panel-actions">
+            <button class="filterToggleBtn btn btn-primary"
+                    data-bind="click: $root.filterToggleButton, text: $root.currentFilter() === 1 ? i18n.t('app:pages.calendar.startAndDueDate') :  i18n.t('app:pages.calendar.onlyDueDate') , css: {btn-primary: $root.currentFilter() === 1, btn-success:$root.currentFilter() === 2  }"></button>
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+
+        </div>
+    </div>
+    <div class="panel-body">
+        <div id="scheduler-part">
+            <div id="team-schedule">
+                <div id="team-schedule-bg"></div>
+                <div id="people">
+                    <div class="peopleContainer">
+                        <!-- ko foreach:assigneeList -->
+
+                        <div class="peopleContainerElement">
+
+                            <div class="avatarContainer">
+
+                                <!--<img width="30" data-bind="attr:{src:'assets/images/avatars/'+avatar}"/>-->
+
+                                <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault($data.user),alt:'none'">
+                            </div>
+                            <div class="activatePersonContainer" data-bind="attr :{style:'background-color:'+color}">
+                                <input data-bind="attr:{checked:'true', type:'checkbox', id:assigneeName, value: assigneeId}"/>
+                            </div>
+                        </div>
+
+
+                        <!-- /ko -->
+
+                    </div>
+                </div>
+            </div>
+            <div id="scheduler"></div>
+        </div>
+    </div>
+
+    <script id="event-template" type="text/x-kendo-template">
+        <div class="custom-task-template">
+
+
+            <div class="custom-task-template-row">#: projectName # #: name # #: assigneeName #</div>
+
+        </div>
+    </script>
+
+
+</div>

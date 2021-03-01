@@ -1,0 +1,72 @@
+<div class="left-column durandal-column" data-bind="css:$root.prefs.middleColumnSizeClass">
+    <div class="panel panel-bordered panel-column-header panel-search" data-bind="panelActions :{}" id="search-header-panel">
+        <div class="panel-heading" style="background-color:white">
+            <h3 class="panel-title">
+                <i class="icon fa-user" aria-hidden="true"></i>
+                <span data-i18n2="app:pages.search.title">Profile</span>
+            </h3>
+            <div class="panel-actions">
+
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-column-content" data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main'}">
+
+        <div class="panel-body">
+            <div class="panel" data-bind="with:changePasswordModel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Password
+                        <span class="panel-desc">Change your password or recover your current one.</span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form autocomplete="off">
+                        <div class="form-group" data-bind="validationElement: currentPassword">
+                            <label class="control-label" for="currentPassword">Current Password</label>
+                            <input type="password" data-bind="value:currentPassword" class="form-control" id="currentPassword" name="currentPassword"
+                                placeholder="Password" autocomplete="off">
+                        </div>
+
+                        <div class="form-group" data-bind="validationElement: newPassword">
+                            <label class="control-label" for="inputBasicEmail">New Password</label>
+                            <input type="password" data-bind="value:newPassword" class="form-control" id="newPassword" name="newPassword" placeholder="Password"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group" data-bind="validationElement: newPasswordConfirm">
+                            <label class="control-label" for="inputBasicPassword">Confirm Password</label>
+                            <input type="password" data-bind="value:newPasswordConfirm" class="form-control" id="confirmPassword" name="confirmPassword"
+                                placeholder="Password" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" data-bind="activity: changePasswordCommand.isExecuting, command: changePasswordCommand">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- ko if:config.useOneSignal -->
+            <div class="panel" data-bind="with:pushNotificationSettingsModel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Push Notifications
+                        <span class="panel-desc">Enable/Disable push notifications</span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p data-bind="visible:$root.context.user().subscribedToOneSignal()">
+                        Notifications enabled
+                        <a href="#" role="menuitem" class="pull-right" data-bind="click:unsubscribeFromOneSignal">Disable</a>
+                    </p>
+                    <p data-bind="visible:!$root.context.user().subscribedToOneSignal()">
+                        Notifications disabled
+                        <a href="#" role="menuitem" class="pull-right" data-bind="click:subscribeToOneSignal">Enable</a>
+                    </p>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+
+    </div>
+</div>
+<div class="middle-column durandal-column" data-bind="css:$root.prefs.rightColumnSizeClass">
+
+
+</div>

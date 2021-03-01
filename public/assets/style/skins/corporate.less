@@ -1,0 +1,72 @@
+// Load skin source
+// ----------------
+@import "skin.less";
+
+// Override variables
+// ------------------
+@color-primary: 'corporate-blue';
+@site-navbar-header-bg: @brand-primary;
+
+
+@panel-task-heading-bg: #04a3cf;
+@panel-task-footer-nav-bg: @color-blue-grey-200;
+@panel-projects-heading-bg: rgba(77, 182, 172, 0.72);
+@panel-search-heading-bg: rgba(97, 143, 192, 0.7);
+@panel-project-heading-bg:  fade(@color-corporate-blue-600,71%);
+
+@panel-project-detail-heading-bg:  fade(@color-corporate-blue-600,71%);
+@panel-project-footer-nav-bg: @color-blue-grey-200;
+
+@panel-task-content-footer-border-color: @color-blue-grey-200;
+@panel-task-content-footer-bg: @color-blue-grey-200;
+
+@panel-card-media-author-color: white;
+@panel-card-media-author-meta-color:#DADFE2;
+@panel-heading-title-color:@inverse;
+
+@panel-activity-heading-bg:  @panel-task-heading-bg;
+
+
+// task tree
+
+@task-tree-task-bg:@inverse;
+@task-tree-task-border-color:@border-color-base;
+
+@task-tree-task-active-bg:fade(@panel-task-heading-bg,15%);
+@task-tree-task-active-border-color:@panel-task-heading-bg;
+@task-tree-task-active-color:@link-color;
+
+@task-tree-task-hover-bg:fade(@panel-task-heading-bg,15%);
+@task-tree-task-hover-border-color:fade(@panel-task-heading-bg,15%);
+
+.site-menubar-custom {
+	background-color: #09566F;
+	.site-menu {
+		> .site-menu-item {
+			a{
+				color:@inverse;
+			}
+			&.active, &.open, &.hover {
+				color: @inverse;
+				background-color:  @color-corporate-blue-800;
+			}
+
+			> .site-menu-sub {
+				background-color: #09566F;
+			}
+		}
+	}
+}
+
+.panel-card-activity {
+    >.panel-heading.task-active{
+        background-color: @panel-activity-heading-bg;
+    }
+}
+
+.panel-actions {
+	.panel-action.panel-action.btn.btn-sm.btn-icon.btn-default {
+        color:@inverse;
+        background-color:@color-corporate-blue-300 ;
+    }
+}

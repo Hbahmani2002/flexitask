@@ -1,0 +1,219 @@
+<div class="tab-content tab-content-task">
+
+    <div class="tab-pane fade " id="task-details">
+        <!-- ko compose: {  view:'task/task-details.html'} --><!--/ko-->
+    </div>
+    <div id="task-relations" class="tab-pane fade">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+
+                <div class="pull-right">
+                    <a class="btn btn-default" data-bind="click: newRelatedTask"><span class="icon fa-plus"></span>&nbsp;<span data-i18n="app:pages.task.addnew"></span></a>
+                </div>
+                <h5>Linked Tasks</h5>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h5 class="list-group-item-heading" data-i18n="app:pages.task.dependedtasks">
+
+                    </h5>
+                </div>
+                <!-- ko foreach:details.dependedTasks -->
+                <div class="list-group-item">
+                    <dl>
+                        <dt data-i18n="app:pages.task.name"></dt>
+                        <dd>
+                            <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a> |
+                            <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($root.projectId, id), text: name"></a>
+
+                        </dd>
+
+                        <dt >Description</dt>
+                        <dd data-bind="text: description"></dd>
+
+                        <dt data-i18n="app:pages.task.dependedtype"></dt>
+                        <dd data-bind="text: $root.helpers.getDependencyText(dependencyType,$root.lookups)"></dd>
+
+                        <dt data-i18n="app:pages.task.status"></dt>
+                        <dd data-bind="text: $root.getStatusText(status)"></dd>
+                    </dl>
+                    <div class="pull-right">
+                        <a href="#" data-bind="click: $root.editDependedTask.bind($data,$root.lookups)">edit</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h5 class="list-group-item-heading" data-i18n="app:pages.task.relatedtasks">
+
+                    </h5>
+                </div>
+                <!-- ko foreach:details.relatedTasks -->
+                <div class="list-group-item">
+                    <dl>
+                        <dt data-i18n="app:pages.task.name"></dt>
+                        <dd>
+                            <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a> |
+                            <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($root.projectId, id), text: name"></a>
+
+                        </dd>
+
+                        <dt >Description</dt>
+                        <dd data-bind="text: description"></dd>
+
+
+
+                        <dt data-i18n="app:pages.task.status"></dt>
+                        <dd data-bind="text: $root.getStatusText(status)"></dd>
+                    </dl>
+                    <div class="pull-right">
+                        <a href="#" data-bind="click: $root.editRelatedTask.bind($data)">edit</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span data-i18n="app:pages.task.dependedtasks"></span>
+
+                <div class="pull-right">
+                    <a class="btn btn-xs btn-default" data-bind="click: newDependedTask"><span class="icon fa-plus"></span>&nbsp;<span data-i18n="app:pages.task.addnew"></span></a>
+                </div>
+            </div>
+            <table class="table table-hover  ">
+                <thead>
+                <tr>
+                    <th class="col-sm-6" data-i18n="app:pages.task.name"></th>
+                    <th class="col-sm-3" data-i18n="app:pages.task.dependedtype"></th>
+                    <th class="col-sm-2" data-i18n="app:pages.task.status"></th>
+                    <th class="col-sm-1">#</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: details.dependedTasks">
+
+                <tr>
+                    <td>
+                        <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a> |
+                        <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($root.projectId, id), text: name"></a>
+                        <br/>
+                        <small class="text-muted" data-bind="text: description"></small>
+                    </td>
+                    <td data-bind="text: $root.helpers.getDependencyText(dependencyType)"></td>
+                    <td data-bind="text: $root.getStatusText(status)"></td>
+                    <td>
+                        <button class="btn btn-default btn-xs" data-bind="click: $root.editDependedTask.bind($data)">
+                            <i class="icon fa-pencil"></i> <span data-i18n="app:pages.task.edit"></span>
+                        </button>
+                    </td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span data-i18n="app:pages.task.relatedtasks"></span>
+
+                <div class="pull-right">
+
+                    <a class="btn btn-xs btn-default" data-bind="click: newRelatedTask"><span class="icon fa-plus"></span>&nbsp;<span data-i18n="app:pages.task.addnew"></span></a>
+
+                </div>
+            </div>
+            <table class="table table-hover  ">
+                <thead>
+                <tr>
+                    <th class="col-sm-9" data-i18n="app:pages.task.name"></th>
+                    <th class="col-sm-2" data-i18n="app:pages.task.status"></th>
+                    <th class="col-sm-1">#</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:details.relatedTasks">
+                <tr>
+                    <td>
+                        <a data-bind="href: $root.helpers.navigations.getProjectNavigationUrl(project.id), text: project.name"></a> |
+                        <a data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($root.projectId, id), text: name"></a>
+                        <br/>
+                        <small class="text-muted" data-bind="text: description"></small>
+                    </td>
+                    <td data-bind="text: $root.getStatusText(status)"></td>
+                    <td>
+                        <button class="btn btn-default btn-xs" data-bind="click: $root.editRelatedTask.bind($data)">
+                            <i class="icon fa-edit"></i> <span data-i18n="app:pages.task.edit"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="task-subtasks">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h5>Subtasks</h5>
+
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        <div class="panel  panel-default">
+            <!--<div class="panel-heading" data-i18n="app:pages.task.subtasks">
+
+            </div>-->
+
+            <table class="table table-hover  ">
+                <thead>
+                <tr>
+                    <th class="col-sm-7"><span data-i18n="app:pages.task.name">Task Name</span></th>
+                    <th class="col-sm-2"><span data-i18n="app:pages.task.assignee">Assignee</span></th>
+                    <th class="col-sm-2"><span data-i18n="app:pages.task.status">Status</span></th>
+                    <th class="col-sm-1"><span data-i18n="app:pages.task.order">Order</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- ko foreach: subTasks -->
+                <tr>
+                    <td class="col-sm-7 clearfix">
+
+                        <a data-type="task" data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($root.projectId, id), text: name"></a>
+                    </td>
+                    <td class="col-sm-2" data-bind="safeText: { value: assignee, property: 'fullName', default: '-' }"></td>
+                    <td class="col-sm-2" data-bind="text: $root.getStatusText(status) "></td>
+                    <td class="col-sm-1">
+                        <a data-bind="    click: $root.changeTaskOrder.bind($data, 'down')"><span class="icon fa-circle-arrow-down"></span></a>&nbsp;<a data-bind="    click: $root.changeTaskOrder.bind($data, 'up')"><span class="icon fa-circle-arrow-up"></span></a>
+                    </td>
+                </tr>
+                <!-- /ko -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="task-extra">
+        <!-- ko compose:selectedTab  --><!-- /ko -->
+    </div>
+</div>

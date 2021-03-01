@@ -1,0 +1,145 @@
+﻿<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:lookups.taskModules.expenseTracking"></h3>
+        <div class="panel-actions" >
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="css:{'active':filter.includeSubTasks},visible:$root.isTaskView()">
+                        <a href="#" data-bind="toggleClick:filter.includeSubTasks" data-i18n="app:pages.taskactivity.includesubtasks"></a>
+                    </li>
+                    <li role="presentation" data-bind="css:{'active':showAllFields}">
+                        <a href="#" data-bind=" toggleClick: showAllFields" class="panel-action">
+                            <span class="icon fa-expand"></span>&nbsp;<span data-i18n="app:pages.expense.showall"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-actions">
+
+        </div>
+    </div>
+    <div class="panel-body">
+        <p class="clearfix">
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right" data-bind=" click: newExpense">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+        </p>
+        <div class="panel  panel-default table-responsive">
+            <table id="table-x" class="table  table-hover ">
+                <thead>
+                    <tr>
+                        <th data-bind="visible: $root.showAllFields">#</th>
+                        <th data-bind="visible: $root.isMultiTaskView" data-i18n="app:pages.expense.task"></th>
+                        <th data-i18n="app:pages.expense.date"></th>
+                        <th data-i18n="app:pages.expense.person"></th>
+                        <th data-i18n="app:pages.expense.description"></th>
+                        <th data-i18n="app:pages.expense.amount"></th>
+                        <th data-i18n="app:pages.expense.billable"></th>
+                        <th data-i18n="app:pages.expense.status"></th>
+                        <th data-i18n="app:pages.expense.type"></th>
+                        <th data-bind="visible: $root.showAllFields" data-i18n="app:pages.expense.attachments"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: expenses">
+                    <tr>
+                        <td data-bind="visible: $root.showAllFields">
+                            <small><span data-bind="    text: trackingId"></span></small>
+                        </td>
+                        <td data-bind="visible: $root.isMultiTaskView">
+                            <a data-bind="    safeText: { value: $data, property: 'taskName', default: '' }, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, taskId)"></a>
+                        </td>
+                        <td>
+                            <span data-bind="text: $root.utils.formatDate(date)"></span>
+                            <span title="attachment" data-bind="visible: attachments.length > 0" class="icon fa-paperclip"></span>
+                        </td>
+                        <td><span data-bind="text: personFullName"></span></td>
+                        <td><span data-bind="text: description"></span></td>
+                        <td><span data-bind="text: String.format('{0} {1}', amountValue, currencyCode)"></span></td>
+                        <td>
+                            <select class="form-control" data-bind="visible: isEditMode, value: isBillable">
+                                <option value="true" data-i18n="app:pages.expense.checkbillable"></option>
+                                <option value="false" data-i18n="app:pages.expense.checknonbillable"></option>
+                            </select> <span data-bind="visible: isViewMode, text: isBillable.cached"></span>
+                        </td>
+                        <td>
+                            <select class="form-control" data-bind="visible: isEditMode, value: status, options: $root.lookups.expenseStatus.getAll(), optionsText: 'text', optionsValue: 'value'"></select>
+                            <span data-bind="visible: isViewMode, text: $root.lookups.getItem('expenseStatus', status.cached).text"></span>
+                        </td>
+                        <td><span data-bind="text: expenseTypeText"></span></td>
+                        <td data-bind="foreach: attachments, visible: $root.showAllFields">
+                            <a href="" data-bind="text: name, href: downloadUrl"></a>
+                        </td>
+                        <td>
+                            <div data-bind="visible: isViewMode">
+                                <a href="" data-bind="click: $root.view" data-i18n="app:pages.expense.view"></a> |
+                                <a href="" data-bind="    click: $root.edit" data-i18n="app:pages.expense.edit"></a>
+                            </div>
+                            <div data-bind="visible: isEditMode">
+                                <a href="" data-bind="click: $root.update" data-i18n="app:pages.expense.save"></a> |
+                                <a href="" data-bind="    click: $root.cancelEdit" data-i18n="app:pages.expense.cancel"></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <table data-bind="with: currentView" class="table table-condensed">
+                    <tr>
+                        <td data-i18n="app:pages.expense.id"></td>
+                        <td>
+                            <small><span data-bind="text: trackingId"></span></small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.date"></td>
+                        <td><span data-bind="text: $root.utils.formatDate(date)"></span></td>
+                    </tr>
+                    <tr data-bind="visible: $root.isMultiTaskView">
+                        <td data-i18n="app:pages.expense.task"></td>
+                        <td>
+                            <a data-bind="safeText: { value: $data, property: 'taskName', default: '' }, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, taskId)"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.person"></td>
+                        <td><span data-bind="text: personFullName"></span></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.description"></td>
+                        <td><span data-bind="text: description"></span></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.amount"></td>
+                        <td><span data-bind="text: String.format('{0} {1}', amountValue,currencyCode)"></span></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.billable"></td>
+                        <td><span data-bind=" text: isBillable.cached"></span></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.status"></td>
+                        <td><span data-bind="text: $root.lookups.getItem('expenseStatus', status.cached).text"></span></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.type"></td>
+                        <td><span data-bind="text: expenseTypeText"></span></td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="app:pages.expense.attachments"></td>
+                        <td data-bind="foreach: attachments">
+                            <a href="" data-bind="text: name, href: downloadUrl"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+
+    </div>
+</div>

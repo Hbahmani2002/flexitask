@@ -1,0 +1,60 @@
+﻿<div class="modal-dialog ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.attachment.addattachmentheader"></h4>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <form role="form" id="fileupload-form" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <div class="col-md-4 fileupload-progress fade hidden">
+                                <!-- The global progress bar -->
+                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+                                </div>
+                                <!-- The extended global progress state -->
+                                <div class="progress-extended">&nbsp;</div>
+                            </div>
+                            <table role="presentation" class="table table-striped">
+                                <tbody class="files"></tbody>
+                            </table>
+                            
+                        </div>
+                        
+                        <!-- Button -->
+                        <div class="form-group ">
+                            <div class="pull-right">
+                                <div class="fileupload-buttonbar  ">
+                                     <button type="button" class="btn btn-floating btn-danger btn-xs fileinput-button">
+                                        <i class="icon wb-plus" aria-hidden="true"></i>
+                                        <input id="file-selector" type="file" name="files[]" data-bind="attr: { multiple:$root.utils.browser.isIOS() ? null : 'multiple' } ">
+                                    </button>
+                                    <button id="btn-cancel" name="btn-close" type="reset" data-bind="click: $root.cancel" class="btn btn-default btn-outline" data-i18n="app:pages.attachment.close">Close</button>
+                                    
+                                    <button type="reset" class="btn btn-warning cancel hidden" id="clear-comment-form">
+                                        <span class="icon fa-ban"></span>
+                                        <span data-i18n="app:pages.attachment.cancelupload"></span>
+                                    </button>
+                                    <button id="clear-uploaded-files" type="button" class="btn btn-info clear hidden">
+                                        <span class="icon-ok icon-white"></span>
+                                        <span data-i18n="app:pages.attachment.clear"></span>
+                                    </button>
+                                    <span class="fileupload-process"></span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>

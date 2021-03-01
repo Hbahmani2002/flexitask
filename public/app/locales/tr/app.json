@@ -1,0 +1,2020 @@
+{
+    "main": {
+        "btn-collapse-text": "Daralt",
+        "btn-expand-all-text": "Tümünü Genişlet",
+        "btn-collapse-all-text": "Tümünü Daralt",
+        "promptyes": "Evet",
+        "promptno": "Hayır",
+        "hide": "Gİzle",
+        "show": "Göster",
+        "choose": "Seçiniz..."
+    },
+    "alerts": {
+        "delete": {
+            "confirm": "Evet, sil !",
+            "cancel": "İptal",
+            "deleted": "Silindi !"
+        },
+        "prompt": {
+            "yes": "Evet",
+            "ok": "Tamam",
+            "cancel": "İptal",
+            "no": "Hayır"
+        },
+        "warning": {
+            "confirm": "Tamam",
+            "cancel": "İptal"
+        },
+        "dirty": {
+            "title": "Değişiklikler Kaydedilmedi",
+            "text": "Yaptığınız değişiklikler kaydedilmedi. Nasıl devam etmek istersiniz ?",
+            "discard": "Değişiklikleri iptal et",
+            "stay": "Sayfada kal"
+        }
+    },
+    "lookups": {
+        "languages": {
+            "turkish": "Türkçe",
+            "english": "İngilizce"
+        },
+        "taskConstraintType": {
+            "asSoonAsPossible": "MümkünOldukçaErken",
+            "asLateAsPossible": "MümkünOldukçaGeç",
+            "finishNoEarlierThan": "ÖnceBitemez",
+            "finishNoLaterThan": "SonraBitemez",
+            "mustStartOn": "BaşlamakZorunda",
+            "mustFinishOn": "BitmekZorunda",
+            "startNoEarlierThan": "ÖnceBaşlayamaz",
+            "startNoLaterThan": "GeçBaşlayamaz"
+        },
+        "commentVoteStatus": {
+            "on": "Açık",
+            "off": "Kapalı",
+            "readOnly": "Salt Okunur"
+        },
+        "commentViewMode": {
+            "chronological": "Kronolojik",
+            "hierarchical": "Hiyerarşik"
+        },
+        "commentVoteMode": {
+            "up": "Pozitif",
+            "upDown": "PozitifNegatif",
+            "upWithAnonymous": "Pozitif (Anonim)",
+            "upDownWithAnonymous": "PozitifNegatif (Anonim)"
+        },
+        "commentSortModes": {
+            "newest": "En Yeni",
+            "oldest": "En Eski",
+            "best": "Pozitif Oy Sayısı",
+            "position": "Pozisyon"
+        },
+        "customFieldType": {
+            "text": "metin",
+            "number": "sayı",
+            "date": "tarih",
+            "dropdown": "liste",
+            "user": "kullanıcı",
+            "task": "çalışma aracı"
+        },
+        "projectModules": {
+            "detail": "Detaylar",
+            "tasks": "Çalışma-Araçları",
+            "linkedTasks": "Bağlantılı-Çalışma Araçları",
+            "timeLogs": "Zaman-Kayıtları",
+            "attachments": "Dosyalar",
+            "todos": "Yapılacaklar",
+            "expenseTracking": "Gider-Takibi",
+            "customFields": "Özel-Alanlar",
+            "gantt": "Gantt",
+            "calendar": "Takvim",
+            "projectReport": "Proje-Raporu",
+            "history": "Geçmiş",
+            "tables": "Tablolar",
+            "accessList": "Erişim-Listesi"
+        },
+        "taskModules": {
+            "detail": "Detaylar",
+            "accessList": "Erişim-Listesi",
+            "subTasks": "Alt-Çalışma-Araçları",
+            "linkedTasks": "Bağlantılı-Çalışma-Araçları",
+            "comments": "Yorum/Mesajlar",
+            "todos": "Yapılacaklar",
+            "notes": "Notlar",
+            "attachments": "Dosyalar",
+            "tables": "Tablolar",
+            "history": "Geçmiş",
+            "timeLogs": "Zaman-Kayıtları",
+            "expenseTracking": "Gider-Takibi",
+            "ganttChart": "Gantt-Raporu",
+            "calendar": "Takvim",
+            "taskReport": "Rapor"
+        },
+        "taskSubscriptionTypes": {
+            "none": {
+                "text": "yok",
+                "alias": "Y"
+            },
+            "low": {
+                "text": "Düşük",
+                "alias": "D"
+            },
+            "medium": {
+                "text": "Orta",
+                "alias": "O"
+            },
+            "high": {
+                "text": "Yüksek",
+                "alias": "Y"
+            },
+            "noneWithSubTasks": {
+                "text": "Yok+",
+                "alias": "Y+"
+            },
+            "lowWithSubTasks": {
+                "text": "Düşük+",
+                "alias": "D+"
+            },
+            "mediumWithSubTasks": {
+                "text": "Orta+",
+                "alias": "O+"
+            },
+            "highWithSubTasks": {
+                "text": "Yüksek+",
+                "alias": "Y+"
+            }
+        },
+        "taskStatus": {
+            "none": "Yok",
+            "notStarted": "Başlamadı",
+            "onHold": "Beklemede",
+            "inProgress": "İşlemde",
+            "inPlanning": "Planlanıyor",
+            "cancelled": "İptal Edildi",
+            "completed": "Tamamlandı",
+            "waitingForApproval": "Onay Bekliyor"
+        },
+        "projectType": {
+            "hie": "Hiyerarşik",
+            "hie2": "Hiyerarşik 2",
+            "team": "Takım",
+            "team2": "Takım 2",
+            "mailLike": "E-posta gibi",
+            "personal": "Kişisel"
+        },
+        "taskType": {
+            "task": "İş/Görev",
+            "section": "Bölüm",
+            "info": "Bilgi",
+            "event": "Toplantı/Etkinlik",
+            "ongoingTask": "Süregiden İş/Görev",
+            "milestone": "Kilometre Taşı"
+        },
+        "taskPriority": {
+            "low": "Düşük",
+            "normal": "Normal",
+            "high": "Yüksek",
+            "critical": "Kritik"
+        },
+        "projectStatus": {
+            "none": "Yok",
+            "notStarted": "Başlamadı",
+            "onHold": "Beklemede",
+            "inProgress": "İşlemde",
+            "inPlanning": "Planlanıyor",
+            "cancelled": "İptal Edildi",
+            "completed": "Tamamlandı"
+        },
+        "mandatoryOptions": {
+            "yes": "Evet"
+        },
+        "booleanOptions": {
+            "yes": "Evet",
+            "no": "Hayır"
+        },
+        "dependencies": {
+            "finishToStart": "Başlaması için Bitmesi Gerekiyor",
+            "startToStart": "Başlaması için Başlaması Gerekiyor",
+            "finishToFinish": "Bitmesi için Bitmesi Gerekiyor",
+            "startToFinish": "Bitmesi için Başlaması Gerekiyor",
+            "relation": "İlişki"
+        },
+        "tableFieldTypes": {
+            "text": "Metin",
+            "number": "Sayı",
+            "boolean": "Mantıksal",
+            "link": "Bağlantı",
+            "selection": "Seçim",
+            "user": "Kullanıcı",
+            "attachment": "Dosya",
+            "date": "Tarih",
+            "task": "Çalışma Aracı"
+        },
+        "tableSourcesTypes": {
+            "system": "Sistem",
+            "project": "Project"
+        },
+        "expenseStatus": {
+            "waitingForApproval": "Onay Bekliyor",
+            "rejected": "Reddedildi",
+            "approved": "Onaylandı",
+            "cancelled": "İptal Edildi"
+        },
+        "timeLogStatus": {
+            "waitingForApproval": "Onay Bekliyor",
+            "rejected": "Reddedildi",
+            "approved": "Onaylandı",
+            "cancelled": "İptal Edildi"
+        },
+        "todoStatus": {
+            "incomplete": "Tamamlanmamış",
+            "complete": "Tamamlanmış"
+        }
+    },
+    "templates": {
+        "upload": {
+            "name": "isim",
+            "description": "tanım",
+            "tags": "etiketler",
+            "processing": "İşleniyor...",
+            "upload": "Yükle",
+            "cancel": "İptal",
+            "size": "boyut",
+            "uploadFile": "Dosya Yükle",
+            "optional": "opsiyonel",
+            "cancelAll": "Hepsini İptal Et",
+            "writeDescriptionAboutTheFile": "dosya açıklamasını yazın"
+        },
+        "download": {
+            "name": "isim",
+            "size": "boyut",
+            "error": "Hata!",
+            "delete": "Sil",
+            "cancel": "İptal"
+        },
+        "relatedtasks": {
+            "project": "Projeler",
+            "description": "Tanım",
+            "task": "Çalışma Aracı",
+            "dependencytype": "Bağımlılık Tipi",
+            "save": "Kaydet",
+            "cancel": "İptal",
+            "delete": "Sil"
+        },
+        "relatedprojects": {
+            "project": "Proje",
+            "description": "Tanım",
+            "task": "Çalışma Aracı",
+            "dependencytype": "Bağımlılık Tipi",
+            "save": "Kaydet",
+            "cancel": "İptal",
+            "delete": "Sil"
+        }
+    },
+    "pages": {
+        "shell": {
+            "language": "Dil Seçimi",
+            "quickSettings": "Hızlı Ayarlar",
+            "activities": "Aktivite Akışı",
+            "projects": "Projeler",
+            "search": "Arama",
+            "advancedsearch": "Gelişmiş Arama",
+            "favoritesearch": "Favori Aramalar",
+            "more": "Daha fazla",
+            "profile": "Profil",
+            "support": "Destek",
+            "logout": "Çıkış",
+            "searchplaceholder": "ara...",
+            "resize": "Boyutlandır",
+            "searches": "Aramalar",
+            "tasks": "Çalışma Araçları",
+            "starred": "Yıldızlı",
+            "signalRConnectingMessage": "Tekrar bağlanmaya çalışılıyor"
+        },
+        "localization": {
+            "clickToShowModal": "Yerelleştirilmiş diyaloğu göstermek için aşağıdaki butona tıklayın"
+        },
+        "projects": {
+            "header": "PROJE LİSTESİ",
+            "archive": {
+                "title": "",
+                "active": "Aktif",
+                "all": "Hepsi"
+            },
+            "showArchivedProjects": "Arşivlenmiş projeleri göster",
+            "newproject": "Yeni Proje"
+        },
+        "createproject": {
+            "header": "YENİ PROJE OLUŞTUR",
+            "enterprojectname": "Proje adı girin",
+            "projectname": "Proje Adı",
+            "projecttype": "Proje Tipi",
+            "parentproject": "Üst Proje",
+            "folder": "Klasör",
+            "save": "Kaydet",
+            "cancel": "İptal",
+            "hieDesc": "Her yönetici kendi ekibinin tüm aktivitelerine erişebilir. ",
+            "hie2Desc": "Sadece bir üst yönetici ekibinin tüm aktivitelerine erişebilir.",
+            "teamDesc": "Sadece belirlenen takım üyelerinin ve sadece kendinin dahil edildiği tüm görevlere erişimi (hiyerarşi yok).",
+            "team2Desc": "Belirlenen takım üyelerinin tüm görevlere sınırsız erişimi.",
+            "mailLikeDesc": "Sadece kullanıcıya atanan görevlere erişim.",
+            "personalDesc": "Sadece kişisel kullanım."
+        },
+        "linkedTasks": {
+            "title": "Bağlantılı çalışma araçları",
+            "showSuccessors": "Tamamlayıcıları göster",
+            "showDependedTasksToThisTask": "Bu göreve bağımlı çalışma araçlarını göster",
+            "predecessors": "Önceller",
+            "relatedTasks": "İlişkili çalışma araçları",
+            "relatedToThisTask": "Bu çalışma aracı ile ilişkili",
+            "successors": "Tamamlayıcılar",
+            "description": "Tanım",
+            "taskName": "Çalışma aracı adı",
+            "linkType": "Bağlantı tipi",
+            "taskStatus": "Çalışma aracı durumu",
+            "edit": "düzenle"
+        },
+        "dependencyEdit": {
+            "title": "Yeni bağlantılı çalışma aracı",
+            "linkType": "Bağlantı tipi",
+            "dependency": "Bağımlılık",
+            "relation": "İlişki",
+            "dependencyType": "Bağımlılık Tipi",
+            "project": "Proje",
+            "task": "Çalışma Aracı",
+            "lagDate": "Erteleme tarihi",
+            "save": "Kaydet",
+            "delete": "Sil",
+            "cancel": "İptal",
+            "description": "Tanım"
+        },
+        "createtask": {
+            "header": "Yeni Çalışma Aracı Oluştur",
+            "h-basics": "Temeller",
+            "h-collaborators": "Ekip",
+            "h-estimations": "Tahmini Süre",
+            "h-tags-customfields": "Etiketler ve özel alanlar",
+            "h-comment-module-settings": "Yorum/Mesaj ayarları",
+            "modules": "Modüller",
+            "module_help": "Çalışma aracından modül çıkartamazsınız ancak ekleyebilirsiniz",
+            "entertaskname": "Çalışma aracı adı girin",
+            "taskname": "Çalışma Aracı Adı",
+            "description": "Tanım",
+            "assignee": "Atanan",
+            "duedate": "Bitiş Tarihi",
+            "startdate": "Başlangıç Tarihi",
+            "priority": "Öncelik",
+            "coowners": "Ortak-sahipler",
+            "coassignees": "Ortak-atananlar",
+            "followers1": "Takipçiler 1",
+            "followers2": "Takipçiler 2",
+            "followers3": "Takipçiler 3",
+            "status": "Durum",
+            "durationDays": "Tahmini gün",
+            "estimatedEfford": "Tahmini çalışma",
+            "completionPercentage": "Tamamlanma %",
+            "estimatedBudget": "Tahmini bütçe",
+            "tags": "Etiketler",
+            "customFields": "Özel alanlar",
+            "maxReplyLevel": "Maksimum cevap seviyesi",
+            "commentViewMode": "Yorum/Mesaj görünüm modu",
+            "commentVoteStatus": "Yorum/Mesaj oylama",
+            "commentVoteMode": "Yorum/Mesaj oylama modu",
+            "commentSortMode": "Yorum/Mesaj sıralama",
+            "type": "Tip",
+            "parenttask": "Üst Çalışma Aracı",
+            "save": "Kaydet",
+            "cancel": "İptal",
+            "abovetask": "Şu çalışma aracının üstünde"
+        },
+        "attachmentSearch": {
+            "title": "Dosya Ara",
+            "projectName": "Proje adı",
+            "taskName": "Çalışma aracı adı",
+            "name": "Dosya adı",
+            "uploadBy": "Yükleyen",
+            "uploadedDate": "Yüklenme tarihi",
+            "tags": "Etiketler ve özel alanlar",
+            "or": "veya",
+            "and": "ve",
+            "search": "Ara",
+            "clear": "Temizle",
+            "backToSearchForm": "Arama formuna dön",
+            "searchResults": "Arama sonuçları"
+        },
+        "saveSearchModal": {
+            "header": "Aramayı kaydet",
+            "name": "ad",
+            "ok": "tamam",
+            "cancel": "iptal",
+            "description": "tanım"
+        },
+        "savedSearch": {
+            "title": "Kayıtlı aramalar",
+            "createNewSearchFromSelectedSearches": "Seçili arama kayıtlarından yeni arama kaydı oluştur",
+            "runSelectedSavedSearch": "Seçili aramayı çalıştır",
+            "backToSearchForm": "Arama formuna dön",
+            "searchResults": "Arama sonuçları",
+            "starSearch": "yıldız",
+            "unstarSearch": "Yıldızı kaldır",
+            "selectSearch": "seç",
+            "unselectSearch": "seçimi-kaldır",
+            "editSavedSearch": "düzenle",
+            "deleteSavedSearch": "sil"
+        },
+        "taskSearch": {
+            "title": "Çalışma Araçlarında Ara",
+            "btnSearch": "Ara",
+            "btnClear": "Temizle",
+            "btnSaveSearch": "Kaydet",
+            "taskname": "Çalışma aracı adı",
+            "projectname": "Proje adı",
+            "taskassignee": "Atanan",
+            "collaborators": "Ekip",
+            "activity": "Aktivite",
+            "activityCreate": "Oluştur",
+            "activityUpdate": "Güncelle",
+            "activityWithinLast": "Şu kadar zaman içinde gerçekleşem aktiviteler",
+            "activityBetween": "Şu zaman aralığında gerçekleşen aktiviteler",
+            "taskcoassignees": "Ortak-atananlar",
+            "taskowner": "Sahip",
+            "priority": "Öncelik",
+            "isBlocked": "Bloklandı mı?",
+            "customFieldFilters": "Özel alan filtreleri",
+            "contains": "İçerir",
+            "startsWith": "Şununla başlar",
+            "endsWith": "Şununla biter",
+            "moreThan": "Şundan daha fazla",
+            "lessThan": "Şundan daha az",
+            "equalTo": "Şuna eşit",
+            "taskTypes": "Çalışma aracı tipleri",
+            "taskcoowners": "Ortak-sahipler",
+            "taskfollowers1": "Takipçiler 1",
+            "taskfollowers2": "Takipçiler 2",
+            "taskfollowers3": "Takipçiler 3",
+            "taskduedate": "Bitiş tarihi",
+            "taskstartdate": "Başlangıç tarihi",
+            "taskstatus": "Durum",
+            "taskcategories": "Kategoriler",
+            "tasktags": "Etiketler",
+            "duewithinthenext": "Şu kadar zaman içinde biten",
+            "duewithinthelast": "Şu kadar zaman öncesinde biten",
+            "duebetween": "Şu zaman aralığında biten",
+            "startwithinthenext": "Şu kadar zaman içinde başlayan",
+            "startwithinthelast": "Şu kadar zaman öncesinde başlayan",
+            "startbetween": "Şu zaman aralığında başlayan",
+            "day": "Gün",
+            "weeks": "Hafta",
+            "months": "Ay",
+            "or": "veya",
+            "and": "veya",
+            "search": "Ara",
+            "clear": "Temizle",
+            "savesearch": "aramayı kaydet",
+            "projectOr": "-veya-",
+            "name": "ad",
+            "description": "tanım",
+            "tags": "etiketler",
+            "createdate": "oluşturulma tarihi",
+            "backToSearchForm": "Arama formuna dön",
+            "searchResults": "Arama sonuçları",
+            "gridExportToExcel": "Excel e aktar",
+            "gridShowOnCalendar": "Takvimde göster",
+            "gridGanttByAssignee": "Atamaya göre gantt",
+            "gridGanttByStatus": "Duruma göre gantt",
+            "gridGantt": "Gantt",
+            "gridGanttByProject": "Projeye göre gantt",
+            "gridShowOnReportCharts": "Raporu göster"
+        },
+        "search": {
+            "title": "Arama",
+            "searchTask": "Çalışma Aracı",
+            "searchAttachment": "Dosya",
+            "savedSearch": "Kaydedildi"
+        },
+        "projectAccessList": {
+            "title": "Erişim Listesi",
+            "users": "Kullanıcılar"
+        },
+        "tagCloud": {
+            "title": "Etiket Listesi",
+
+            "sort": "Sırala",
+            "sortBycount": "Adet",
+            "sortByname": "İsim"
+        },
+        "task": {
+            "addDescription": "Tanım ekle",
+            "addTags": "Etiket ekle",
+            "addCustomFields": "Özel alan ekle",
+            "showDescription": "Tanımı göster",
+            "hideDescription": "Tanımı gizle",
+            "star": "Yıldız",
+            "unstar": "Yıldızı kaldır",
+            "assignToMe": "Bana ata",
+            "removeAssignee": "Atamayı kaldır",
+            "save": "Kaydet",
+            "edit": "Düzenle",
+            "cancel": "İptal",
+            "delete": "Sil",
+            "more": "Daha fazla",
+            "headerSubTasks": "Alt Çalışma Araçları",
+            "taskName": "Çalışma aracı adı",
+            "taskAssigee": "Atanan",
+            "taskStatus": "Durum",
+            "taskOrder": "Sıra",
+            "subscription": "Aktivite Aboneliği",
+            "category": "Kategori",
+            "deleteTask": "Çalışma aracını sil",
+            "duplicateTask": "Çalışma aracını kopyala",
+            "archiveTask": "Çalışma aracını arşivle",
+            "unarchiveTask": "Çalışma aracını arşivden geri yükle",
+            "markAsBlocked": "Bloklandı olarak işaretle",
+            "clearBlocking": "Bloklamayı temizle",
+            "promptDeleteTaskHeader": "Çalışma aracını sil",
+            "promptDeleteTaskContent": "Silmek istediğinize emin misiniz ?",
+            "promptArchiveTaskHeader": "Çalışma aracını arşivle",
+            "promptArchiveTaskContent": "Arşivlemek istediğinize emin misiniz ?",
+            "promptDeleteCustomFieldHeader": "Özel alanı sil",
+            "promptDeleteCustomFieldContent": "Bu özel alana ait datayı geri getiremeyeceksiniz!",
+            "shiftWorkItemDates": "Tarihleri kaydır..."
+        },
+        "taskDetails": {
+            "title": "Çalışma Aracı Detayları",
+            "projectName": "Proje adı:",
+            "taskParent": "Üst Çalışma Aracı:",
+            "commentOptions": "Yorum ayarları",
+            "taskName": "Ad:",
+            "taskType": "Tip:",
+            "taskStatus": "Durum:",
+            "estimations": "Tahmini bütçe / İş gücü / Saat",
+            "taskPriority": "Öncelik:",
+            "taskStartDate": "Başlangıç tarihi:",
+            "taskDueDate": "Bitiş tarihi:",
+            "taskAssignee": "Atanan:",
+            "taskOwner": "Sahip:",
+            "taskCoOwners": "Ortak-sahipler:",
+            "taskCoAssignees": "Ortak-atananlar:",
+            "taskFollowers1": "Takipçiler 1:",
+            "taskFollowers2": "Takipçiler 2:",
+            "taskFollowers3": "Takipçiler 3:",
+            "taskDurationDays": "Tahmini gün:",
+            "taskEstimatedEffort": "Tahmini çalışma:",
+            "taskCompletion": "Tamamlanma %:",
+            "taskEstimatedBudget": "Tahmini bütçe:",
+            "taskModules": "Modüller",
+            "taskCommentReplyLevel": "Yorum/Mesaj cevap seviyesi:",
+            "commentVoting": "Yorum/Mesaj oylama:",
+            "commentVotingMode": "Yorum/Mesaj oylama modu:",
+            "commentViewMode": "Yorum/Mesaj görünüm modu:",
+            "commentSorting": "Yorum/Mesaj sıralama modu:",
+            "taskConstraints": "Çalışma aracı kısıtları",
+            "taskDeadline": "Son tarih:",
+            "taskConstraintType": "Sabit tipi:",
+            "taskConstraintDate": "Sabit tarihi:",
+            "taskReportingSettings": "Çalışma aracı raporlama ayarları",
+            "taskShowInCalendar": "Takvimde göster",
+            "taskShowInGantt": "Gantt ile göster",
+            "save": "Kaydet",
+            "edit": "Düzenle",
+            "cancel": "İptal",
+            "delete": "Sil",
+            "createdByTitle": "Ekleyen:",
+            "createdByFormat": "",
+            "updatedByTitle": "Güncelleyen:",
+            "updatedByFormat": ""
+        },
+
+        "taskHistory": {
+            "title": "Geçmiş",
+            "includeTasks": "Çalışma araçlarını dahil et",
+            "includeSubTasks": "Alt çalışma araçlarını tahil et",
+            "grouping": {
+                "title": "Gruplama",
+                "task": "Çalışma Aracı",
+                "user": "Kullanıcı",
+                "none": "Yok"
+            },
+            "sort": {
+                "asc": "A-Z",
+                "desc": "Z-A"
+            },
+            "view": "görünüm"
+        },
+        "todo": {
+            "includeSubTasks": "Alt çalışma araçlarını tahil et",
+            "title": "Yapılacaklar",
+            "addlist": "Bir liste ekle...",
+            "showTodoItems": "Yapılacakları göster",
+            "hideTodoItems": "Yapılacakları gizle",
+            "duplicateLists": "Listeleri kopyala",
+            "hideCompletedItems": "Tamamlanmış öğeleri gizle",
+            "showCompletedItems": "Tamamlanmış öğeleri göster ({{count}})",
+            "newlistheader": "Yeni yapılacaklar listesi",
+            "edit": "Düzenle",
+            "sortByName": "Ada göre sırala",
+            "sortByDate": "Tarihe göre sırala",
+            "add": "Ekle",
+            "cancel": "İptal",
+            "todoplaceholder": "Yeni öğe ekle...",
+            "save": "Kaydet",
+            "delete": "Sil",
+            "deletelist": "Listeyi Sil",
+            "remove": "X",
+            "promptDeleteTodoListText": "Bu notu silmek istediğinize emin misiniz ?",
+            "promptDeleteTodoListHeader": "Notu sil",
+            "promptDeleteConfirmText": "Yapılacaklar silindi!"
+        },
+        "newTodoList": {
+            "createTitle": "Yeni yapılacaklar listesi",
+            "editTitle": "Yapılacaklar listesini düzenle",
+            "name": "Ad",
+            "description": "Tanım",
+            "save": "Kaydet",
+            "cancel": "İptal"
+        },
+        "todoDuplicate": {
+            "title": "Yapılacaklar listesini kopyala",
+            "todoListDuplicationSuccess": "Yapılacaklar listesi başarıyla kopyalandı.",
+            "project": "Proje",
+            "task": "Çalışma Aracı",
+            "todoLists": "Yapılacaklar listesi",
+            "copyWithItems": "Öğeler ile kopyala",
+            "duplicate": "Kopyala",
+            "cancel": "İptal"
+        },
+        "note": {
+            "title": "Notlar",
+            "includeSubTasks": "Alt çalışma araçlarını dahil et",
+            "addnote": "Bir not ekle...",
+            "delete": "Sil",
+            "name": "ad",
+            "nameplaceholder": "not adı",
+            "description": "tanım",
+            "descriptionplaceholder": "not açıklaması",
+            "edit": "Düzenle",
+            "save": "Kaydet",
+            "close": "Kapat",
+            "promptdeletenote": "Bu notu silmek istediğinize emin misiniz ?",
+            "promptdeletenoteheader": "Notu sil",
+            "promptunsaved": "Kaydedilmiş veriniz bulunuyor.Kapatmak istediğinize emin misiniz ?",
+            "promptunsavedheader": "Kaydedilmemiş Veri",
+            "versions": "Versiyonlar",
+            "detach": "Kaldır"
+        },
+        "timeLogsCreate": {
+            "addTimeLog": "Zaman bilgisi ekle",
+            "person": "Kişi",
+            "date": "Tarih",
+            "description": "Tanım",
+            "durationTime": "Süre",
+            "hours": "saat",
+            "status": "Durum",
+            "task": "Çalışma Aracı",
+            "billable": "Ödenebilir",
+            "checkBillable": "Ödenebilir",
+            "checkNonbillable": "Ödemesiz",
+            "cancel": "İptal",
+            "save": "Kaydet",
+            "enterTaskName": "Çalışma aracı adını giriniz"
+        },
+        "timeLogs": {
+            "header": "Çalışma aracı zaman takibi kayıtları",
+            "includeSubTasks": "Alt çalışma araçlarını dahil et",
+            "addnew": "Bir zaman takip bilgisi ekle...",
+            "task": "Çalışma Aracı",
+            "date": "Tarih",
+            "person": "Kişi",
+            "description": "Tanım",
+            "duration": {
+                "hour": "{{hour}} saat",
+                "hour_with_minute": "{{hour}} saat, {{min}} dakika",
+                "minute": " {{min}} dakika",
+                "empty": ""
+            },
+            "billable": "Ödenebilir",
+            "status": "Durum",
+            "checkBillable": "Ödenebilir",
+            "checkNonbillable": "Ödemesiz",
+            "edit": "düzenle",
+            "cancel": "iptal",
+            "save": "kaydet",
+            "durationTime": "Tahmini Zaman",
+            "hours": "saat",
+            "promptunsaved": "Kaydedilmemiş verileriniz var. Kapatmak istediğinizden emin misiniz ?",
+            "promptunsavedheader": "Kaydedilmemiş Veri",
+            "title": "Zaman Takibi"
+        },
+        "timeLogBillableStatus": {
+            "true": "Ödemeli",
+            "false": "Ödemesiz"
+        },
+        "customFieldDefinationEditModal": {
+            "createNewCustomField": "Yeni özel alan oluştur",
+            "updateCustomField": "Özel alanı güncelle",
+            "cfTitle": "Başlık",
+            "cfDescription": "Tanım",
+            "cfFieldType": "Kolon tipi",
+            "cfDetails": "Kolon detayları",
+            "includeToReports": "Raporlara dahil et",
+            "addAutomaticallyToNewTasks": "Yeni çalışma araçlarına otomatik olarak ekle",
+            "useDefaultValue": "Varsayılan değeri kullan",
+            "save": "Kaydet",
+            "cancel": "İptal"
+        },
+        "customFieldModule": {
+            "minValue": "Min Değer",
+            "maxValue": "Maks Değer",
+            "values": "Değerler",
+            "customFieldDuplicationSuccess": "Özel alan kopyalama başarıyla tamamlandı.",
+            "deleteCustomFieldTitle": "Özel alanı sil",
+            "deleteCustomFieldText": "Bu özel alanı silmek istediğinize emin misiniz ?",
+            "deleteCustomFieldConfirm": "Sil",
+            "deleteCustomFieldCancel": "İptal",
+            "detachCustomFieldTitle": "Özel alanı bu projeden ayır",
+            "detachCustomFieldText": "Bu özel alanı ayırmak istediğinize emin misiniz ? (Orjinal tanımlama bir işlem görmeyecektir)",
+            "detachCustomFieldConfirm": "Sil",
+            "detachCustomFieldCancel": "İptal",
+            "exitCustomFieldEditTitle": "Kaydedilmemiş Veri",
+            "exitCustomFieldEditText": "Kaydedilmemiş veriniz var. Kapatmak istediğinize emin misiniz ?",
+            "exitCustomFieldEditDiscard": "Değişiklikleri iptal et",
+            "exitCustomFieldEditStay": "Bu sayfada kal",
+            "title": "Özel alanlar",
+            "copyCustomFields": "Özel alanları kopyala...",
+            "selectProject": "Proje Seçiniz",
+            "linkCustomFields": "Özel alanları linkle",
+            "copy": "Kopyala",
+            "writeProjectName": "bir proje adı yazınız"
+        },
+        "copyCustomFields": {
+            "title": "Özel alanları kopyala",
+            "customFields": "Özel alanlar",
+            "duplicate": "Kopyala",
+            "cancel": "İptal",
+            "project": "Proje",
+            "cannotSelectSameProjectForDuplicate": "Özel alanları aynı projeye kopyalayamazsınız!"
+        },
+        "projectDuplicate": {
+            "prefixForTasks": "Çalışma araçları için ön ek",
+            "dateCalculateValidationMessage": "{0} projesinin tarihi belirtilmemiş, devam etmek için öncelikle {0} projesinin tarihini belirtmelisiniz!",
+            "newProjectNamePrefix": "(Kopyası)",
+            "header": "Projeyi Kopyala",
+            "targetprojectworkstructure": "Hedef Projenin Klasörü",
+            "enterprojectname": "Proje adı girin",
+            "targetprojectname": "Hedef Proje Adı",
+            "include": "Dahil et",
+            "projectcollaborators": "Proje Ekibi",
+            "projectrelateddependedtaskandprojects": "Proje Bağımlı/İlişkili Çalışma Aracı ve Projeler",
+            "taskcollaborators": "Çalışma Aracı Ekibi",
+            "dates": "Tarihler",
+            "status": "Durum",
+            "tags": "Etiketler",
+            "notes": "Notlar",
+            "todos": "Yapılacaklar",
+            "comments": "Yorumlar/Mesajlar",
+            "attachments": "Dosyalar",
+            "expenserecords": "Harcama Kayıtları",
+            "timetrackingrecords": "Zaman takibi kayıtları",
+            "tables": "Tablolar",
+            "includeArchivedTasks": "Arşivlenmiş Çalışma Araçları",
+            "relatedtasks": "İlişkili Çalışma Araçları",
+            "dependedtasks": "Bağımlı Çalışma Araçları",
+            "targetprojectstartdate": "Hedef Proje Başlangıç Tarihi",
+            "targetprojectfinishdate": "Hedef Proje Bitiş Tarihi",
+            "doYouWantRecalculateAllDates": "Tüm tarihlerin tekrar hesaplanmasını ister misiniz ?",
+            "calculationMethod": "Hesaplama metodu:",
+            "shiftDate": "Kaydırma değeri",
+            "byNewStartDate": "Yeni başlangıç tarihine göre",
+            "byNewDueDate": "Yeni bitiş tarihine göre",
+            "days": "gün",
+            "yes": "Evet",
+            "no": "Hayır",
+            "ok": "Tamam",
+            "cancel": "İptal",
+            "enterPrefix": "ön ek"
+        },
+        "taskDuplicate": {
+            "customFieldsWarningMessage": "Seçili projede özel alanlar var",
+            "collaboratorsCannotCopyPersonalProject": "Ekip üyeleri Kişisel/Takım projelerini kopyalayamazlar",
+            "title": "Çalışma aracını kopyala",
+            "newTaskName": "Yeni çalışma aracı adı",
+            "prefixForTasks": "Tüm çalışma araçları için ön ek",
+            "archivedTasks": "Arşivlenmiş Çalışma Araçları",
+            "subtasks": "Alt Çalışma Araçları",
+            "doYouWantRecalculateAllDates": "Tüm tarihlerin tekrar hesaplanmasını ister misiniz ?",
+            "customFields": "Özel alanlar",
+            "targetprojectname": "Hedef Proje Adı",
+            "enterprojectname": "Proje adı girin",
+            "targetparenttaskname": "Hedef Üst Çalışma Aracı Adı",
+            "entertaskname": "Çalışma aracı adı girin",
+            "include": "Dahil et",
+            "collaborators": "Ekip",
+            "dates": "Tarih",
+            "status": "Durum",
+            "tags": "Etiketler",
+            "notes": "Notla",
+            "todos": "Yapılacaklar",
+            "comments": "Yorumlar/Mesajlar",
+            "attachments": "Dosyalar",
+            "expenserecords": "Harcama Kayıtları",
+            "timetrackingrecords": "Zaman takibi kayıtları",
+            "tables": "Tablolar",
+            "relatedtasks": "İlişkili Çalışma Araçları",
+            "dependedtasks": "Bağımlı Çalışma Araçları",
+            "ok": "Tamam",
+            "yes": "Evet",
+            "no": "Hayır",
+            "shiftByDate": "Gün bazındakaydır:",
+            "days": "gün",
+            "cancel": "İptal",
+            "enterPrefix": "ön ek"
+        },
+        "projectDetails": {
+            "title": "Proje Detayları",
+            "estimations": "Tahmini bütçe / İş gücü / Saat",
+            "projectName": "Proje Adı:",
+            "projectType": "Proje Tipi:",
+            "projectStatus": "Proje Durumu:",
+            "projectStartDate": "Proje Başlangıç tarihi:",
+            "projectDueDate": "Proje Bitiş tarihi:",
+            "projectManager": "Proje Yöneticisi:",
+            "projectOwner": "Proje Sahibi:",
+            "projectCoowners": "Proje Eş-sahiplerleri:",
+            "projectComanagers": "Proje Eş-yöneticileri:",
+            "projectFollowers1": "Proje Takipçileri 1:",
+            "projectFollowers2": "Proje Takipçileri 2:",
+            "projectFollowers3": "Proje Takipçileri 3:",
+            "projectMembers": "Proje Takımı Listesi:",
+            "projectStopHierarchyUsers": "Proje Hiyerarşideki Kullanıcıları Engelle:",
+            "projectExternalUsers": "Proje Harici Kullanıcılar Listesi:",
+            "projectExcludedUsers": "Projeden Hariç Tutulan Kullanıcılar:",
+            "projectDurationDays": "Proje İçin Tahimini Gün:",
+            "projectEstimatedEffort": "Proje İçin Tahmini Çalışma",
+            "projectEstimatedBudget": "Proje İçin Tahmini Bütçe",
+            "btnSave": "Kaydet",
+
+            "projectOwnerDesc": "Tüm yetkilere sahip.",
+            "projectCoOwnerDesc": "Tüm yetkilere sahip.",
+            "projectCoManagersrDesc": "Tüm yetkilere sahip.",
+            "projectFollowers1Desc": "Tüm yetkilere sahip.",
+            "projectFollowers2Desc": "Proje bazında okuma yetkisi (alt projeler dahil).Task bazında yazma yetkisine sahiplerdir.",
+            "projectFollowers3Desc": "Proje bazında  okuma yetkisi (alt projeler hariç).Task bazında comement "
+        },
+        "project": {
+            "statusFilter": "Durum Filtresi",
+            "customFieldsFilter": "Özel Alanlar",
+            "otherTools": "Diğer",
+            "otherToolsItems": {
+                "percent": "Tamamlanma Yüzdesi",
+                "tags": "Etiketler",
+                "startDate": "Başlangıç Tarihi",
+                "owner": "Sahip",
+                "showIsBlocked": "Bloklanmış"
+            },
+            "typeFilter": "Tip Filtresi",
+            "filters": {
+                "status": {
+                    "title": "Durum"
+                },
+                "archive": {
+                    "title": "Arşiv",
+                    "includearchivedtasks": "Arşivlenmiş Çalışma Araçlarını Dahil Et"
+                }
+            },
+            "addDescription": "Tanım ekle",
+            "showDescription": "Tanımı göster",
+            "hideDescription": "Tanımı gizle",
+            "unstar": "Yıldızı kaldır",
+            "star": "Yıldız ekle",
+            "unmute": "Aktiviteleri aç",
+            "mute": "Aktiviteleri kapat",
+            "filter": {
+                "header": "Filtre",
+                "advanced": "Gelişmiş",
+                "apply": "Uygula",
+                "view": "Görünüm:",
+                "tasktodo": "Yapılacak Çalışma Araçları",
+                "completedtasks": "Tamamlanan Çalışma Araçları",
+                "allcompleteandincompletetasks": "Tüm Tamamlanan ve Tamamlanmayan Çalışma Araçları",
+                "includearchivedtasks": "Arşivlenmiş Çalışma Araçlarını Dahil Et"
+            },
+            "selectdate": "Tarih seç",
+            "active": "Aktif",
+            "all": "Hepsi",
+            "status": "Durum",
+            "startdate": "Başlangıç tarihi",
+            "finishdate": "Bitiş tarihi",
+            "createtask": "Çalışma Aracı Oluştur",
+            "deleteproject": "Projeyi Sil",
+            "duplicateproject": "Projeyi Kopyala",
+            "publish": "Yayınla",
+            "unpublish": "Yayını Kapat",
+            "archive": "Arşivle",
+            "unarchive": "Arşivden Çıkar",
+            "tabs": {
+                "details": "Detaylar",
+                "tasks": "Çalışma Araçları",
+                "timetracking": "Zaman Takibi",
+                "expenses": "Harcamalar",
+                "relations": "İlişkiler"
+            },
+            "projectdetails": "Proje detayları",
+            "projecttype": "Proje Tipi",
+            "projectworkstructure": "Proje Klasörü",
+            "user": {
+                "fullname": "Tam Ad",
+                "alias": "Takma Ad",
+                "department": "Departman"
+            },
+            "owner": "Sahip",
+            "coowners": "Eş-Sahipler",
+            "delete": "sil",
+            "manager": "Yönetici",
+            "comanagers": "Eş-yöneticiler",
+            "category1followers": "Takipçiler 1",
+            "category2followers": "Takipçiler 2",
+            "category3followers": "Takipçiler 3",
+            "members": "Proje Takım Listesi",
+            "excludedusers": "Hariç tutulan kullanıcılar",
+            "stophierarchyusers": "Hiyerarşik kullanıcıları engelle",
+            "externalusers": "Harici Kullanıcılar Listesi",
+            "estimatedduration": "Tahmini Süre (gün)",
+            "estimatedefford": "Tahmini Çalışma (saat)",
+            "estimatedbudget": "Tahmini Bütçe",
+            "empty": "Boş",
+            "edit": "düzenle",
+            "more": "Daha fazla",
+            "addnew": "Yeni ekle",
+            "subtasks": "Alt Çalışma Araçları",
+            "errors": {
+                "projectcannotbeequal": "Proje şu anki projeye eşit olamaz"
+            },
+            "placeholderselectworkstructure": "Projenin klasörünü seçiniz",
+            "promptdeleteprojectcomanager": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectcomanagerheader": "Eş-yöneticiyi sil",
+            "promptdeleteprojectcoowner": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectcoownerheader": "Eş-sahibi Sil",
+            "promptdeleteprojectfollower": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectfollowerheader": "Takipçiyi Sil",
+            "promptdeleteprojectmember": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectmemberheader": "Üye Sil",
+            "promptdeleteprojectexcludeduser": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectexcludeduserheader": "Hariç tutulan kullanıcıyı sil",
+            "promptdeleteprojectstophierarchyuser": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectstophierarchyuserheader": "Hiyerarşik kullanıcıları engellemeyi sil",
+            "promptdeleteprojectexternaluser": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectexternaluserheader": "Projenin Harici Kullanıcsını Sil",
+            "promptdeleteprojectdependedproject": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectdependedprojectheader": "Bağımlı Projeyi Sil",
+            "promptdeleteprojectrelatedproject": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectrelatedprojectheader": "İlişkili Projeyi Sil",
+            "promptdeleteproject": "Silmek istediğinize emin misiniz ?",
+            "promptdeleteprojectheader": "Porjeyi Sil",
+            "promptdeleteprojectconfirmtext": "Proje silindi!",
+            "promptarchiveproject": "Bu projeyi arşivlemek istediğinize emin misiniz ?",
+            "promptarchiveprojectheader": "Projeyi Arşivle",
+            "promptarchiveprojectconfirmtext": "Proje Arşivlendi!",
+            "archiveConfirm": "Evet, arşivle !",
+            "archived": "Arşivlendi",
+            "archiveCancel": "İptal",
+            "promptunpublishproject": "Projenin yayınını durdurmak istediğinizden emin misiniz ?",
+            "promptunpublishprojectheader": "Proje Yayınını Durdur",
+            "promptunpublishconfirmtext": "Projeniz Yayından Kaldırıldı!",
+            "promptpublishproject": "Bu projeyi yayınlamak istediğinize emin misiniz ?",
+            "promptpublishprojectheader": "Projeyi Yayınla",
+            "promptpublishconfirmtext": "Projeniz Yayınlandı!",
+            "taskWide": "Çalışma Aracı",
+            "projectWide": "Proje Tanımlı"
+        },
+        "expense": {
+            "header": "Çalışma aracı harcamaları",
+            "showall": "Hepsini göster",
+            "addnew": "Gider ekle",
+            "task": "Çalışma Aracı",
+            "date": "Tarih",
+            "person": "Kişi",
+            "description": "Tanım",
+            "amount": "Miktar",
+            "billable": "Müşteriye Faturalandırılabilir",
+            "status": "Durum",
+            "type": "Tip",
+            "attachments": "Dosyalar",
+            "checkbillable": "Evet",
+            "checknonbillable": "Hayır",
+            "edit": "düzenle",
+            "cancel": "iptal",
+            "save": "kaydet",
+            "view": "görünüm",
+            "id": "Takip No",
+            "addexpense": "Gider ekle",
+            "selectfiles": "Çoklu dosya ekle",
+            "promptunsaved": "Kaydedilmemiş veriniz var. Kapatmak istediğinizden emin misiniz ?",
+            "promptunsavedheader": "Kaydedilmemiş Veri"
+        },
+        "tableDuplicate": {
+            "title": "Tabloyu Kopyala",
+            "selectProject": "Proje seç",
+            "selectTask": "Çalışma aracı seç",
+            "tableName": "Tablo adı",
+            "tableDesc": "Tablo tanımı",
+            "lockTable": "Tabloyu kilitle",
+            "copyWithData": "Veri ile birlikte kopyala",
+            "duplicate": "Kopyala",
+            "cancel": "iptal"
+        },
+        "table": {
+            "createTable": "Tablo oluştur",
+            "attachTable": "Tablo Ekle",
+            "sourceType": "Tanım Düzeyi",
+            "includeSubTasks": "Alt çalışma araçlarını dahil et",
+            "title": "Başlık",
+            "addtable": "Tablo ekle…",
+            "edit": "düzenle",
+            "name": "Ad",
+            "description": "Tanım",
+            "viewformat": "Görünüm Formatı",
+            "datatype": "Data Tipi",
+            "isrequired": "Zorunlu",
+            "isvisible": "Görünür",
+            "position": "Pozisyon",
+            "remove": "Sil",
+            "addfield": "Kolon ekle",
+            "addrow": "Satır ekle",
+            "delete": "sil",
+            "view": "göster",
+            "save": "kaydet",
+            "add": "Ekle",
+            "cancel": "İptal",
+            "back": "geri",
+            "close": "kapat",
+            "selectfiles": "Dosya seç",
+            "errors": {
+                "fieldalreadyexists": "Kolon zaten mevcut"
+            },
+            "promptcanceledit": "Kaydedilmemiş veri var. Kapatmak istediğinize emin misiniz ?",
+            "promptcanceleditheader": "Kaydedilmemiş veri",
+            "promptDeleteRowHeader": "Emin misiniz ?",
+            "promptDeleteRowText": "Silmek istediğinizden emin misiniz ?",
+            "promptDeleteTableHeader": "Emin misiniz ?",
+            "promptDeleteTableText": "Silmek istediğinizden emin misiniz ?",
+            "tableDuplicationSuccessfull": "Tablo kopyalama başarıyla tamamlandı."
+        },
+        "tableDropDown": {
+            "editTable": "Tabloyu Düzenle",
+            "duplicateTable": "Tabloyu Kopyala",
+            "deleteTable": "Tabloyu Sil",
+            "lockTable": "Tabloyu Kilitle",
+            "unlockTable": "Tablo Kilidini Kaldır"
+        },
+        "attachment": {
+            "browse": "Seç…",
+            "versions": "versiyonlar",
+            "addnewversion": "yeni versiyon ekle",
+            "showversions": "versiyonları göster",
+            "fileversion": "Versiyon {{version}}",
+            "addattachment": "Bir dosya ekle",
+            "addattachmentheader": "Çoklu dosya ekle",
+            "addnewversionheader": "yeni versiyon ekle",
+            "editattachmentheader": "Dosyayı düzenle",
+            "addmore": "Daha fazla ekle…",
+            "cancelupload": "Yüklemeyi iptal et",
+            "clear": "Temizle",
+            "download": "İndir",
+            "view": "Görüntüle",
+            "name": "ad",
+            "description": "tanım",
+            "uploadedby": "Yükleyen",
+            "tags": "etiketler",
+            "createddate": "eklenme tarihi",
+            "length": "boyut (byte)",
+            "comment": "yorum/mesaj",
+            "save": "Kaydet",
+            "edit": "düzenle",
+            "cancel": "İptal",
+            "delete": "sil",
+            "close": "Kapat",
+            "whyuploaddescription": "tanım",
+            "selectfile": "Dosya Seç",
+            "promptdeleteattachment": "Silmek istediğinizden emin misiniz ?",
+            "promptdeleteattachmentheader": "Dosyayı sil",
+            "promptdeleteattachmentconfirmtext": "Dosyanız silindi !"
+        },
+        "commentEdit": {
+            "title": "Yorum/mesajı düzenle",
+            "comment": "Yorum/Mesaj",
+            "addFiles": "Çoklu dosya ekle",
+            "addFile": "Dosya ekle",
+            "position": "Pozisyon",
+            "addNewAttachmentVersion": "yeni versiyon ekle",
+            "deleteAttachment": "sil",
+            "undeleteAttachment": "geri al",
+            "save": "Kaydet",
+            "cancel": "İptal",
+            "modalWarningTitle": "Değişiklikler kaydedilmedi",
+            "modalWarningText": "Yaptığınız değişiklikler kaydedilmedi. Nasıl devam etmek istersiniz ?",
+            "modalWarningConfirmButtonText": "Değişiklikleri iptal et",
+            "modalWarningCancelButtonText": "Sayfada kal"
+        },
+        "commentVotes": {
+            "title": "Yorum/mesajı oylayanlar",
+            "upVoters": "Pozitif oylayan ({{count}})",
+            "downVoters": "Negatif oylayan ({{count}})"
+        },
+        "comment": {
+            "pin": "pimle",
+            "unPin": "pimi kaldır",
+            "writeNewComment": "yeni yorum/mesaj yaz",
+            "title": "Yorumlar/Mesajlar",
+            "hierarchicalview": "Hiyerarşik",
+            "chronologicalview": "Kronolojik",
+            "showallcommentimages": "Yorum/mesaj resimlerini göster",
+            "showimages": "resimleri göster",
+            "hideimages": "resimleri gizle",
+            "showVotes": "Oyları göster",
+            "commentsplaceholder": "yorumlar/mesajlar",
+            "send": "Gönder",
+            "view": "Göster",
+            "addfiles": "Çoklu dosya ekle",
+            "cancelupload": "Yüklemeyi iptal et",
+            "addreply": "Cevap ekle…",
+            "clear": "Temizle",
+            "edit": "düzenle...",
+            "delete": "sil...",
+            "showversions": "versiyonları göster",
+            "hideversions": "versiyonları gizle",
+            "createdat": "eklenme tarihi",
+            "cancel": "İptal",
+            "promptdeleteattachment": "Silmek istediğinizden emin misiniz ?",
+            "promptdeleteattachmentheader": "Dosyayı sil",
+            "promptdeleteattachmentconfirmtext": "Dosya silindi.",
+            "promptdeletecomment": "Silmek istediğinizden emin misiniz ?",
+            "promptdeletecommentheader": "Yorum/mesajı sil",
+            "promptdeletecommentconfirmtext": "Yorumunuz silindir",
+            "totalreply": "{{replyCount}} reply",
+            "viewMode": "Görünüm modu",
+            "relativeTimeFormat": "Kısa zaman formatı",
+            "showPinnedComments": "Pimli yorum/mesajları göster",
+            "showOnlyComment": "Sadece yorum/mesajları göster",
+            "showCommentsWithoutTruncation": "Yorum/mesajı kesintisiz göster",
+            "sortBy": "Sırala",
+            "position": "Pozisyon",
+            "newestFirst": "Önce yeni",
+            "oldestFirst": "Önce eski",
+            "best": "Pozitif Oy Sayısı",
+            "showCommentAttachments": "Yorum/Mesaj dosyalarını göster",
+            "showAssociatedComment": "Dosya açıklamasını göster"
+        },
+        "activities": {
+            "header": "Aktivite Akışı",
+            "showUnreadActivities": "Okunmamış aktiviteleri göster",
+            "showReadActivities": "Okunmuş aktiviteleri göster",
+            "showFlaggedActivities": "İşaretlenmiş aktiviteleri göster",
+            "showLowSubscriptionActivities": "Aktivite aboneliği seviyesi düşük olan aktiviteleri göster",
+            "showMediumSubscriptionActivities": "Aktivite aboneliği seviyesi orta olan aktiviteleri göster",
+            "showHighSubscriptionActivities": "Aktivite aboneliği seviyesi yüksek olan aktiviteleri göster",
+            "showMentionedSubscriptionActivities": "Bahsedildiğim aktiviteleri göster",
+            "grouping": "Grouplama",
+            "groupingNone": "Yok",
+            "groupingProject": "Proje",
+            "groupingProjectTask": "Proje+Çalışma Aracı",
+            "markScreenAsRead": "Ekranda görünen aktiviteleri okundu olarak işaretle",
+            "markAllLowsAsRead": "Tüm Düşük kategorisini okundu olarak işaretle",
+            "markAllMediumsAsRead": "Tüm Orta kategorisini okundu olarak işaretle",
+            "markAllAsRead": "Tüm aktiviteleri okundu olarak işaretle",
+            "markTaskAsRead": "Bu çalışma aracının tüm aktivitelerini okundu olarak işaretle",
+            "markProjectAsRead": "Bu projenin tüm aktivitelerini okundu olarak işaretle",
+            "markProjectUserEvent": "Kullanıcının projedeki benzer aktivitelerini okundu olarak işaretle",
+            "showCommentImages": "Yorum/mesaj resimlerini göster",
+            "aggregateResults": "Sonuçları kümele",
+            "showAdvancedFilter": "Gelişmiş filtreyi göster",
+            "hideAdvancedFilter": "Gelişmiş filtreyi gizle",
+            "showTask": "Çalışma aracını göster",
+            "showProject": "Projeyi göster",
+            "viewTitle": "Görüntüle",
+            "viewAll": "Tümü",
+            "viewUnreads": "Okunmamış",
+            "viewPinned": "Pimlenmiş",
+            "viewReads": "Okunmuş",
+            "subscriptionTitle": "Aktivite Aboneliği",
+            "groupingTitle": "Aktivite Aboneliği",
+            "filterTitle": "Gelişmiş aktivite filtresi",
+            "filterProjectName": "Proje adı girin",
+            "filterTaskName": "Çalışma aracı adı",
+            "filterUser": "Kullanıcı",
+            "filterApply": "Uygula",
+            "filterReset": "Sıfırla",
+            "sendComment": "Gönder",
+            "cancelComment": "İptal",
+            "loadMore": "Daha fazla yükle",
+            "flag": "İşaretle",
+            "flagged": "İşaretlendi",
+            "comment": "Yorum/Mesaj",
+            "viewAttachment": "Görüntüle",
+            "tooltips": {
+                "showUnreadActivities": "Okunmamış aktiviteleri göster",
+                "showReadActivities": "Okunmuş aktiviteleri göster",
+                "showFlaggedActivities": "İşaretlenmiş aktiviteleri göster",
+                "showLowSubscriptionActivities": "Aktivite aboneliği seviyesi düşük olan aktiviteleri göster",
+                "showMediumSubscriptionActivities": "Aktivite aboneliği seviyesi orta olan aktiviteleri göster",
+                "showHighSubscriptionActivities": "Aktivite aboneliği seviyesi yüksek olan aktiviteleri göster",
+                "showMentionedSubscriptionActivities": "Bahsedildiğim aktiviteleri göster",
+                "groupingNone": "Gruplama yok",
+                "groupingProject": "Sonuçları projeye göre grupla",
+                "groupingProjectTask": "Sonuçları proje ve çalışma aracına göre grupla",
+                "showCommentImages": "Yorum/mesaj resimlerini göster",
+                "aggregateResults": "Aktiviteleri kümele",
+                "sorting_oldest": "En eski",
+                "sorting_newest": "En yeni",
+                "sorting_label": "Sıra:"
+            },
+            "events": {
+                "AttachmentDeleted": {
+                    "header": "Dosya silindi",
+                    "content": "Dosya {{name}} "
+                },
+                "AttachmentDescriptionChanged": {
+                    "header": "Dosya tanımı değişti",
+                    "content": "Dosya: {{name}}, Tanım: {{description}}"
+                },
+                "AttachmentNameChanged": {
+                    "header": "Dosya adı değişti",
+                    "content": " {{oldName}} > {{name}}"
+                },
+                "AttachmentTagsModified": {
+                    "header": "Dosya etiketleri güncellendi",
+                    "content": "Dosya: {{name}}, Etiketler: {{tags}}"
+                },
+                "AttachmentVersionAdded": {
+                    "header": "Yeni dosya versiyonu eklendi",
+                    "content": "Dosya: {{name}}, Tanım: {{description}}"
+                },
+                "TaskAttachmentAdded": {
+                    "header": "Yeni dosya eklendi",
+                    "content": "Dosya: {{name}}, Tanım: \n\n{{description}}"
+                },
+                "CommentAttachmentAdded": {
+                    "header": "Yeni Yorum/Mesaj dosyası eklendi",
+                    "text": "",
+                    "content": "Dosya: {{name}}"
+                },
+                "CommentAttachmentDeleted": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "CommentAttachmentsCleared": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "CommentDeleted": {
+                    "header": "Yorum/Mesaj silindi",
+                    "text": "",
+                    "content": "{{commentText}}"
+                },
+                "CommentEdited": {
+                    "header": "Yorum/Mesaj düzenlendi",
+                    "text": "",
+                    "content": "{{commentText}}"
+                },
+                "CommentPinned": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "CommentPositionChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "CommentUnpinned": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "NewCommentAdded": {
+                    "header": "Yeni yorum/mesaj eklendi",
+                    "text": "",
+                    "content": "{{commentText}}"
+                },
+                "ReplyCommentAdded": {
+                    "header": "Yorum/mesaja cevap eklendi",
+                    "text": "",
+                    "content": "{{commentText}}"
+                },
+                "CustomFieldDefinationUpdated": {
+                    "header": "Özel alan güncellendi",
+                    "text": "",
+                    "content": "Ad: {{title}}"
+                },
+                "CustomFieldDefined": {
+                    "header": "Yeni özel alan tanımlandı",
+                    "text": "",
+                    "content": "Ad: {{title}}, Tanım: {{description}}"
+                },
+                "CustomFieldAttachedToProject": {
+                    "header": "Var olan özel alan proje ile ilişkilendirildi",
+                    "text": "",
+                    "content": "Ad: {{title}}"
+                },
+                "CustomFieldDetachedFromProject": {
+                    "header": "Özel alanın proje ile ilişkisi kesildi",
+                    "text": "",
+                    "content": ""
+                },
+                "CustomFieldDefinationRemoved": {
+                    "header": "",
+                    "text": "",
+                    "content": "Ad:  {{title}}"
+                },
+                "DependencyCreated": {
+                    "header": "Yeni bağımlılık eklendi",
+                    "text": "",
+                    "content": ""
+                },
+                "DependencyDeleted": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "DependencyUpdated": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "ExpenseBillableStatusChanged": {
+                    "header": "Harcama ödeme durumu değişti",
+                    "text": "",
+                    "content": ""
+                },
+                "ExpenseDeleted": {
+                    "header": "Harcama silindi",
+                    "text": "",
+                    "content": ""
+                },
+                "ExpenseStatusChanged": {
+                    "header": "Harcama durumu değişti",
+                    "text": "",
+                    "content": "Durum: {{status}}"
+                },
+                "NewExpenseAdded": {
+                    "header": "Yeni harcama eklendi",
+                    "text": "",
+                    "content": "Kişi: {{person.fullName}}, Miktar: {{amount}}, Durum: {{status}}, Tarih: {{date}}, Tanım: {{description}}, Tip: {{expenseType}}"
+                },
+                "NoteAdded": {
+                    "header": "Yeni not eklendi",
+                    "text": "",
+                    "content": "Ad: {{name}}, Tanım: {{description}}"
+                },
+                "NoteBodyChanged": {
+                    "header": "Not değişti",
+                    "text": "",
+                    "content": "Ad: {{name}}"
+                },
+                "NoteDeleted": {
+                    "header": "Not silindi",
+                    "text": "",
+                    "content": "Ad: {{name}}"
+                },
+                "NoteMetaUpdated": {
+                    "header": "Not güncellendi",
+                    "text": "",
+                    "content": "Ad: {{oldName}} > {{name}}, Tanım: {{oldDescription}} > {{description}}"
+                },
+                "ExcludedUserAdded": {
+                    "header": "Projeye yeni hariç tutulan kullanıcı eklendi",
+                    "text": "",
+                    "content": "{{user.fullName}}"
+                },
+                "ExcludedUserRemoved": {
+                    "header": "Harici kullanıcı kaldırıldı",
+                    "text": "",
+                    "content": "{{user.fullName}}"
+                },
+                "ProjectArchived": {
+                    "header": "Proje arşivlendi",
+                    "text": "",
+                    "content": ""
+                },
+                "ProjectCoManagerAdded": {
+                    "header": "Yeni proje eş-yöneticisi eklendi",
+                    "text": "",
+                    "content": "{{coManager.fullName}}"
+                },
+                "ProjectCoManagerRemoved": {
+                    "header": "Proje eş yöneticisi kaldırıldı",
+                    "text": "",
+                    "content": "{{coManager.fullName}}"
+                },
+                "ProjectCoOwnerAdded": {
+                    "header": "Yeni proje eş sahibi eklendi",
+                    "text": "",
+                    "content": "{{coOwner.fullName}}"
+                },
+                "ProjectCoOwnerRemoved": {
+                    "header": "Proje eş sahibi kaldırıldı",
+                    "text": "",
+                    "content": "{{coOwner.fullName}}"
+                },
+                "ProjectCreated": {
+                    "header": "Yeni proje oluşturuldu",
+                    "text": "",
+                    "content": "Sahip: {{owner.fullName}}, Klasör: {{folderName}}"
+                },
+                "ProjectDeleted": {
+                    "header": "Proje silindi",
+                    "text": "",
+                    "content": ""
+                },
+                "ProjectDescriptionChanged": {
+                    "header": "Proje tanımı değişti",
+                    "text": "",
+                    "content": "{{oldDescription}} > {{description}}"
+                },
+                "ProjectEstimatedBudgetChanged": {
+                    "header": "Projenin tahmini bütçesi değişti",
+                    "text": "",
+                    "content": "{{estimatedBudget}}"
+                },
+                "ProjectEstimatedDurationDaysChanged": {
+                    "header": "Projenin tahmini çalışma süresi (gün)  değişti",
+                    "text": "",
+                    "content": "{{estimatedDurationDays}}"
+                },
+                "ProjectEstimatedEffordHoursChanged": {
+                    "header": "Projenin tahmini çalışma süresi (saat) değişti",
+                    "text": "",
+                    "content": "{{estimatedEffordHours}}"
+                },
+                "ProjectExternalUserAdded": {
+                    "header": "Projeye yeni harici kullanıcı eklendi",
+                    "text": "",
+                    "content": "{{user.fullName}}"
+                },
+                "ProjectExternalUserRemoved": {
+                    "header": "Projeden harici kullanıcı kaldırıldı",
+                    "text": "",
+                    "content": "{{user.fullName}}"
+                },
+                "ProjectRescheduled": {
+                    "header": "Proje tekrar zamanlandı",
+                    "content": [
+                        "**Başlangıç tarihi:** [date:{{oldStartDate}}] > [date:{{startDate}}] \n\n",
+                        "**Bitiş tarihi:** [date:{{oldDueDate}}] > [date:{{dueDate}}] "
+                    ]
+                },
+                "ProjectFolderChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "ProjectFollowerAdded": {
+                    "header": "Yeni proje takipçisi eklendi",
+                    "text": "",
+                    "content": "{{follower.fullName}}"
+                },
+                "ProjectFollowerRemoved": {
+                    "header": "Proje takipçisi kaldırıldı",
+                    "text": "",
+                    "content": "{{follower.fullName}}"
+                },
+                "ProjectInitializedFromProject": {
+                    "header": "Yeni kopyalanan proje oluşturuldu",
+                    "text": "",
+                    "content": ""
+                },
+                "ProjectManagerChanged": {
+                    "header": "Proje yöneticisi değişti",
+                    "text": "",
+                    "content": "{{oldManager.fullName}} > {{manager.fullName}}"
+                },
+                "ProjectMemberAdded": {
+                    "header": "Yeni proje üyesi eklendi",
+                    "text": "",
+                    "content": " [user:{{member.identity}}]"
+                },
+                "ProjectMemberRemoved": {
+                    "header": "Proje üyesi kaldırıldı",
+                    "text": "",
+                    "content": "{{member.fullName}}"
+                },
+                "ProjectNameChanged": {
+                    "header": "Proje adı değişti",
+                    "text": "",
+                    "content": "{{oldName}} > {{name}}"
+                },
+                "ProjectOwnerChanged": {
+                    "header": "Proje sahibi değişti",
+                    "text": "",
+                    "content": "{{oldOwner.fullName}} > {{owner.fullName}}"
+                },
+                "ProjectPublished": {
+                    "header": "Proje yayınlandı",
+                    "text": "",
+                    "content": ""
+                },
+                "ProjectStatusChanged": {
+                    "header": "Proje durumu değişti",
+                    "text": "",
+                    "content": "{{oldStatus.displayName}} > {{status.displayName}}"
+                },
+                "ProjectTagsModified": {
+                    "header": "Proje etiketleri değiştirildi",
+                    "text": "",
+                    "content": "{{tags}}"
+                },
+                "ProjectUnArchived": {
+                    "header": "Proje arşivden geri alındı",
+                    "text": "",
+                    "content": ""
+                },
+                "StopHierarchyUserAdded": {
+                    "header": "Projeye yeni hiyerarşi durdurma kullanıcı eklendi",
+                    "text": "",
+                    "content": "[user:{{user.identity}}]"
+                },
+                "StopHierarchyUserRemoved": {
+                    "header": "",
+                    "text": "",
+                    "content": "[user:{{user.identity}}]"
+                },
+                "ProjectUnpublished": {
+                    "header": "Proje yayından kaldırıldı",
+                    "text": "",
+                    "content": ""
+                },
+                "TableCreated": {
+                    "header": "Yeni tablo oluşturuldu",
+                    "text": "",
+                    "content": "Ad: {{name}},Tanım: {{description}}"
+                },
+                "TableDeleted": {
+                    "header": "Tablo silindi",
+                    "text": "",
+                    "content": "Ad: {{name}}"
+                },
+                "TableDescriptionChanged": {
+                    "header": "Tablo tanımı değişti",
+                    "text": "",
+                    "content": ""
+                },
+                "TableFieldAdded": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TableFieldRemoved": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TableFieldUpdated": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TableLocked": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TableNameChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TableRowCreated": {
+                    "header": "Tabloya yeni satır eklendi",
+                    "text": "",
+                    "content": "Ad: {{tableName}}"
+                },
+                "TableRowDeleted": {
+                    "header": "Tablodan satır silindi",
+                    "text": "",
+                    "content": "Ad: {{tableName}}"
+                },
+                "TableRowUpdated": {
+                    "header": "Tablo satırı güncellendi",
+                    "text": "",
+                    "content": "Ad: {{tableName}}"
+                },
+                "TableUnlocked": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "NewTaskConstraintsDefined": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskAnonymousCommentVotingEnabled": {
+                    "header": "İş için anonim yorum/mesaj oylama etkinleştirildi",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskArchived": {
+                    "header": "İş arşivlendi",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskAssigneeChanged": {
+                    "header": "İş ataması değişti",
+                    "text": "",
+                    "content": " [user:{{oldAssignee.identity}}]  [user:{{assignee.identity}}]"
+                },
+                "TaskAssigneeChanged_New": {
+                    "header": "İşe atanan {{assignee.fullName}}",
+                    "text": "",
+                    "content": "[user:{{assignee.identity}}]"
+                },
+                "TaskBlocked": {
+                    "header": "İş bloklandı",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCoAssigneeAdded": {
+                    "header": "İşe yeni eş atanan eklendi",
+                    "text": "",
+                    "content": "[user:{{coAssignee.identity}}]"
+                },
+                "TaskCoAssigneRemoved": {
+                    "header": "İşe eş atanan kaldırıldı",
+                    "text": "",
+                    "content": "[user:{{coAssignee.identity}}]"
+                },
+                "TaskCommentModuleSortingModeChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCommentModuleStatusChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCommentModuleViewModeChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCommentModuleVotingModeChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCommentReplyLevelChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCommentVotingEnabled": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCompletionPercentageChanged": {
+                    "header": "Görev tamamlandı % {{completionPercentage}} completed",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCoOwnerAdded": {
+                    "header": "İşe yeni eş sahip eklendi",
+                    "text": "",
+                    "content": "[user:{{coOwner.identity}}]"
+                },
+                "TaskCoOwnerRemoved": {
+                    "header": "İşin eş sahibi kaldırıldı",
+                    "text": "",
+                    "content": "[user:{{coOwner.identity}}]"
+                },
+                "TaskCreated": {
+                    "header": "Yeni iş eklendi",
+                    "text": "",
+                    "content": [
+                        "**Durum:** {{status.displayName}} \n\n",
+                        "**Sahip:** [user:{{owner.identity}}] \n\n",
+                        "**Atanan:** [user:{{assignee.identity}}] \n\n",
+                        "**Etiketler:** {{tags}} \n\n",
+                        "**Başlangıç tarihi:** [date:{{startDate}}] \n\n",
+                        "**Bitiş tarihi:** [date:{{dueDate}}] \n\n",
+                        "**Tip:** {{taskType.displayName}}  \n\n",
+                        "**Açıklama:** \n\n}}description}}"
+                    ]
+                },
+                "TaskCustomFieldAdded": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCustomFieldRemoved": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskCustomFieldValueChanged": {
+                    "header": "İş {{title}} value değişti",
+                    "text": "",
+                    "content": "{{value}}"
+                },
+                "TaskDeleted": {
+                    "header": "İş silindi",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskDescriptionChanged": {
+                    "header": "İş tanımı değişti",
+                    "text": "",
+                    "content": "Tanım: \n\n{{description}}"
+                },
+                "TaskDescriptionChanged_New": {
+                    "header": "İş tanımı eklendi",
+                    "text": "",
+                    "content": "Tanım: \n\n{{description}}"
+                },
+                "TaskEstimationsChanged": {
+                    "header": "İş için tahmini çalışma/bütçe değerleri değişti",
+                    "content": [
+                        "**Tahmini bütçe**: {{estimatedBudget}} \n\n",
+                        "**Tahmini süresi (gün)**: {{estimatedDurationDays}} \n\n",
+                        "**Tahmini çalışma saati**: {{estimatedEffordHours}}"
+                    ]
+                },
+
+                "TaskFollowerAdded": {
+                    "header": "İşe takipçi eklendi",
+                    "text": "",
+                    "content": "Takipçi: [user:{{follower.identity}}]"
+                },
+                "TaskFollowerRemoved": {
+                    "header": "İşten takipçi kaldırıldı",
+                    "text": "",
+                    "content": "Takipçi: [user:{{follower.identity}}]"
+                },
+                "TaskModuleAdded": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskMoved": {
+                    "header": "Taşınan görev {{parentTaskName}}",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskNameChanged": {
+                    "header": "İş adı değişti",
+                    "text": "",
+                    "content": "Eski: {{oldName}}"
+                },
+                "TaskOwnerChanged": {
+                    "header": "İş sahibi değişti",
+                    "text": "",
+                    "content": "Sahip: [user:{{owner.identity}}]"
+                },
+                "TaskPriorityChanged": {
+                    "header": "İş önceliği değişti",
+                    "text": "",
+                    "content": "{{oldPriority.displayName}} > {{priority.displayName}}"
+                },
+                "TaskRescheduled": {
+                    "header": "İş tekrar zamanlandı",
+                    "content": [
+                        "**Başlangıç tarihi:** [date:{{oldStartDate}}] > [date:{{startDate}}] \n\n",
+                        "**Bitiş tarihi:** [date:{{oldDueDate}}] > [date:{{dueDate}}] "
+                    ]
+                },
+
+                "TaskStatusChanged": {
+                    "header": "İş durumu değişti",
+                    "text": "",
+                    "content": "{{oldStatus.displayName}} > {{status.displayName}}"
+                },
+                "TaskTagsModified": {
+                    "header": "İş etiketleri değiştirildi",
+                    "text": "",
+                    "content": "{{tags}}"
+                },
+                "TaskTypeChanged": {
+                    "header": "İş tipi değişti",
+                    "text": "",
+                    "content": "{{type.displayName}}"
+                },
+                "TaskUnArchived": {
+                    "header": "İş arşivden çıkarıldı",
+                    "text": "",
+                    "content": ""
+                },
+                "TaskUnassigned": {
+                    "header": "İş ataması kaldırıldı",
+                    "text": "",
+                    "content": "Eski atama: [user:{{oldAssignee.identity}}]"
+                },
+                "TaskUnassigned_New": {
+                    "header": "Kaldırılan iş ataması {{oldAssignee.identity}}",
+                    "text": "",
+                    "content": " [user:{{oldAssignee.identity}}]"
+                },
+                "TaskUnblocked": {
+                    "header": "İş bloklaması kaldırıldı",
+                    "text": "",
+                    "content": ""
+                },
+                "NewTimeLogAdded": {
+                    "header": "Yeni zaman takip bilgisi eklendi",
+                    "text": "",
+                    "content": "Kişi: {{person.fullName}}, Süre: (minute): {{durationMinutes}}, Durum: {{status}}, Tarih: {{date}}, Tanım: {{description}}"
+                },
+                "TimeLogBillableStatusChanged": {
+                    "header": "Ödeme yapılabilir zaman takibi durumu değişti",
+                    "text": "",
+                    "content": ""
+                },
+                "TimeLogDeleted": {
+                    "header": "Zaman takip bilgisi silindi",
+                    "text": "",
+                    "content": ""
+                },
+                "TimeLogStatusChanged": {
+                    "header": "Zaman takip durumu değişti",
+                    "text": "",
+                    "content": "Durum: {{status}}"
+                },
+                "NewTodoListCreated": {
+                    "header": "Yeni yapılacaklar listesi oluşturuldu",
+                    "text": "",
+                    "content": "{{name}}"
+                },
+                "TodoItemAdded": {
+                    "header": "Yeni yapılacak elementi eklendi",
+                    "text": "",
+                    "content": "{{name}}"
+                },
+                "TodoItemDeleted": {
+                    "header": "Yapılacaklar listesi elementi silindi",
+                    "text": "",
+                    "content": "{{name}}"
+                },
+                "TodoItemNameChanged": {
+                    "header": "Yapılacaklar listesi elementi değişti",
+                    "text": "",
+                    "content": "{{oldName}} > {{name}}"
+                },
+                "TodoItemPositionChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TodoItemStatusChanged": {
+                    "header": "Yapılacaklar listesi elementinin durumu değişti",
+                    "text": "",
+                    "content": "{{name}} : $t(lookups.todoStatus.{{status}})"
+                },
+                "TodoListDeleted": {
+                    "header": "Yapılacaklar listesi silindi",
+                    "text": "",
+                    "content": ""
+                },
+                "TodoListDescriptionChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "TodoListNameChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "ResourceVoteChanged": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                },
+                "ResourceVoted": {
+                    "header": "",
+                    "text": "",
+                    "content": ""
+                }
+            }
+        },
+        "gantt": {
+            "title": "Gantt",
+            "expand": "Genişlet",
+            "collapse": "Daralt",
+            "exportAsPdf": "Pdf olarak dışa aktar",
+            "day": "Gün",
+            "week": "Hafta",
+            "month": "Ay",
+            "taskHeader": "İş Kalemi",
+            "startTimeHeader": "Başlangıç Tarihi",
+            "endTimeHeader": "Bitiş Tarihi",
+            "assigneeNameHeader": "Atanan",
+            "projectNameHeader": "Proje"
+        },
+        "calendar": {
+            "title": "Takvim",
+            "startAndDueDate": "Başlangıç & Bitiş Tarihi",
+            "onlyDueDate": "Yalnızca Bitiş Tarihi",
+            "exportAsPdf": "Pdf olarak dışa aktar"
+        },
+        "dashboard": {
+            "title": "Panom",
+
+            "reportby": "Report Türü:",
+            "assignee": "Atanan",
+            "duedate": "Bitiş Tarihi",
+            "startdate": "Başlangıç Tarihi",
+            "task": "İş/Görev",
+            "display": "Görüntü",
+            "status": "Durum",
+            "selectReport": "Rapor Seçin",
+            "dashboardModuleText": "Gösterge Paneli",
+            "calendarModuleText": "Takvim",
+            "ganttByNoneModuleText": "GanttGrupsuz",
+            "ganttByProjectModuleText": "GanttProjeyeGöre",
+            "ganttByStatusModuleText": "GanttDurumaGöre",
+            "ganttByAssigneeModuleText": "GanttAtananaGöre",
+            "listModuleText": "Liste",
+            "dashboardCriteriaName": "Panom",
+            "assigneeCriteriaName": "Atanan",
+            "coAssigneeCriteriaName": "Eş atanan",
+            "ownerCriteriaName": "Sahip",
+            "meetingsCriteriaName": "Toplantı/Etkinlik"
+        },
+        "report": {
+            "reportModuleTitle": "Gösterge Paneli",
+            "summaryPartTitle": "Özet",
+            "subSummary": "Alt raporların özeti",
+            "groupByAssgineeChart": "Atanana göre grupla",
+            "groupByAssgineeProbStartChart": "Başlangıç tarihi problemli olanları atanana göre grupla",
+            "groupByStatusProbStartChart": "Başlangıç tarihi problemli olanları duruma göre grupla",
+            "groupByAssgineeOverdueChart": "Gecikmiş işleri atanana göre grupla",
+            "groupByStatusOverdueChart": "Gecikmiş işleri duruma göre grupla",
+            "overdueItemsList": "Gecikmiş işlerin listesi",
+            "dueDateToday": "Bitiş tarihi bugün",
+            "dueDateTomorrow": "Bitiş tarihi yarın",
+            "dueDateAll": "Bitiş tarihi göre",
+            "overDueDate": "Bitiş tarihi geçmişler",
+            "startDateAll": "Başlangıç tarihine göre",
+            "dueDateInaWeek": "Bitiş tarihi bir hafta içinde",
+            "dueDateInXDays": "Bitiş tarihi X gün içinde",
+            "problematicStartDateList": "Başlangıç tarihi problemli",
+            "startDateToday": "Başlangıç tarihi bugün",
+            "startDateTomorrow": "Başlangıç tairhi yarın",
+            "startDateInaWeek": "Başlangıç tarihi bir hafta içinde",
+            "startDateInXDays": "Başlangıç tarihi X gün içinde",
+            "workItemTh": "Çalışma Aracı",
+            "workItemStatusTh": "Durum",
+            "startDateTh": "Başlangıç Tarihi",
+            "dueDateTh": "Bitiş Tarihi",
+            "assigneeTh": "Atanan",
+            "noAssigneeText": "Atama Yok",
+            "subSummaryProblematicStartDate": "Başlangıç tarihi problemli",
+            "subSummaryOverDue": "Gecikmiş",
+            "subSummaryDueDateToday": "Bitiş tarihi bugün",
+            "subSummaryStartInAWeek": "Başlangıç tarihi bir hafta içinde",
+            "subSummaryDueDateTomorrow": "Bitiş tarihi yarın",
+            "subSummaryDueInAWeek": "Bitiş tarihi bir hafta içinde",
+            "subSummaryStartDateToday": "Başlangıç tarihi bugün",
+            "subSummaryStartDateTomorrow": "Başlangıç tarihi yarın"
+        },
+        "login": {
+            "slogan": "Üretkenliğinizi arttırın!",
+            "signInHeader": "Giriş",
+            "userName": "Kullanıcı Adı",
+            "userNamePlaceholder": "Kullanıcı Adı",
+            "password": "Şifre",
+            "passwordPlaceholder": "Şifre",
+            "signIn": "Giriş",
+            "signUp": "Giriş",
+            "allRightsReserved": "© 2015. TÜM HAKLARI SAKLIDIR",
+            "loginFlexiTask": "FLexiTask Giriş",
+            "noAccount": "Hesabınız yok mu?"
+        }
+    },
+    "widgets": {
+        "attachmentGridWidget": {
+            "columnNames": {
+                "name": "Ad",
+                "projectName": "Proje Adı",
+                "taskName": "İş Adı",
+                "authorId": "Oluşturan",
+                "createdAt": "Eklendiği Tarih"
+            }
+        },
+        "taskGridWidget": {
+            "columnNames": {
+                "name": "Ad",
+                "status": "Durum",
+                "assignee": "Atanan",
+                "owner": "Sahip",
+                "startDate": "Başlangıç Tarihi",
+                "dueDate": "Bitiş Tarihi",
+                "priority": "Öncelik",
+                "project": "Proje",
+                "tags": "Etiketler",
+                "completionPercentage": "Bitiş Yüzdesi",
+                "isBlocked": "Bloklandımı"
+            }
+        }
+    }
+}

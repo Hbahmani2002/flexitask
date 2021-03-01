@@ -1,0 +1,75 @@
+<div class="modal-dialog ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close"  data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.dependencyEdit.title"></h4>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <form data-bind="with:dependency">
+                        <div class="form-group" data-bind="visible:!dependencyId()">
+                          <label class="control-label" data-i18n="app:pages.dependencyEdit.linkType"></label>
+                          <div>
+                            <div class="radio-custom radio-default radio-inline">
+                              <input type="radio" id="cb-link--dependency" name="cb-link--dependency" value="dependency" data-bind="checked: $root.type">
+                              <label for="cb-link--dependency" data-i18n="app:pages.dependencyEdit.dependency"></label>
+                            </div>
+                            <div class="radio-custom radio-default radio-inline">
+                              <input type="radio" id="cb-link--relation" value="relation" name="cb-link--relation" data-bind="checked: $root.type">
+                              <label for="cb-link--relation" data-i18n="app:pages.dependencyEdit.relation"></label>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <!-- ko if: $root.type() ==='dependency' -->
+                        <div class="form-group" data-bind="validationElement: dependencyType">
+                            <label for="select-dependency" data-i18n="app:pages.dependencyEdit.dependencyType"></label>
+                            <select id="select-dependency" class="form-control" data-bind="options: $root.dependencyTypes(),  value: dependencyType, optionsText: 'text', optionsValue: 'value'"></select>
+                        </div>
+                        <!-- /ko -->
+
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label for="txt-project" data-i18n="app:pages.dependencyEdit.project"></label>
+                                <select id="txt-project"  data-bind="enable:dependencyId()===false,select2Data: predecessorProjectId, select2: $root.autocomplete.getSelect2OptionsForProjects(1)" class="form-control"></select>
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="row" data-bind="visible:predecessorProjectId">
+                            <div class="form-group col-sm-12" data-bind="validationElement: predecessorTaskId">
+                                <label for="txt-task" data-i18n="app:pages.dependencyEdit.task"></label>
+                                <select id="txt-task"  data-bind="enable:dependencyId()===false,select2Data: predecessorTaskId, select2:   $root.autocomplete.getSelect2OptionsForTasks(predecessorProjectId,1)" class="form-control"></select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <label for="txt-desc" data-i18n="app:pages.dependencyEdit.description"></label>
+                            <textarea class="form-control" rows="3" data-bind="value: description" id="txt-desc"></textarea>
+                        </div>
+                         <!-- ko if: $root.type() ==='dependency' -->
+                        <div class="form-group">
+                            <label for="txt-lagdate" data-i18n="app:pages.dependencyEdit.lagDate"></label>
+                            <input type="number" class="form-control" data-bind="value:lagDate">
+                        </div>
+                        <!-- /ko -->
+                        <div class="form-group">
+                            <div class=" pull-right">
+                                <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click: $root.cancel" class="btn btn-default btn-outline" data-i18n="app:pages.dependencyEdit.cancel"></button>
+                                <button type="button" class="btn btn-primary" data-bind="visible:dependencyId()===false,activity: $root.createDependencyCommand.isExecuting, command: $root.createDependencyCommand" data-i18n="app:pages.dependencyEdit.save"></button>
+                                <button type="button" class="btn btn-primary" data-bind="visible:dependencyId,activity: $root.updateDependencyCommand.isExecuting, command: $root.updateDependencyCommand" data-i18n="app:pages.dependencyEdit.save"></button>
+                                <button type="button" class="btn btn-danger" data-bind="visible:dependencyId,activity: $root.removeDependencyCommand.isExecuting, command: $root.removeDependencyCommand" data-i18n="app:pages.dependencyEdit.delete"></button>
+                                
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

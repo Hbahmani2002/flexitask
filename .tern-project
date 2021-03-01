@@ -1,0 +1,30 @@
+{
+  "ecmaVersion": 5,
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "loadEagerly": [
+    "public/app/**/*.js"
+  ],
+  "dontLoad": [
+    "node_modules",
+    "grunt",
+    "gulp",
+    "public/assets/**/*.js",
+    "public/style/**/*.js",
+    ".build",
+    "scripts",
+    ".vscode",
+    "docs"
+  ],
+  "plugins": {
+    "complete_strings": {},
+    "node": {},
+    "lint": {},
+    "requirejs": {},
+    "doc_comment": {
+      "fullDocs": true
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-dialog-borderless ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.close" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">Upload file</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row" >
+                <div data-bind="with:currentFile">
+                    <form role="form" data-bind="event: { reset: $root.resetNewComment },fileupload:$root.jQueryUploadOptions">
+                        <div class="form-group" >
+                            <label for="txt-name" data-i18n="app:templates.upload.name"></label>
+                            <input type="text" class="form-control"  name="fileName[]" data-bind="value:$data.name" required autocomplete="off">
+                        </div>
+                        <div class="form-group" >
+                            <label for="txt-name"  data-i18n="app:templates.upload.tags"></label>
+                            <select multiple="multiple" data-bind="select2Data:$data.tags,select2: $root.tagAutocompletionOptions"></select>
+                        </div>
+                        <div class="form-group" >
+                            <label for="txt-name" >
+                                <span data-i18n="app:templates.upload.description"></span>
+                                <span class="help-span">(optional)</span>
+                            </label>
+                             <textarea class="form-control"  data-bind="value:$data.description" placeholder="write description about of file" rows="3" name="description[]"></textarea>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class=" pull-right">
+                                <button id="btn-cancel-all" name="btn-cancel-all" type="reset" data-bind="click: $root.cancelAll"
+                                    class="btn btn-default" >Cancel All
+                                </button>
+                                <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click: $root.cancel"
+                                    class="btn btn-default" data-i18n="app:pages.commentEdit.cancel">
+                                </button>
+                                <button id="btn-upload" name="btn-upload" type="button"
+                                            data-bind="click:$root.startUpload"
+                                            class="btn btn-primary" >Upload
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

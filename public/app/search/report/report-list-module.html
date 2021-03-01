@@ -1,0 +1,41 @@
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title">List</h3>
+
+
+        <div class="panel-actions">
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th data-i18n="app:pages.dashboard.task">Görev</th>
+                    <th data-i18n="app:pages.dashboard.status">Durum</th>
+                    <th data-i18n="app:pages.dashboard.assignee">Atanan</th>
+                    <th data-i18n="app:pages.dashboard.startdate">StartDate</th>
+                    <th data-i18n="app:pages.dashboard.duedate">DueDate</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- ko foreach: tasks -->
+                <tr>
+                    <td>
+                        <a target="_blank" data-type="task" class="task-link" data-bind="'data-task-id':id, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, id), text: name"></a>
+                    </td>
+
+                    <td data-bind="text:$root.lookups.taskStatus.get(status).text"></td>
+                    <td data-bind="text: $root.context.getUserById(assignee).fullName || 'No Assignee'"></td>
+                    <td data-bind="text:$root.utils.formatDate(startDate)"></td>
+                    <td data-bind="text:$root.utils.formatDate(dueDate)"></td>
+
+                </tr>
+                <!-- /ko -->
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

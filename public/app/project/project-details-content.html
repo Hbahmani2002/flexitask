@@ -1,0 +1,167 @@
+
+<div class="panel panel-bordered panel-column-header panel-project-detail" data-bind="panelActions: {}" id="project-header-panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span data-bind="text:details.name"> </span>
+        </h3>
+        <div class="panel-actions">
+            <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-chevron-up" data-toggle="panel-collapse" aria-expanded="true" aria-hidden="true"></a>
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="button">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="visible:!showDescription(),click:addDescriptionField"><a href="#" data-i18n="app:pages.project.addDescription"></a></li>
+                    <li role="presentation" class="divider" data-bind="visible:showActionDivider"></li>
+                    <li role="presentation" data-bind="visible:showDescription() && !$root.descriptionSectionVisibility()">
+                        <a href="#" data-bind=" toggleClick: $root.descriptionSectionVisibility" data-i18n="app:pages.project.showDescription"></a>
+                    </li>
+                    <li role="presentation" data-bind="visible:showDescription() && $root.descriptionSectionVisibility">
+                        <a href="#" data-bind="toggleClick: $root.descriptionSectionVisibility"  data-i18n="app:pages.project.hideDescription"></a>
+                    </li>
+                    <li role="presentation" class="divider" data-bind="visible:showDescription"></li>
+                    <li role="presentation" data-bind="visible: details.isStarred">
+                        <a href="#" data-bind="click:unstarProject"><i class="icon wb-star"></i> <span data-i18n="app:pages.project.unstar"></span></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.isStarred()==false">
+                        <a href="#" data-bind="click:starProject"><i class="icon wb-star-outline"></i> <span data-i18n="app:pages.project.star"></span></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.hasMuted">
+                        <a href="#" data-bind="click:$root.unmute"><i class="icon wb-star"></i> <span data-i18n="app:pages.project.unmute"></span></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.hasMuted()==false">
+                        <a href="#" data-bind="click:$root.mute"><i class="icon wb-star-outline"></i> <span data-i18n="app:pages.project.mute"></span></a>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation">
+                        <a href="#" data-bind="click: deleteProject" data-i18n="app:pages.project.deleteproject"></a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#" data-bind="click:duplicateProject" data-i18n="app:pages.project.duplicateproject"></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.isArchived() == false">
+                        <a href="#" data-bind="click: $root.archiveProject" data-i18n="app:pages.project.archive"></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.isArchived">
+                        <a href="#" data-bind="click: $root.unarchiveProject" data-i18n="app:pages.project.unarchive"></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.isPublished()==false">
+                        <a href="#" data-bind="click: $root.publishProject" data-i18n="app:pages.project.publish"></a>
+                    </li>
+                    <li role="presentation" data-bind="visible: details.isPublished">
+                        <a href="#" data-bind="click: $root.unpublishProject" data-i18n="app:pages.project.unpublish"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-collapse">
+        <div class="panel-toolbar" role="toolbar">
+            <div class="btn-group" role="group">
+                <a data-bind="visible:$root.details.isStarred()" class="btn" href="javascript:void(0);" role="button">
+                    <i class="icon wb-star" aria-hidden="true"></i>
+                </a>
+                <a class="btn" href="javascript:void(0)" role="button" data-bind="visible:details.hasMuted">
+                    <i class="icon volume-off" aria-hidden="true"></i>
+                </a>
+                <a class="btn" href="javascript:void(0)" role="button" data-bind="visible:details.isArchived">
+                    <i class="icon fa-archive" aria-hidden="true"></i>
+                </a>
+                <a class="btn" href="javascript:void(0)" role="button" data-bind="visible:details.isPublished()==false">
+                    <span data-bind="css:'icon fa-eye-slash red-800'"></span>
+                </a>
+            </div>
+        </div>
+        <div class="panel-section panel-section-bordered section-project-description" data-bind="visible:showDescription() && descriptionSectionVisibility(),css:{'editor-active':$root.descriptionEditStatus}">
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="btn-group">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round dropdown-toggle" id="dropdown-description" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="btn-label"><i class="icon fa-file-text-o" aria-hidden="true"></i></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-description-menu" style="position:fixed;" aria-labelledby="dropdown-description">
+                                <li>
+                                    <a href="#" data-bind="toggleClick:$root.descriptionEditStatus" data-i18n="app:pages.project.edit">edit</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-11" data-bind="markdownEditor:{ data: details.description,editStatus:$root.descriptionEditStatus, onSave:$root.onDescriptionSave,onCancel:$root.onDescriptionCancel}">
+                    <div class="view section-project-description" data-bind="markdown:  {text:details.description }">
+                    </div>
+                    <div class="editor"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel-footer">
+            <div class="horizontal-scrollable-tabs" data-bind="horizontalTabs: {}">
+                <div class="scroller arrow-left"><i class="icon fa-arrow-left"></i></div>
+                <div class="scroller arrow-right"><i class="icon fa-arrow-right"></i></div>
+                <div class="horizontal-tabs">
+                    <ul class="nav-quick nav-quick-sm row nav-tabs-horizontal"  >
+                        <!-- ko foreach:$root.activeModules -->
+                        <li class="col-xs-2 col-sm-1" >
+                            <a href="javascript:void(0)" data-bind="click:activate,css:{'active':$data.isActive}">
+                                <i aria-hidden="true" data-bind="'class':$data.detail.icon"></i> <span data-bind="text:$data.detail.text,visible:false"></span>
+                            </a>
+                        </li>
+                        <!-- /ko -->
+                        <li class="col-xs-2  col-sm-1 hidden">
+                            <a href="javascript:void(0);" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                <i class="icon wb-lock" aria-hidden="true"></i> <span data-i18n="app:pages.project.more"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                               
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="project-panel" data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main' ,onScroll:$root.onProjectModuleScroll}">
+    <div data-bind="visible:$root.activeModule() === $root.lookups.projectModules.DETAIL">
+        <!-- ko  compose: {  view:'project/project-details.html'} -->
+        <!--/ko-->
+    </div>
+    <div data-bind="visible:$root.activeModule() === $root.lookups.projectModules.TASKS">
+        <div class="panel panel-project-content" data-bind="panelActions:{}">
+            <div class="panel-heading">
+                <h3 class="panel-title" data-i18n="app:pages.project.subtasks"></h3>
+            </div>
+            <div class="panel-body">
+                <div class="panel">
+                    <table class="table table-hover  ">
+                        <thead>
+                        <tr>
+                            <th class="col-sm-7"><span data-i18n="app:pages.task.name"></span></th>
+                            <th class="col-sm-2"><span data-i18n="app:pages.task.assignee"></span></th>
+                            <th class="col-sm-2"><span data-i18n="app:pages.task.status"></span></th>
+                            <th class="col-sm-1"><span data-i18n="app:pages.task.order"></span></th>
+                        </tr>
+                        </thead>
+                        <tbody data-bind="foreach:$root.rootTasks">
+                            <tr>
+                                <td class="col-sm-7 clearfix word-break ">
+                                    <a data-type="task" data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($root.projectId, id), text: name"></a>
+                                </td>
+                                <td class="col-sm-2" data-bind="safeText: { value: assignee, property: 'fullName', default: '-' }"></td>
+                                <td class="col-sm-2" data-bind="text: $root.getTaskStatusText(status) "></td>
+                                <td class="col-sm-1"><a data-bind="    click: $root.changeTaskOrder.bind($root, 'down')" href="#"><span class="icon fa-arrow-down"></span></a>&nbsp;<a data-bind="    click: $root.changeTaskOrder.bind($root, 'up')" href="#"><span class="icon fa-arrow-up"></span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-bind="compose: activeModuleVm">
+    </div>
+</div>
+
+

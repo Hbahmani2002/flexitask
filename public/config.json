@@ -1,0 +1,17 @@
+{
+    "base_url": "http://85.95.241.244:81//",
+    "debug": true,
+    "moment_locale": "en",
+    "app_dir": "app",
+    "backgroundImagePath": "assets/images/login.jpg",
+    "version": "",
+    "emojiPath":"https://assets-cdn.github.com/images/icons/emoji/${key}.png",
+    "facebookAppId":"698240576907406",
+    "twitterAppId":"000",
+    "customScriptFile":"",
+    "customCssFile":"",
+    "useOneSignal":true,
+    "onesignal":{
+        "appId": "ed54ae28-722f-47a5-a08f-54f6c4a637f1"
+    }
+}

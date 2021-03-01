@@ -1,0 +1,77 @@
+﻿<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.timeLogs.title"></h3>
+        <div class="panel-actions" data-bind="visible:$root.isTaskView()">
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="css:{'active':filter.includeSubTasks},visible:$root.isTaskView()">
+                        <a href="#" data-bind="toggleClick:filter.includeSubTasks" data-i18n="app:pages.timeLogs.includeSubTasks"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p class="clearfix" >
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right" data-bind=" click: newTimeLog">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+        </p>
+
+        <div class="panel panel-default">
+            <table id="table-x" class="table table-striped  table-responsive">
+                <thead>
+                <tr>
+                    <th data-bind="visible: $root.isMultiTaskView" data-i18n="app:pages.timeLogs.task"></th>
+                    <th data-i18n="app:pages.timeLogs.date"></th>
+                    <th data-i18n="app:pages.timeLogs.person"></th>
+                    <th data-i18n="app:pages.timeLogs.description"></th>
+                    <th data-i18n="app:pages.timeLogs.durationTime"></th>
+                    <th data-i18n="app:pages.timeLogs.billable"></th>
+                    <th data-i18n="app:pages.timeLogs.status"></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: timeLogs">
+                <tr>
+                    <td data-bind="visible: $root.isMultiTaskView">
+                        <a data-bind="    safeText: { value: $data, property: 'taskName', default: '' }, href: $root.helpers.navigations.getTaskNavigationUrl(projectId, taskId)"></a>
+                    </td>
+                    <td><span data-bind="text: $root.utils.formatDate(date)"></span></td>
+                    <td><span data-bind="text: personFullName"></span></td>
+                    <td><span data-bind="text: description"></span></td>
+                    <td><span data-bind="text: $root.humanizeDuration(durationMinutes)"></span></td>
+                    <td>
+                        <select class="form-control" data-bind="visible: isEditMode, value: isBillable">
+                            <option value="true" data-i18n="app:pages.timeLogs.checkBillable"></option>
+                            <option value="false" data-i18n="app:pages.timeLogs.checkNonbillable"></option>
+                        </select>
+                        <!--<span data-bind="visible: isViewMode, text: isBillable.cached"></span>-->
+                        <span data-bind="visible: isViewMode, text: i18n.t('app:pages.timeLogBillableStatus.'+isBillable.cached())"></span>
+                    </td>
+                    <td>
+                        <select class="form-control" data-bind="visible: isEditMode, value: status, options: $root.lookups.timeLogStatus.getAll(), optionsText: 'text', optionsValue: 'value'"></select>
+                        <span data-bind="visible: isViewMode, text: $root.lookups.getItem('timeLogStatus', status.cached).text"></span>
+                    </td>
+                    <td>
+                        <a href="" data-bind="visible: isViewMode, click: $root.edit" data-i18n="app:pages.timeLogs.edit"></a>
+
+                        <div data-bind="visible: isEditMode">
+                            <a href="" data-bind="click: $root.update" data-i18n="app:pages.timeLogs.save"></a> |
+                            <a href="" data-bind="    click: $root.cancelEdit" data-i18n="app:pages.timeLogs.cancel"></a>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    
+
+
+    </div>
+</div>

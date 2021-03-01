@@ -1,0 +1,80 @@
+﻿<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:lookups.taskModules.tables"></h3>
+        <div class="panel-actions" data-bind="visible:$root.isTaskView()">
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="visible:$root.isTaskView()">
+                            <a href="#" data-bind="click: $root.showAttachTableModal" data-i18n="app:pages.table.attachTable"></a>
+                   </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p class="clearfix" data-bind="visible:isTaskView()">
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right" data-bind=" click: newTable">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+        </p>
+        <div data-bind="foreach: tables">
+            <div class="panel panel-card panel-card-table">
+                <div class="panel-heading">
+                    <div class="media media-author">
+                        <div class="media-left">
+                            <a class="avatar avatar-scale" href="javascript:void(0)">
+                                <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault(author),alt:author.alias">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="author" data-bind="text:author.fullName"></a>
+                            <div class="meta new-line font-size-12">
+                                <span class="date" data-bind="text:$root.utils.timeFromNow(createdAt)"></span>
+                            </div>
+                        </div>
+                        <div class="media-right">
+                            <span class="badge badge-danger" data-bind="visible:sourceType != 1">Project Wide</span>
+                       </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <a class="list-group-item word-break" href="#" data-bind="click: $parent.showTable">
+                        <h4 class="list-group-item-heading word-break" data-bind="text:name"></h4>
+                    </a>
+                    <p class="list-group-item-text" data-bind="markdown:  {text:description,options:{truncate:true,highlight:true }}"></p>
+
+                    <ul class="list-unstyled" data-bind="visible:$root.isMultiTaskView">
+                        <li class="text-wrap" data-bind="visible:taskId">
+                            <i class="icon fa-list"></i>&nbsp;<a href="#/projects/{{$root.projectId}}/tasks/{{taskId}}">{{taskName}}</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- ko if: sourceType == 1 -->
+                <div class="panel-toolbar" role="toolbar">
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn  pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu animation-scale-up animation-top-left animation-duration-250">
+                           <li role="presentation"><a href="#" role="menuitem" data-bind="click: $root.showTableEditModal" data-i18n="app:pages.tableDropDown.editTable"></a></li>
+                            <li role="presentation" ><a role="menuitem" tabindex="-1" data-bind="click:$root.duplicateTable" href="#" data-i18n="app:pages.tableDropDown.duplicateTable"></a></li>
+
+                            <li role="presentation" ><a role="menuitem" tabindex="-1" data-bind="click:$root.deleteTable" href="#" data-i18n="app:pages.tableDropDown.deleteTable"></a></li>
+                           
+                             <li role="presentation" class="divider"></li>
+                        </ul>
+                    </div>
+                </div>
+             <!-- /ko -->
+
+            </div>
+        </div>
+    </div>
+</div>

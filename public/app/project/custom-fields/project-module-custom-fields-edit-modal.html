@@ -1,0 +1,77 @@
+<div class="modal-dialog ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-bind="visible:!record.id" data-i18n="app:pages.customFieldDefinationEditModal.createNewCustomField"></h4>
+            <h4 class="modal-title" data-bind="visible:record.id"  data-i18n="app:pages.customFieldDefinationEditModal.updateCustomField"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form>
+                    <div class="form-group" data-bind="validationElement: record.title">
+                        <label class="control-label" for="txt-title" data-i18n="app:pages.customFieldDefinationEditModal.cfTitle"></label>
+                        <input type="text" class="form-control" id="txt-title" maxlength="40" data-bind="value:record.title">
+                    </div>
+                    <div class="form-group" data-bind="validationElement: record.description">
+                        <label class="control-label" for="txt-description" data-i18n="app:pages.customFieldDefinationEditModal.cfDescription"></label>
+                        <input type="text" class="form-control" id="txt-description" maxlength="100" data-bind="value:record.description">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="select-field-type"  data-i18n="app:pages.customFieldDefinationEditModal.cfFieldType"></label>
+                        <select class="form-control" id="select-field-type" data-bind="options: lookups.customFieldTypes.getAll(),
+                               optionsText: 'text',
+                               optionsValue:'value',
+                               value: record.type"></select>
+                    </div>
+                    <div class="form-group" data-bind="if:record.attributes">
+                        <label class="control-label" for="div-cf-description" data-i18n="app:pages.customFieldDefinationEditModal.cfDetails"></label>
+                        <div id="div-cf-description" class="row">
+                            <ul data-bind="foreach:_.keys(record.attributes())" class="list-unstyled">
+                                <li class="col-sm-4" data-bind="validationElement: $parent.record.attributes()[$data],'class':$parent.record.attributes()[$data].type==='input' ? 'col-sm-4' : 'col-sm-12' ">
+                                    <label data-bind="text:$parent.record.attributes()[$data].label,for:'cf_'+$data"></label>
+                                    <input class="form-control " type="text" data-bind="value:$parent.record.attributes()[$data],id:'cf_'+$data,visible:$parent.record.attributes()[$data].type==='input'" />
+                                    <textarea class="form-control " rows="3" data-bind="value:$parent.record.attributes()[$data],id:'cf_'+$data,visible:$parent.record.attributes()[$data].type==='textarea',valueUpdate:'afterkeydown'"></textarea>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="checkbox-custom checkbox-primary">
+                                    <input type="checkbox" id="cb-include-reports" data-bind="checked: record.includeReports" autocomplete="off">
+                                    <label for="cb-include-reports"  data-i18n="app:pages.customFieldDefinationEditModal.includeToReports"></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox-custom checkbox-primary">
+                                    <input type="checkbox" id="cb-add-automatically" data-bind="checked: record.addAutomatically" autocomplete="off">
+                                    <label for="cb-add-automatically"  data-i18n="app:pages.customFieldDefinationEditModal.addAutomaticallyToNewTasks"></label>
+                                </div>
+                            </li>
+                            <li data-bind="visible:record.canUseDefaultValue">
+                                <div class="checkbox-custom checkbox-primary">
+                                    <input type="checkbox" id="cb-use-default-value" data-bind="checked: record.useDefaultValue" autocomplete="off">
+                                    <label for="cb-use-default-value" data-i18n="app:pages.customFieldDefinationEditModal.useDefaultValue"></label>
+                                </div>
+                                <div data-bind="visible:record.useDefaultValue">
+                                    <input type="text" class="form-control" id="txt-default-value" maxlength="100" data-bind="value:record.defaultValue">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click:$root.cancel" class="btn btn-default btn-outline"  data-i18n="app:pages.customFieldDefinationEditModal.cancel">
+                            <button type="button" class="btn btn-primary" data-bind="activity: $root.saveCustomField.isExecuting, command: $root.saveCustomField"  data-i18n="app:pages.customFieldDefinationEditModal.save"></button>
+                            
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

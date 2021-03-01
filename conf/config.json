@@ -1,0 +1,41 @@
+{
+  "html": "public/html",
+  "assets": "public/assets",
+  "destination": {
+    "root":"public/",
+    "assets":"public/assets/",
+    "css": "public/assets/css",
+    "js": "public/assets/js",
+    "fonts": "public/assets/fonts",
+    "vendor": "public/assets/vendor",
+    "skins": "public/assets/skins"
+  },
+  "source": {
+    "root":"public/assets/style",
+    "js": "public/assets/style/js",
+    "less": "public/assets/style/less",
+    "fonts": "public/assets/style/fonts",
+    "vendor": "public/assets/style/vendor",
+    "skins": "public/assets/style/skins"
+  },
+
+  "bootstrap": {
+    "less": "public/assets/style/less/bootstrap",
+    "mixins": "public/assets/style/less/mixins"
+  },
+  "build":{
+      "root":"./.build",
+      "public":"./.build",
+      "durandalAppSource":"public/app"
+  },
+  "autoprefixerBrowsers": [
+    "Android 2.3",
+    "Android >= 4",
+    "Chrome >= 20",
+    "Firefox >= 24",
+    "Explorer >= 8",
+    "iOS >= 6",
+    "Opera >= 12",
+    "Safari >= 6"
+  ]
+}

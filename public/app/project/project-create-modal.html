@@ -1,0 +1,73 @@
+﻿<div class="modal-dialog ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.createproject.header"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form>
+                    <div class="form-group" data-bind="validationElement: name">
+                        <label class="control-label" for="txt-projectname" data-i18n="app:pages.createproject.projectname"></label>
+                        <input type="text" id="txt-projectname" class="form-control" data-i18n="[placeholder]app:pages.createproject.enterprojectname"
+                            data-bind="value: name" />
+                    </div>
+                    <div class="form-group" data-bind="validationElement: projectType">
+                        <label class="control-label" for="select-projecttype" data-i18n="app:pages.createproject.projecttype"></label>
+                        <select id="select-projecttype" class="form-control" data-bind="options: projectTypes, value: projectType, optionsText: 'text', optionsValue: 'value'"></select>
+
+                        <!-- ko if: projectType() == 1 -->
+                        <p  data-i18n="app:pages.createproject.hieDesc">
+                           
+                        </p>
+                        <!--/ko-->
+                        <!-- ko if: projectType() == 2 -->
+                        <p  data-i18n="app:pages.createproject.hie2Desc">
+                           
+                        </p>
+                        <!--/ko-->
+                        <!-- ko if: projectType() == 3 -->
+                        <p  data-i18n="app:pages.createproject.teamDesc">
+                           
+                        </p>
+                        <!--/ko-->
+                        <!-- ko if: projectType() == 4 -->
+                        <p  data-i18n="app:pages.createproject.team2Desc">
+                           
+                        </p>
+                        <!--/ko-->
+                        <!-- ko if: projectType() == 5 -->
+                        <p  data-i18n="app:pages.createproject.mailLikeDesc">
+                           
+                        </p>
+                        <!--/ko-->
+                        <!-- ko if: projectType() == 6 -->
+                        <p  data-i18n="app:pages.createproject.personalDesc">
+                           
+                        </p>
+                        <!--/ko-->
+                    </div>
+
+                    <div class="form-group" data-bind="validationElement: projectFolderId">
+                        <label class="control-label" for="select-folder" data-i18n="app:pages.createproject.folder"></label>
+                        <select class="form-control" id="select-folder" data-bind="value: projectFolderId, foreach: folders">
+                            <optgroup data-bind="attr: {label: name}, foreach: folders">
+                                <option data-bind="attr: {  value: id }, text: name"></option>
+                            </optgroup>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-right clearfix">
+                            <button type="reset" class="btn btn-default btn-outline" data-bind="click: cancel" data-i18n="app:pages.createproject.cancel"></button>
+                            <button type="submit" class="btn btn-primary" data-bind="click: createProject" data-i18n="app:pages.createproject.save"></button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

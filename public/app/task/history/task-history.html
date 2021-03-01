@@ -1,0 +1,111 @@
+﻿<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.taskHistory.title"></h3>
+        <div class="panel-actions">
+            <a class="panel-action icon wb-image" href="#" aria-hidden="true" data-bind="css: {'active':canShowAttachmentImages() },toggleClick:canShowAttachmentImages"></a>
+            <div class="btn-group" data-i18n="[title]app:pages.taskHistory.grouping.title">
+                <button type="button" class="btn panel-action btn-pure btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="icon fa-th"></span>
+                    <span><span data-i18n="app:pages.taskHistory.grouping.title"></span>: <span data-bind="i18n:'app:pages.taskHistory.grouping.'+$root.filter.group()"></span></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" id="dropdown-group-filter">
+                    <li>
+                        <a href="#" data-filter="task" data-i18n="app:pages.taskHistory.grouping.task" data-bind="click:$root.changeGroupingFilter"></a>
+                    </li>
+                    <li>
+                        <a href="#" data-filter="user" data-i18n="app:pages.taskHistory.grouping.user" data-bind="click:$root.changeGroupingFilter"></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#" data-filter="none" data-i18n="app:pages.taskHistory.grouping.none" data-bind="click:$root.changeGroupingFilter"></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="panel-action" data-bind="click: changeSortDirection">
+                <span class="icon fa-arrow-up" data-bind="visible: filter.sort() == 'asc'" data-i18n="[title]app:pages.taskHistory.sort.desc"></span>
+                <span class="icon fa-arrow-down" data-bind="visible: filter.sort() == 'desc'" data-i18n="[title]app:pages.taskHistory.sort.asc"></span>
+            </a>
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="css:{'active':filter.includeSubTasks},visible:$root.isTaskView()">
+                        <a href="#" data-bind="toggleClick:filter.includeSubTasks" data-i18n="app:pages.taskHistory.includeSubTasks"></a>
+                    </li>
+                     <li role="presentation" data-bind="css:{'active':filter.includeTasks},visible:!$root.taskId">
+                        <a href="#" data-bind="toggleClick:filter.includeTasks" data-i18n="app:pages.taskHistory.includeTasks"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div data-bind="foreach:{data: filteredActivities}">
+            <div class="panel panel-card panel-card-activity">
+                <div class="panel-heading">
+                    <div class="media media-author">
+                        <div class="media-left">
+                            <a class="avatar avatar-scale" href="javascript:void(0)">
+                                <img class="img-responsive" data-bind="src:$root.helpers.getAvatarOrDefault($data.actor),alt:$data.actor.initials">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <a class="author" data-bind="text:actor.fullName"></a>
+                            <div class="meta new-line">
+                                <!--<span class="date"  data-bind="text:$root.utils.timeFromNow(publishedAt)"></span>-->
+                                <!--<br>-->
+                                <span class="date" data-bind="text:$root.utils.formatTaskLogDateTime(publishedAt)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="list-unstyled" data-bind="visible:$root.filter.includeSubTasks">
+                        <li data-bind="visible:taskId" class="text-wrap">
+                            <i class="icon fa-list"></i>&nbsp;<a href="#/projects/{{projectId}}/tasks/{{taskId}}">{{taskName}}</a>
+                        </li>
+                    </ul>
+                    <div >
+                        <div class="alert alert-alt alert-success alert-dismissible activity-header text-wrap" >
+                            <p data-bind="text: localizationResource.header"></p>
+                        </div>
+                        <p class="blue-grey-500 activity-content" data-bind="visible: localizationResource.content, markdown:  {text:localizationResource.content,options:{truncate:true, maxLength:1200, highlight:true }}"></p>
+                        <div data-bind="visible:viewableAttachments().length>0">
+                            <ul class="list-unstyled list-gallery" data-bind="foreach:viewableAttachments,lightbox:{type:'gallery'}">
+                                <li class="gallery-item">
+                                    <a  data-bind="href:$data.viewUrl,title: $data.name" >
+                                        <img data-bind="src:$data.viewUrl,title: $data.name,alt:$data.name" class="img-responsive " />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                            <ul class="list-group list-group-gap" data-bind="foreach:attachments" >
+                                <li class="list-group-item bg-grey-100">
+                                    <div class="media media-attachment" data-bind="with:fileInfo">
+                                      <div class="media-left">
+                                        <i class="icon fa-file attachment-icon" style="font-size:24px;" aria-hidden="true"></i>
+                                      </div>
+                                      <div class="media-body">
+                                        <h4 class="media-heading"><a class="file" data-bind="href: $parent.downloadUrl, title: name, text: $parent.viewName, download: actualName"></a></h4>
+                                         <small class="text-uppercase font-size-10" data-bind="text:String.format('{0}MB {1}',length,contentType)"></small>
+                                      </div>
+                                      <div class="media-right">
+                                       <small><a  data-bind="href: $parent.viewUrl, title: $parent.name" target="_blank" data-i18n="app:pages.taskHistory.view"></a></small>
+                                      </div>
+                                    </div>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <br>
+        <button data-bind="visible:hasNewPage, click: loadMore" type="button" class="btn btn-primary btn-block">
+             <span class="icon fa-refresh"></span><span data-i18n="app:pages.activities.loadMore"></span>
+        </button>
+    </div>
+</div>

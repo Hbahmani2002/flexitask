@@ -1,0 +1,20 @@
+.custom-item:hover {
+        background-color: #777777 !important;
+}
+
+.custom-item:active {
+        background-color: #777777 !important;
+}
+
+
+a.panel-action{
+	background-color: #777777 !important;
+}
+
+.site-menubar-custom .site-menu>.site-menu-item.active{
+	background-color: #777777 !important;
+	
+}
+#imgLogo{
+	width:25%;
+}

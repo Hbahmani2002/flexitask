@@ -1,0 +1,32 @@
+<div>
+    <div class="panel panel-task-content"
+         data-bind="panelActions:{onEnterFullScreen: $root.customRefresh,onLeaveFullScreen:$root.customRefresh}">
+        <div class="panel-heading">
+            <h3 class="panel-title" data-i18n="app:pages.gantt.title"></h3>
+            <div class="panel-actions">
+                <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div id="gantt-part">
+                <div id="gantt"></div>
+
+
+            </div>
+        </div>
+
+        <script type="text/x-kendo-template" id="expandAllTemplate">
+            <div class="toolbar" style='float:left'>
+                <input id="expandGanttButton" type="button" data-bind="click: $root.expandAllTasks"
+                       class="k-button i18-translation-required" data-i18n="[value]app:pages.gantt.expand"/>
+            </div>
+            <div class="toolbar" style='float:left'>
+                <input id="collapseGanttButton" type="button" data-bind="click: $root.collapseAllTasks"
+                       class="k-button i18-translation-required" data-i18n="[value]app:pages.gantt.collapse"/>
+
+            </div>
+
+        </script>
+    </div>
+
+</div>

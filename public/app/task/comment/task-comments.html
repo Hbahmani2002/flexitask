@@ -1,0 +1,108 @@
+﻿
+
+<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.comment.title"></h3>
+        <div class="panel-actions">
+            <a class="panel-action icon wb-align-right" href="#" aria-hidden="true" data-bind="visible:$root.allowedCommentReplyLevel>0,css: {'active':$root.isHierarchicalView() },click:changeViewTypeAsHierarchical"></a>
+            <a class="panel-action icon wb-order" href="#" aria-hidden="true" data-bind="click:changeViewTypeAsChronological,css: {'active': $root.isChronologicalView }"></a>
+            <a class="panel-action icon wb-image"  href="#" aria-hidden="true" data-bind="css: {'active':canShowAttachmentImages() },click:showAttachmentImages"></a>
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="true" role="button"></a>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                     <li role="presentation" class="dropdown-header" data-i18n="app:pages.comments.viewMode"></li>
+                        <li role="presentation" data-bind="css: {'active': $root.isChronologicalView } ">
+                            <a role="menuitem" tabindex="-1" href="#" data-bind="click:changeViewTypeAsChronological" data-i18n="app:pages.comment.chronologicalview"></a>
+                        </li>
+                        <li role="presentation" data-bind="visible:$root.allowedCommentReplyLevel>0,css: {'active':$root.isHierarchicalView() }">
+                            <a role="menuitem" tabindex="-1" href="#" data-bind="click:changeViewTypeAsHierarchical" data-i18n="app:pages.comment.hierarchicalview">
+                            </a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" data-bind="css: {'active':useShortenDateFormat() } "><a role="menuitem" tabindex="-1" data-bind="toggleClick:useShortenDateFormat" href="#" data-i18n="app:pages.comment.relativeTimeFormat"></a></li>
+                        <li role="presentation" data-bind="css: {'active':canShowAttachmentImages() } ">
+                            <a role="menuitem" tabindex="-1" data-bind="click:showAttachmentImages" href="#" data-i18n="app:pages.comment.showallcommentimages"></a>
+                        </li>
+                        <li role="presentation" data-bind="css: {'active':showingPinnedComments() } "><a role="menuitem" tabindex="-1" data-bind="click:showPinnedComments" href="#" data-i18n="app:pages.comment.showPinnedComments"></a></li>
+                        <li role="presentation" data-bind="css: {'active':showingOnlyComment() } "><a role="menuitem" tabindex="-1" data-bind="click:showOnlyComment" href="#" data-i18n="app:pages.comment.showOnlyComment"></a></li>
+                        <li role="presentation" data-bind="css: {'active':showingUntruncatedComments() } "><a role="menuitem" tabindex="-1" data-bind="click:showUntruncatedComments" href="#" data-i18n="app:pages.comment.showCommentsWithoutTruncation"></a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" class="dropdown-header" data-i18n="app:pages.comment.sortBy"></li>
+                        <li role="presentation" data-bind="css :{'active':sortType()=='position' } "><a role="menuitem" tabindex="-1" href="#" data-bind="click:changeSortType.bind($data, 'position')" data-i18n="app:pages.comment.position"></a></li>
+                        <li role="presentation" data-bind="css :{'active':sortType()=='newest' } "><a role="menuitem" tabindex="-1" href="#" data-bind="click:changeSortType.bind($data, 'newest')" data-i18n="app:pages.comment.newestFirst"></a></li>
+                        <li role="presentation" data-bind="css :{'active':sortType()=='oldest' } "><a role="menuitem" tabindex="-1" href="#" data-bind="click:changeSortType.bind($data, 'oldest')" data-i18n="app:pages.comment.oldestFirst"></a></li>
+                        <li role="presentation" data-bind="visible:isVoteEnabled(),css :{'active':sortType()=='best' } "><a role="menuitem" tabindex="-1" href="#" data-bind="click:changeSortType.bind($data, 'best')" data-i18n="app:pages.comment.best"></a></li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel" id="panel-fake-new-comment" data-bind='fadeVisible: !newComment()'>
+            <div class="panel-body">
+                <input type="text" class="form-control js--fake-comment-textbox comment-focus" placeholder="" data-i18n="[placeholder]app:pages.comment.writeNewComment"/>
+            </div>
+        </div>
+        <div class="panel hide-it " id="panel-new-comment" data-bind="with:newComment">
+            <form role="form" class="" data-bind="event: { reset: $root.resetNewComment }">
+                <ul class="list-group">
+                    <li class="list-group-item" >
+                        <div class="media">
+                            <div class="media-body">
+                                <noscript>
+                                    <input type="hidden" name="redirect" value="/">
+                                </noscript>
+                                <div class="form-group" data-bind="validationElement: commentText">
+                                    <div data-bind="markdownEditor: {data:commentText,init:true,saveButton:false,cancelButton:false,onChange:true,onPreview:$root.onNewCommentPreview}" class="comment-focus">
+                                        <div class="editor" data-bind="atwho:commentText,atwhoOptions:$root.atjsOptions"></div>
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group pull-right">
+                                     <button type="reset" class="btn btn-default btn-outline" data-i18n="app:pages.comment.cancel"></button>
+                                    <button type="submit" data-bind="activity: $root.addCommentCommand.isExecuting, command: $root.addCommentCommand" class="btn btn-primary" data-i18n="app:pages.comment.send"></button>
+                                   
+
+                                </div>
+                                <div class="form-group fileupload-buttonbar">
+                                    <span class="btn btn-default fileinput-button">
+                                        <i class="icon fa-plus"></i>
+                                        <span data-i18n="app:pages.comment.addfiles"></span>
+                                        <input data-bind="fileUploader:$root.getUploadComponentOptions(),fileUploadSelector:'.js--form-upload-attachments',attr: { multiple:$root.utils.browser.isIOS() ? null : 'multiple' }" class="js--file-selector" type="file" name="files[]" >
+                                    </span>
+                                </div>
+                                <div class="form-group list-group list-group-dividered js--form-upload-attachments" >
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item" data-bind="visible:attachments().length>0">
+                        <ul class="list-group" data-bind="foreach: attachments">
+                            <li class="list-group-item">
+                                <a href="" data-bind="href: $data.downloadUrl, text: $data.name"></a>
+                                <div class="pull-right">
+                                    <a href="" data-bind="click: $root.deleteAttachment.bind($data, $parent)" data-i18n="app:pages.table.delete"></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div data-bind="visible:showingPinnedComments" >
+            <div data-bind="foreach: pinnedComments">
+                <div data-bind=" compose: { view: 'task/comment/comment-view.html', strategy:null  }"></div>
+            </div>
+            <hr data-bind="visible:hasPinnedComments">
+        </div>
+        <div data-bind="foreach: filteredComments" >
+            <div data-bind=" compose: { view: 'task/comment/comment-view.html', strategy:null }"></div>
+        </div>
+
+    </div>
+</div>

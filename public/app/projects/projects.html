@@ -1,0 +1,242 @@
+﻿<div class="left-column durandal-column" data-bind="css:$root.prefs.middleColumnSizeClass">
+    <div class="panel panel-bordered panel-column-header panel-projects" data-bind="panelActions:{}" id="projects-header-panel">
+        <div class="panel-heading" style="background-color:white">
+            <h3 class="panel-title">
+                <i class="icon fa-list-alt" aria-hidden="true"></i>
+                <span data-i18n="app:pages.projects.header"></span>
+            </h3>
+            <div class="panel-actions">
+
+                <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-plus" data-bind="click:createNewProject"
+                    aria-expanded="false" aria-hidden="true"></a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-more-vertical" data-toggle="dropdown"
+                        href="#" aria-expanded="false">
+
+                    </a>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                        <li role="presentation">
+                            <a href="javascript:void(0);" class="js--collapse-all" data-action="collapse-all" data-i18n="app:main.btn-collapse-all-text"></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="javascript:void(0);" class="js--expand-all" data-action="expand-all" data-i18n="app:main.btn-expand-all-text"></a>
+                        </li>
+                        <li role="presentation" data-bind="css: {'active':filter.includeArchivedProjects() }">
+                            <a href="javascript:void(0);" data-bind="toggleClick:filter.includeArchivedProjects" data-i18n="app:pages.projects.showArchivedProjects"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-collapse">
+            <div class="panel-toolbar" role="toolbar">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbars">
+                    <div class="btn-group" data-toggle="buttons" role="group" title="View" aria-label="View">
+                        <label data-original-title="" title="" data-bind="toggleClick:isShowOnlyStarredSelected, css:{'active': isShowOnlyStarredSelected}"
+                            class="btn btn-default btn-outline btn-sm btn-icon">
+                            <!--<label data-original-title=""-->
+                            <!--title="" data-bind="click:handleStarredButtonStatus(isShowOnlyStarredSelected), css:{'active': isShowOnlyStarredSelected}"-->
+                            <!--class="btn btn-default btn-outline btn-sm btn-icon">-->
+                            <!--<input type="checkbox" autocomplete="off" value=""/>-->
+                            <i class="icon fa-star" aria-hidden="true"></i>
+                        </label>
+
+                        <label class="btn btn-default btn-outline btn-sm btn-icon js--collapse-all active" data-original-title="" title="">
+
+                            <i class=" panel-action icon fa-minus" aria-hidden="true"></i>
+                        </label>
+
+                        <label class="btn btn-default btn-outline btn-sm btn-icon js--expand-all active" data-original-title="" title="">
+
+                            <i class="panel-action icon fa-plus" aria-hidden="true"></i>
+                        </label>
+
+
+                    </div>
+<div class="project-filters pull-right">
+    <div class="btn-group" style="margin-right:2px;">
+        <button type="button" class="btn btn-default dropdown-toggle btn-outline btn-icon"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                data-bind="css:{'active':isTypeFilterInUse(),'btn-success': !isTypeFilterInUse() }">
+
+            <span class="icon fa fa-tasks"></span>
+            <span class="hidden-xs" data-i18n="app:pages.project.typeFilter"></span>
+
+
+        </button>
+        <ul class="dropdown-menu">
+    
+              <!-- ko foreach:$root.lookups.projectTypes.getAll() -->
+              <li role="presentation"
+              data-bind="css:{'active': $root.filter.selectedProjectType.contains($data.value.toString())}"  >
+                  <a href="#" data-bind="dataToggleClick:{target:$root.filter.selectedProjectType,value:$data.value.toString()}">
+                      <i  aria-hidden="true"></i> <span data-bind="text:$data.text"></span>
+                  </a>
+              </li>
+              <!-- /ko -->
+     
+        </ul>
+    </div>
+
+    <div class="btn-group" style="margin-right: 2px;">
+        <button type="button" class="btn btn-default dropdown-toggle btn-outline btn-icon"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                data-bind="css:{'active':isStatusFilterInUse(),'btn-success': !isStatusFilterInUse() }">
+
+            <span class="icon  fa  fa-hourglass-start"></span>
+            <span class="hidden-xs" data-i18n="app:pages.project.statusFilter"></span>
+
+
+        </button>
+        <ul class="dropdown-menu">
+    
+              <!-- ko foreach:$root.lookups.projectStatus.getAll() -->
+              <li role="presentation"
+              data-bind="css:{'active': $root.filter.selectedProjectStatus.contains($data.value.toString())}"  >
+                  <a href="#" data-bind="dataToggleClick:{target:$root.filter.selectedProjectStatus,value:$data.value.toString()}">
+                      <i  aria-hidden="true"></i> <span data-bind="text:$data.text"></span>
+                  </a>
+              </li>
+              <!-- /ko -->
+     
+        </ul>
+    </div>
+
+</div>
+               
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main',onScroll:$root.onProjectsScroll }">
+
+
+
+        <div class="panel panel-column-content">
+
+            <div class="panel-body">
+                <!-- ko foreach: $root.folderTree -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> {{$data.name}}
+
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dd project-tree">
+                            <!-- ko if: $data.folders.length > 0 -->
+                            <ol class="dd-list" data-bind="template: { name: 'folders-tree-template', foreach: $data.folders, as: 'ws' }, tree:{data:$data.folders ,options:$root.treeOptions } "></ol>
+                            <!-- /ko -->
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+<div class="right-column durandal-column" data-bind="css:$root.prefs.rightColumnSizeClass">
+
+
+</div>
+<script type="text/html" id="project-tree-template">
+    <li class="dd-item dd2-item project-item" data-bind="id: 'project_'+id">
+        <div class="dd-handle dd2-handle ">
+            <i class='project-icon fa-list-alt'></i>
+        </div>
+        <div class="dd2-content clearfix  word-break project-content noDragClass  "  data-bind="click: $root.goProjectDetail" >
+            <a href="#/project/" class="project-link" data-bind="href: '#/projects/' + $data.id">{{$data.name}}</a>
+            <div class="pull-right project-attributes">
+                <span class="label project-info "
+                      data-bind="text:$root.lookups.projectTypes.get(projectType).text"></span>
+
+                <span class="label"
+                      data-bind="text:$root.lookups.projectStatus.get(status).text, css:$root.helpers.getProjectStatusClass(status,$root.lookups)"></span>
+
+                <span class="label"
+                      data-bind="text:startDate ? $root.utils.formatDate(startDate): '-- | --',css:$root.helpers.getProjectStartDateColor($data,$root.lookups)"></span>
+
+                <span class="label "
+                      data-bind="text: dueDate ? $root.utils.formatDate(dueDate) : '-- | --',css:  $root.helpers.getProjectDueDateColor($data,$root.lookups)"></span>
+
+
+                <span data-bind="with:$root.context.getUserById($data.projectManagerUserId)">
+                            <small>
+                                    <img class="avatar avatar-xs avatar-scale"
+                                         data-bind="src:$root.helpers.getAvatarOrDefault($data),alt:fullName">
+                                </a>
+                            </small>
+                    </span>
+
+                <span data-bind="visible:isArchived===true"> <i class="icon fa-archive" aria-hidden="true"></i></span>
+                <span data-bind="visible:!isPublished, css:isPublished ? 'icon fa-fw' : 'icon fa-eye-slash red-800'"></span>
+            </div>
+        </div>
+      
+    </li>
+</script>
+
+<script type="text/html" id="folders-tree-main-template">
+    <li class="dd-item dd2-item project-item" data-bind="id: 'folder_'+id">
+        <div class="dd-handle dd2-handle">
+            <i class='icon project-icon fa-stop text-green'></i>
+        </div>
+        <div class="dd-nodrag dd2-content clearfix tree-item-left-border tree-item-bg-white text-greenl bg-blue-grey-100 project-content noDragClass type--folder"
+             style="background-color:gray">
+            {{$data.name}}
+            <div class="pull-right tree-item-attributes">
+            </div>
+        </div>
+
+        <!-- ko if: $data.folders.length > 0 -->
+        <ol class="dd-list"
+            data-bind="template: { name: 'folders-tree-template', foreach: $data.folders, as: 'ws' }"></ol>
+        <!-- /ko -->
+    </li>
+</script>
+
+<script type="text/html" id="folders-tree-template">
+    <li class="dd-item dd2-item project-item" data-bind="id: 'folder_'+id">
+        
+            <div class="dd-handle dd2-handle">
+                   <!-- ko if: $root.getFolderProjects($data).length   > 0 || $data.subFolders.length > 0 -->
+                <i class='icon folder-icon fa-folder-open text-green'></i>
+                        <!-- /ko -->
+                               <!-- ko ifnot: $root.getFolderProjects($data).length   > 0 || $data.subFolders.length > 0 -->
+                <i class='icon folder-icon fa-folder text-green'></i>
+                <!-- /ko -->
+            </div>
+            <div class="dd-nodrag dd2-content clearfix tree-item-left-border tree-item-bg-white text-greenl bg-blue-grey-100 project-content noDragClass type--folder"
+                 style="background-color:gray">
+                {{$data.name}}
+                <div class="pull-right tree-item-attributes">
+                </div>
+            </div>
+    
+        <!-- ko if: $root.getFolderProjects($data).length > 0 -->
+        <ol class="dd-list"
+            data-bind="template: { name: 'project-tree-template', foreach: $root.getFolderProjects($data), as: 'project' }"></ol>
+        <!-- /ko -->
+        <!-- ko if: $data.subFolders.length > 0 -->
+        <ol class="dd-list"
+            data-bind="template: { name: 'folders-tree-template', foreach: $data.subFolders, as: 'ws' }"></ol>
+        <!-- /ko -->
+    </li>
+</script>

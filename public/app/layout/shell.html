@@ -1,0 +1,219 @@
+
+<div class="wrapper-app">
+    <!-- ko if: showNavbar -->
+    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" style="background-color:#be1724" role="navigation">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided" data-toggle="menubar" data-bind="visible:!mobilePageViewEnabled()"
+                    id="btn-toggle-left-menu">
+                <span class="sr-only"> Toggle navigation</span>
+                <span class="hamburger-bar"> </span>
+            </button>
+            <button type="button" class="navbar-toggle  navbar-toggle-left" data-bind="visible:mobilePageViewEnabled,click:navigateToBack">
+                <span class="sr-only"> Back</span>
+                <i class="icon wb-chevron-left" aria-hidden="true"> </i>
+            </button>
+            <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-collapse" data-toggle="collapse" data-bind="visible:!mobilePageViewEnabled()"
+                    id="btn-toggle-sub-navbar">
+                <i class="icon wb-more-horizontal" aria-hidden="true"> </i>
+            </button>
+            <!-- <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-bind="visible:!mobilePageViewEnabled()" >
+            <img class="navbar-brand-logo" src="../../assets/images/logo.png" title="FlexiTask" >
+            <img class="navbar-brand-logocuk" src="../../assets/images/logocuk.png" title="FlexiTask" >
+            <span class="navbar-brand-text" > </span >
+            </div >-->
+        </div>
+
+        <div class="navbar-container container-fluid navbar-container-paddingless" style="background-color:#be1724">
+
+            <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+
+                <ul class="nav navbar-toolbar">
+                    <li class="hidden-float" id="toggleMenubar">
+                        <a data-toggle="menubar" href="#" role="button">
+                            <i class="icon hamburger hamburger-arrow-left hided">
+                                <span class="sr-only"> Toggle menubar</span>
+                                <span class="hamburger-bar"> </span>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="hidden-float">
+                        <a class="icon wb-search collapsed" data-toggle="collapse" href="#" data-target="#site-navbar-search" role="button" aria-expanded="false">
+                            <span class="sr-only"> Toggle Search</span>
+                        </a>
+                    </li>
+                    <!-- <li data-bind="css:{'active' : $root.activeHash() === '#activities'}" >
+                    <a href="#activities" aria-expanded="false" role="button" > <i class="icon ion-ios-pulse" style="font-weight:bold;" aria-hidden="true" > </i > &nbsp;<span class="hidden-xs"
+                    data-i18n="app:pages.shell.activities" > </span > </a >
+                    </li >
+                    <li data-bind="css:{'active' : $root.activeHash() === '#projects'}" >
+                    <a href="#projects" aria-expanded="false" role="button" > <i class="icon fa-list-alt" aria-hidden="true" > </i > &nbsp;<span class="hidden-xs" data-i18n="app:pages.shell.projects" > </span > </a >
+                    </li >
+                    <li class="hidden-float hidden" data-bind="css:{'active' : $root.activeHash() === '#search'}" >
+                    <a id="simpleSearchButton" data-toggle="collapse" href="#" data-target="#site-navbar-search" > <i class="icon fa-search" aria-hidden="true" > </i > &nbsp;<span class="hidden-xs" data-i18n="app:pages.shell.search" > </span > </a >
+                    </li >
+                    <li data-bind="css:{'active' : $root.activeHash() === '#search'}" >
+                    <a href="#search" > <i class="icon fa-search" aria-hidden="true" > </i > &nbsp;<span class="hidden-xs" data-i18n="app:pages.shell.search" > </span > </a >
+                    </li > -->
+                </ul>
+
+                <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+                    <li class="dropdown">
+                        <div class="loader " data-bind="css: { 'loader-ellipsis': router.isNavigating }">
+
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up"
+                           role="button" style="margin-right:15px">
+                            <span class="avatar avatar-online avatar-navbar">
+                                <img alt="..." data-bind="src:context.user().avatar()">
+                                <i> </i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li role="presentation">
+                                <a href="#profile" role="menuitem"> <i class="icon wb-user" aria-hidden="true"> </i> &nbsp;<span data-bind="i18n:'app:pages.shell.profile'"> </span> </a>
+                                <a href="#stars" role="menuitem"> <i class="icon wb-star" aria-hidden="true"> </i> &nbsp;<span data-bind="i18n:'app:pages.shell.starred'"> </span> </a>
+                            </li>
+                            <li class="divider" role="presentation"> </li>
+
+                            <li class="dropdown-header" role="presentation" data-i18n="app:pages.shell.language"> Language</li>
+                            <!-- ko foreach:languages -->
+                            <li tabindex="-1" role="presentation" data-bind="css:{'active':$root.isSelectedLanguage($data)}">
+                                <a href="javascript:void(0)" data-bind="click:$root.changeLanguage" role="menuitem"> <i data-bind="'class':$data.icon" aria-hidden="true"> </i> &nbsp;<span data-bind="text:text"> </span> </a>
+                            </li>
+                            <!-- /ko -->
+                            <li class="dropdown-header" role="presentation" data-i18n="app:pages.shell.quickSettings"> Quick Settings</li>
+
+                            <li class="dropdown-submenu">
+                                <a class="test" tabindex="-1" href="#">
+                                    <i class="icon fa-arrows-h" aria-hidden="true"> </i>
+                                    &nbsp;<span class="hidden-xs" data-i18n="app:pages.shell.resize"> </span>
+                                </a>
+                                <ul class="dropdown-menu right-open">
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,0,12)" role="menuitem"> 0-12</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,3,9)" role="menuitem"> 3-9</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,4,8)" role="menuitem"> 4-8</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,5,7)" role="menuitem"> 5-7</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,6,6)" role="menuitem"> 6-6</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,7,5)" role="menuitem"> 7-5</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,8,4)" role="menuitem"> 8-4</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,9,3)" role="menuitem"> 9-3</a> </li>
+                                    <li role="presentation"> <a tabindex="-1" href="#" data-bind="click:resizeLayoutBy.bind($data,12,0)" role="menuitem"> 12-0</a> </li>
+                                </ul>
+                            </li>
+
+                            <li class="divider" role="presentation"> </li>
+
+                            <li tabindex="-1" role="presentation">
+                                <a href="#" role="menuitem" data-bind="click:$root.logout"> <i class="icon wb-power" aria-hidden="true"> </i> &nbsp;<span data-i18n="app:pages.shell.logout"> </span> </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="collapse navbar-search-overlap" id="site-navbar-search">
+                <form role="search">
+                    <div class="form-group">
+                        <div class="input-search">
+                            <i class="input-search-icon wb-search" aria-hidden="true"> </i>
+                            <input type="text" class="form-control" name="query" placeholder="Search...">
+                            <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search" data-toggle="collapse" aria-label="Close"> </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- /ko -->
+    <div class="site-menubar site-menubar-custom" style="background-color:#a7a6a6">
+        <div class="site-menubar-body">
+            <div>
+                <div>
+                    <div class="site-menubar-section company">
+                        <img data-bind="src:$root.context.getCompanyLogo()" style="background-color:#a7a6a6" class="img-responsive" / >
+
+                    </div>
+
+                    <ul class="site-menu">
+                        <li class="site-menu-category"> </li>
+                        <li class="site-menu-item custom-item" style="background-color:#ff0000;" data-bind="visible:$root.isIpad()">
+                            <a class="animsition-link" data-bind="visible:mobilePageViewEnabled,click:navigateToBack">
+                                <i class="site-menu-icon wb-chevron-left" aria-hidden="true"> </i>
+                                <span class="site-menu-title"> <i class="wb-chevron-left" aria-hidden="true"> </i> </span>
+
+                            </a>
+                        </li>
+                        <li class="site-menu-item custom-item">
+                            <a class="animsition-link" href="#/activities" data-slug="activities">
+                                <i class="site-menu-icon ion-ios-pulse" style="font-weight:bold;" aria-hidden="true"> </i>
+                                <span class="site-menu-title" data-i18n="app:pages.shell.activities"> </span>
+
+                            </a>
+                        </li>
+                        <li class="site-menu-item custom-item">
+                            <a class="animsition-link" href="#/projects" data-slug="activities">
+                                <i class="site-menu-icon fa-list-alt" aria-hidden="true"> </i>
+                                <span class="site-menu-title" data-i18n="app:pages.shell.projects"> </span>
+
+                            </a>
+                        </li>
+                        <li class="site-menu-item custom-item">
+                            <a class="animsition-link" href="#/search" data-slug="activities">
+                                <i class="site-menu-icon fa-search" style="font-weight:bold;" aria-hidden="true"> </i>
+                                <span class="site-menu-title" data-i18n="app:pages.shell.search"> </span>
+
+                            </a>
+                        </li>
+
+
+                        <li class="site-menu-item custom-item">
+                            <a class="animsition-link" href="#stars" data-slug="starred-items">
+                                <i class="site-menu-icon wb-star" aria-hidden="true"> </i>
+                                <span class="site-menu-title" data-i18n="app:pages.shell.starred"> </span>
+
+                            </a>
+
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="site-menubar-footer hide">
+            <a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip" data-original-title="Settings">
+                <span class="icon wb-settings" aria-hidden="true"> </span>
+            </a>
+            <a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">
+                <span class="icon wb-eye-close" aria-hidden="true"> </span>
+            </a>
+            <a href="javascript: void(0);" data-bind="click:$root.logout" data-placement="top" data-toggle="tooltip" data-original-title="Logout">
+                <span class="icon wb-power" aria-hidden="true"> </span>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="site-gridmenu"> </div>
+    <!-- Page -->
+    <div class="page page-full animsition">
+
+        <div class="page-content page-content-full">
+
+            <div class="durandal-host" data-bind="router: { transition: 'entrance', model: router.activeItem, cacheViews:false, compositionComplete: router.compositionComplete, attached: router.attached }">
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

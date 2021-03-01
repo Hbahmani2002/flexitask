@@ -1,0 +1,120 @@
+﻿<div class="panel panel-task-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.todo.title"> </h3>
+        <div class="panel-actions">
+
+            <div class="dropdown">
+                <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="buttons">
+                </a>
+                <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                    <li role="presentation" data-bind="css:{'active':filter.includeSubTasks},visible:$root.isTaskView()">
+                        <a href="#" data-bind="toggleClick:filter.includeSubTasks" data-i18n="app:pages.todo.includeSubTasks"></a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#" data-bind="click:duplicateTodoLists" data-i18n="app:pages.todo.duplicateLists"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p class="clearfix" data-bind="visible:isTaskView()">
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right" data-bind=" click: newTodoList">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+       </p>
+        <div data-bind="foreach:sortedLists">
+            <div class="panel panel-card panel-card-todolist">
+                <div class="panel-heading">
+                <h3 class="panel-title  word-break"><span data-bind="text:name"></span>
+
+                </h3>
+                </div>
+                <div class="alert alert-info" role="alert">
+                  <span class=" word-break" data-bind="text:description"></span>
+                </div>
+
+                <div class="panel-body"  data-bind="collapseVisible:showTodoItems">
+                   <ul class="list-unstyled" data-bind="if:$root.isMultiTaskView">
+                        <li class="text-wrap" data-bind="visible:taskId">
+                            <i class="icon fa-list"></i>&nbsp;<a href="#/projects/{{$root.projectId}}/tasks/{{taskId}}" > {{taskName}}</a>
+                        </li>
+                    </ul>
+                    <div class="progress" data-bind="visible:hasItem">
+                        <div class="progress-bar" role="progressbar" data-bind="'aria-valuenow':completedTodosPercentage,style: { width: completedTodosPercentage()+'%' },text:completedTodosPercentage() + '%'" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            {{completedTodosPercentage}}%
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-dividered" data-bind="visible:hasItem,foreach:filteredItems">
+                        <li class="list-group-item">
+                            <div class="checkbox-custom checkbox-primary">
+                                <input type="checkbox" data-bind="checked: isChecked">
+                                <label class="todo-item-text word-break" data-bind="text: name.cached,visible:isEditing()==false, click: $parent.editItem, css: { 'todo-item-text-completed': isChecked }"></label>
+                            </div>
+
+                            <div data-bind="if:isEditing">
+                                <form role="form" class="js--todo-edit-form" data-bind="submit: $parent.updateItem,with:$parent.editingItem">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <textarea data-bind="value: name, valueUpdate: 'input'" class="form-control js--todo-edit-item-input" placeholder="" data-i18n="[placeholder]app:pages.todo.todoplaceholder"></textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-sm" data-i18n="app:pages.todo.save"></button>
+                                            <button type="button" class="btn btn-default btn-pure btn-icon fa-times" data-bind="click:$parents[1].cancelEditing" ></button>
+
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-danger btn-sm" href="javascript:void(0);" data-bind="click: $parents[1].deleteTodoItem" data-i18n="app:pages.todo.delete"></button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                    <form role="form" class="js--todo-new-form todo-new-form" data-bind="submit: addItem,with:currentItem">
+                        <fieldset>
+                            <div class="form-group">
+                                <textarea data-bind="value: name, valueUpdate: 'input',id:'todo-new-item-input-'+$parent.id" class="form-control todo-new-item-input js--todo-new-item-input" placeholder="" rows="1" data-i18n="[placeholder]app:pages.todo.todoplaceholder"></textarea>
+                            </div>
+                            <div class="form-group js--todo-new-form-buttons" style="display: none;">
+                                <button type="submit" class="btn btn-primary btn-sm" data-i18n="app:pages.todo.add"></button>
+                                <button type="button" class="btn btn-default btn-pure btn-icon fa-times" data-bind="click:$parent.cancelNewItem" ></button>
+
+
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="panel-toolbar" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <a class="btn " data-bind="toggleClick:showTodoItems,visible:!showTodoItems()">
+                            <i class="icon fa-angle-down" ></i><span  data-i18n="app:pages.todo.showTodoItems"></span>
+                        </a>
+                        <a class="btn "  data-bind="toggleClick:showTodoItems,visible:showTodoItems">
+                            <i class="icon fa-angle-up" ></i><span  data-i18n="app:pages.todo.hideTodoItems"></span>
+                        </a>
+                        <a class="btn "  data-bind="toggleClick:showCheckedItems,visible:showCheckedItems() && hasCheckItems()" >
+                            <span data-i18n="app:pages.todo.hideCompletedItems"></span>
+                        </a>
+                        <a class="btn "  data-bind="toggleClick:showCheckedItems,visible:!showCheckedItems() && hasCheckItems()" >
+                            <span data-bind="i18n:'app:pages.todo.showCompletedItems','i18n-options':{count:countOfCheckedItems}"></span>
+                        </a>
+
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn  pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu animation-scale-up animation-top-left animation-duration-250">
+                            <li role="presentation"><a href="#" data-bind="click: $root.deleteList" data-i18n="app:pages.todo.deletelist"></a></li>
+                            <li role="presentation"><a href="#" data-bind="click: $root.editTodoList"  data-i18n="app:pages.todo.edit"></a></li>
+                            <li role="presentation" data-bind="css :{'active':sortType()=='name' } "><a role="menuitem" tabindex="-1" href="#" data-bind="click:changeSortType.bind($data, 'name')" data-i18n="app:pages.todo.sortByName"></a></li>
+                            <li role="presentation" data-bind="css :{'active':sortType()=='date' } "><a role="menuitem" tabindex="-1" href="#" data-bind="click:changeSortType.bind($data, 'date')" data-i18n="app:pages.todo.sortByDate"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

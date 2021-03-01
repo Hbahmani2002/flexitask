@@ -1,0 +1,146 @@
+﻿,<div class="modal-dialog ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+            <button type="button" class="close"  data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title"  data-i18n="app:pages.expense.addexpense"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form  data-bind="with: model">
+                    <!-- ko if: $root.taskId == null -->
+                    <div class="row">
+                        <div class="form-group col-sm-12" data-bind="validationElement: taskId">
+                            <label class="control-label" for="input-task" data-i18n="app:pages.expense.task"></label>
+
+                            <select id="input-task"  placeholder="Enter task name" data-bind="select2Data: taskId, select2:  $root.autocomplete.getSelect2OptionsForTasks($root.projectId,1)" class="form-control"></select>
+
+                        </div>
+                    </div>
+                    <!-- /ko -->
+
+                    <!-- Text input-->
+                    <div class="form-group" data-bind="validationElement: userId">
+                        <label class="control-label" for="txt-person" data-i18n="app:pages.expense.person"></label>
+                        <select id="txt-person" data-bind="select2Data:userId,  optionsCaption: 'Choose...', select2: $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group" data-bind="validationElement: date">
+                        <label class=" control-label" for="txt-date" data-i18n="app:pages.expense.date"></label>
+                        <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="icon wb-calendar" aria-hidden="true"></i>
+                                </span>
+                                <input name="txt-date" id="txt-date" type="text" readonly="" class="form-control" data-bind="datepicker: date, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="txt-description" data-i18n="app:pages.expense.description"></label>
+                        <input id="txt-description" name="txt-description" type="text" placeholder="description" class="form-control" data-bind="value: description">
+                    </div>
+
+
+
+                    <div class="row" >
+                        <div class="form-group col-sm-6" data-bind="validationElement: amount">
+                            <label class="control-label" for="txt-amount" data-i18n="app:pages.expense.amount"></label>
+                            <input id="txt-amount" step="0.01" name="txt-amount" class="form-control " type="number" data-bind="value: amount">
+                        </div>
+                        <div class="form-group col-sm-6" data-bind="validationElement: currencyCode">
+                            <label class="control-label" for="select-currency" >$</label>
+                            <select class="form-control" id="select-currency" name="select-currency" data-bind="options: $root.lookups.currencyTypes, value: currencyCode, optionsText: 'currencyCode',optionsValue:'currencyCode', optionsCaption: 'Choose...'">
+                             </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group" data-bind="validationElement: status">
+                        <label class="control-label" for="select-status" data-i18n="app:pages.expense.status"></label>
+                        <select class="form-control " data-bind="value: status, options: $root.lookups.expenseStatus.getAll(), optionsText: 'text', optionsValue: 'value', optionsCaption: 'Choose...'"></select>
+                    </div>
+
+
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="control-label" for="radio-billable" data-i18n="app:pages.expense.billable"></label>-->
+                        <!--<div>-->
+                            <!--<div class="radio-custom radio-default radio-inline">-->
+                              <!--<input type="radio" id="radio-billable-yes" value="true"  data-bind="checked: isBillable">-->
+                              <!--<label for="radio-billable-yes" data-i18n="app:pages.expense.checkbillable"></label>-->
+                            <!--</div>-->
+                            <!--<div class="radio-custom radio-default radio-inline">-->
+                              <!--<input type="radio" id="radio-billable-no" value="false" data-bind="checked: isBillable">-->
+                              <!--<label for="radio-billable-no" data-i18n="app:pages.expense.checknonbillable"></label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="form-group">
+                        <label class="control-label" ></label>
+                        <div>
+                            <div class="checkbox-custom checkbox-default">
+                            <input type="checkbox" id="cb-billable" data-bind="checked: isBillable" title="">
+                            <label for="cb-billable" data-i18n="app:pages.expense.billable"></label>
+                        </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group" data-bind="validationElement: expenseType">
+                        <label class="control-label" for="select-type" data-i18n="app:pages.expense.type"></label>
+
+                        <select class="form-control" id="select-type" name="select-type"  data-bind="select2Data:expenseType,select2: $root.autocomplete.getSelect2OptionsForExpenseTypes()">
+                        </select>
+
+                    </div>
+                    <!-- File Button -->
+                    <div class="form-group" data-bind="visible:taskId">
+                        <label class="control-label" for="filebutton" data-i18n="app:pages.expense.attachments"></label>
+                        <div >
+                            <span class="btn btn-default fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span data-i18n="app:pages.expense.selectfiles"></span>
+                                <input id="fileupload" class="js--file-upload" data-progress-selector=".js--file-upload-progress" type="file" name="files[]" multiple>
+                            </span>
+                            <br />
+                            <br />
+                            <div class="progress hide-it js--file-upload-progress ">
+                                <div class="progress-bar progress-bar-success " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <ul class="list-group" data-bind="foreach: attachments">
+                                <li class="list-group-item">
+                                    <a href="" data-bind="href: $data.downloadUrl, text: $data.name"></a>
+                                    <div class="pull-right">
+                                        <a href="" data-bind="click: $root.removeAttachment.bind($data, $parent)" data-i18n="app:pages.table.delete"></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                            <div class=" pull-right">
+                                <button id="btn-cancel" name="btn-cancel" type="reset" data-bind="click: $root.cancel" class="btn btn-default btn-outline" data-i18n="app:pages.expense.cancel">Cancel</button>
+                                <button class="btn btn-primary" data-bind="activity: $root.save.isExecuting, command: $root.save" data-i18n="app:pages.expense.save"></button>
+                            </div>
+                    </div>
+
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

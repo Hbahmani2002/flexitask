@@ -1,0 +1,32 @@
+﻿<div class="modal-dialog ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-bind="visible:isNew" data-i18n="app:pages.newTodoList.createTitle"></h4>
+            <h4 class="modal-title" data-bind="visible:!isNew" data-i18n="app.pages.newTodoList.editTitle"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form role="form" >
+                    <div class="form-group" data-bind="validationElement: list.name">
+                        <label for="txt-list-name" class="control-label message" data-i18n="app:pages.newTodoList.name"></label>
+                        <input data-bind="value: list.name, valueUpdate: 'afterkeydown'" class="form-control autofocus" id="txt-list-name" />
+                    </div>
+                    <div class="form-group" >
+                        <label for="txt-list-description" class="control-label message" data-i18n="app:pages.newTodoList.description" ></label>
+                        <input data-bind="value: list.description, valueUpdate: 'afterkeydown'" class="form-control autofocus" id="txt-list-description" />
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-outline" type="reset" data-bind="click: cancel" data-i18n="app:pages.newTodoList.cancel"></button>
+                            <button class="btn btn-primary" type="button" data-bind="click: save,enable:list.errors().length===0" data-i18n="app:pages.newTodoList.save"></button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

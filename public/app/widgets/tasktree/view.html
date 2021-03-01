@@ -1,0 +1,103 @@
+<div class="panel panel-task-tree" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3>&nbsp;</h3>
+        <div class="panel-actions">
+
+            <a href="javascript:void(0);" class="js--collapse-all panel-action icon fa-minus active" data-action="collapse-all"></a>
+            <a href="javascript:void(0);" class="js--expand-all panel-action icon fa-plus active" data-action="expand-all"></a>
+
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right" data-bind=" click: createNewTask">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+
+
+
+        </div>
+    </div>
+   
+    <div class="panel-body">
+        <div class="vertical-align text-center" data-bind="visible: showLoadingIndicatorThrottled">
+            <div class="loader loader-grill active"></div>
+        </div>
+        <div data-bind="visible: !showLoadingIndicatorThrottled()">
+            <div class="dd task-tree">
+                <ol class="dd-list" data-bind="template: { name: 'task-tree-template',foreach:filteredTasks},tree:{data:filteredTasks,options:treeOptions }"></ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="task-tree-template">
+    <li class="dd-item dd2-item task-item" data-bind="visible:visibleState,id:'ti'+id()">
+        <div class="dd-handle dd2-handle " data-bind="with:getVm().getTaskTypeInfo($data)">
+            <i class="task-icon" data-bind="css:$data.icon,style:$data.iconStyle"></i>
+        </div>
+        <div class="dd2-content clearfix  word-break task-content" style="padding-right:0;" data-bind="css: getVm().getTaskCssClasses($data),style:getVm().getTaskTypeInfo($data).style">
+            <div class="row" style="display:inline-block;width:100%;">
+                <div class="col-sm-7">
+                      
+                    <a data-type="task" class="task-link" data-bind="'data-task-id':id,href:getVm().helpers.navigations.getTaskNavigationUrl(getVm().projectId, id), text: name().trunc($root.prefs.middleColumnSize() * 10)"></a>
+                    <span data-bind="visible:isArchived">
+                        <i class="icon fa-archive" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5" style="padding-right:0;">
+                    <div class="task-attributes pull-right" data-bind="visible:getVm().showTaskAttributes($data)">
+                        <span data-bind="visible:getVm().viewOptions.showOwner, with:$data.getVm().getUser($data.owner)">
+                            <small>
+                                <img class="avatar avatar-xs avatar-scale" data-bind="src:$parent.getVm().helpers.getAvatarOrDefault($data),alt:fullName">
+                                </a>
+                            </small>
+                        </span>
+
+                        <span data-bind="visible: isBlocked() && getVm().viewOptions.showIsBlocked">
+                            <i class="fa fa-unlink"></i>
+                        </span>
+                        <span class="label label-success label-round" data-bind="visible:getVm().viewOptions.showCompletionPercentage() && completionPercentage() !== null,text:completionPercentage()+'%'">
+                        </span>
+                        <span class="label" data-bind="text:getVm().lookups.taskStatus.get(status).text, css:getVm().helpers.getTaskStatusClass(status)"></span>
+
+                        <span class="label" data-bind="visible:getVm().viewOptions.showStartDate,text:startDate() ? getVm().utils.formatDate(startDate): '-- | --',css:getVm().helpers.getTaskStartDateColor($data,getVm().lookups)"></span>
+
+                        <span class="label " data-bind="text: dueDate() ?getVm().utils.formatDate(dueDate) : '-- | --', css:getVm().helpers.getTaskDueDateColor($data,getVm().lookups)"></span>
+                        <span data-bind="with:$data.getVm().getUser($data.assignee)">
+                            <small>
+                                <img class="avatar avatar-xs avatar-scale" data-bind="src:$parent.getVm().helpers.getAvatarOrDefault($data),alt:fullName">
+                                </a>
+                            </small>
+                        </span>
+
+                        <span data-bind="visible:!$data.assignee()" class="avatar avatar-xs avatar-scale"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- ko with:getVm().getCustomFieldsDataList($data) -->
+            <div class="row" style="display:inline-block;width:100%;margin-top:10px;">
+                <div class="col-sm-12" style="padding-right:0;">
+                    <ul data-bind="foreach:$data" class="pull-right list-inline">
+                        <li class="task-custom-field">
+                            <a class="btn btn-xs btn-labeled btn-outline btn-dark btn-customFields" href="javascript:void(0);">
+                                <span class="btn-label" data-bind="text:title"></span>
+                                <span data-bind="text:value"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /ko -->
+            <div class="row" style="display:inline-block;width:100%;;margin-top:10px;" data-bind="visible:getVm().viewOptions.showTags() && ko.unwrap($data.tags).length>0">
+                <div class="col-sm-12 " style="padding-right:0;">
+                    <ul data-bind="foreach:$data.tags" class="pull-right list-inline">
+                        <li class="task-tag">
+                            <span class="label label-success label-round label-outline" data-bind="text:$data"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- ko if: $data.childs.hasItems -->
+        <ol class="dd-list" data-bind="template: { name: 'task-tree-template',foreach:$data.subTasks }"></ol>
+        <!-- /ko -->
+    </li>
+</script>

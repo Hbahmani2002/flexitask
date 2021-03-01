@@ -1,0 +1,53 @@
+<div class="panel panel-project-content" data-bind="panelActions:{}">
+    <div class="panel-heading">
+        <h3 class="panel-title" data-i18n="app:pages.customFieldModule.title"></h3>
+        <div class="panel-actions">
+            <a class="panel-action" data-bind="click:$root.duplicateCustomFields,i18n:'app:pages.customFieldModule.copyCustomFields'" ></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p class="clearfix">
+            <button type="button" class="btn btn-floating btn-danger btn-xs pull-right"
+                    data-bind="click:newCustomField">
+                <i class="icon wb-plus" aria-hidden="true"></i>
+            </button>
+        </p>
+        <div data-bind="foreach: customFields">
+            <div class="panel panel-card panel-card-note">
+                <div class="panel-heading">
+                    <div class="panel-actions">
+                        <span class="label label-primary" data-bind="text:typeAsText"></span>
+                    </div>
+                    <h3 class="panel-title">
+                        <span data-bind="text:title.cached"></span>
+                        <span class="panel-desc" data-bind="text:description.cached"></span>
+
+                    </h3>
+
+                </div>
+                <div class="panel-toolbar" role="toolbar">
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href="#" class="btn  pull-right" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="icon wb-more-horizontal" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu animation-scale-up animation-top-left animation-duration-250">
+                            <li role="presentation" data-bind="visible:$root.canEditOrDeleteCustomField($data)"><a
+                                    href="#" role="menuitem" data-bind="click: $root.deleteCustomField"
+                                    data-i18n="app:pages.note.delete"></a></li>
+                            <li role="presentation" data-bind="visible:$root.canEditOrDeleteCustomField($data)"><a
+                                    href="#" role="menuitem" data-bind="click: $root.editCustomField"
+                                    data-i18n="app:pages.note.edit"></a></li>
+                            <li role="presentation" data-bind="visible:!$root.canEditOrDeleteCustomField($data)"><a
+                                    href="#" role="menuitem" data-bind="click: $root.detachCustomField"
+                                    data-i18n="app:pages.note.detach"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,204 @@
+<div class="modal-dialog  modal-lg modal-table-grid ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+           <button type="button" class="close"  data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-bind="text:tableInfo.name"></h4>
+        </div>
+        <div class="modal-body">
+            
+            
+            <p data-bind="markdown:  {text:tableInfo.description,options:{truncate:true,highlight:true }}"></p>
+            
+         
+            <div class="row" data-bind="visible: !$root.editingOrViewingARow()">
+                <div class="form-group clearfix">
+                    <div class="pull-right ">
+                        <button type="button" class="btn btn-floating btn-danger btn-xs" data-bind="visible:!editingRow(), click: addNewRecord" >
+                            <i class="icon wb-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div id="grid-kendo"> </div>
+                </div>
+                <div class="form-group clearfix">
+                    <div class="pull-right ">
+                        <button type="button" class="btn btn-floating btn-danger btn-xs" data-bind="visible:!editingRow(), click: addNewRecord" >
+                            <i class="icon wb-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" data-bind="with: editingRow,visible:editingRow">
+                <form id="form-edit-row" class="well well-sm" >
+             
+                        <div class="row" data-bind="foreach:fields">
+                            <!-- ko if: meta.type=== 0 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <input type="text" class="form-control" data-bind="value: value, name: meta.field, id: meta.field" />
+                            </div>
+                            <!-- /ko -->
+
+                            <!-- ko if: meta.type=== 1 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <input type="text" class="form-control" data-bind="numberFormat: value, name: meta.field, id: meta.field" data-number-to-fixed="2" data-number-stepfactor="100" />
+                            </div>
+                            <!-- /ko -->
+
+                            <!-- ko if: meta.type=== 3 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <div class="checkbox-custom checkbox-primary">
+                                    <input type="checkbox" data-bind="checked: value, name: meta.field, id: meta.field"  />
+                                    <label></label>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+
+                            <!-- ko if: meta.type=== 4 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <input type="text" class="form-control" data-bind="value: value, name: meta.field, id: meta.field" />
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko if: meta.type=== 5 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <select class="form-control js--select2-clearable" data-bind="value: value, name: meta.field, options: meta.values, optionsCaption: '--Select--'"></select>
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko if: meta.type=== 6 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <select data-bind="select2Data:value,  optionsCaption: 'Choose...',  select2: $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko if: meta.type=== 7 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                <div>
+                                    <span class="btn btn-success fileinput-button">
+                                    <i class="icon fa-plus"></i>
+                                    <span data-i18n="app:pages.table.selectfiles"></span>
+                                    <input id="fileupload" class="js--file-upload" type="file" name="files[]" multiple>
+                                    </span>
+                                    <br />
+                                    <br />
+                                    <div id="{{meta.field}}-progress" class="progress hide-it">
+                                        <div class="progress-bar progress-bar-success"></div>
+                                    </div>
+
+                                    <ul class="list-group" data-bind="foreach: value">
+                                        <li class="list-group-item"><a href="" data-bind="href: $root.getAttachmentDownloadUrl($data), text: $data.name"></a>
+                                            <div class="pull-right">
+                                                <a href="" data-bind="click: $root.removeFile.bind($data, $parent)" data-i18n="app:pages.table.delete"></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko if: meta.type=== 8 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                
+                                <div class="input-group">
+                                        <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+                                    <div class="input-group date" data-bind="dateTimepicker:value">
+                                        <input type='text' class="form-control" data-bind="name: meta.field, id: meta.field" />
+                                        <span class="input-group-addon">
+                                            <span class="icon wb-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                    
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko if: meta.type=== 9 -->
+                            <div class="form-group col-sm-12" data-bind="validationElement:value">
+                                <label  data-bind="text: meta.title,for:meta.field"></label>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:meta.description,options:{truncate:true,highlight:true }}"></p>
+
+                                <select data-bind="select2Data: $data.value, select2: $root.taskAutoCompleteOptions,select2Selected: $root.taskSelected.bind($data)" class="form-control"></select>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                      
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" data-bind="click: $root.saveRecord" data-i18n="app:pages.table.save"></button>
+                                <button class="btn btn-default btn-pure" type="reset" data-bind="click: $root.cancelRecord" data-i18n="app:pages.table.cancel"> </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                </form>
+            </div>
+
+            <div class="row" data-bind="if: $root.currentRowView">
+                 <div >
+                        
+                        <p >
+                            <a class="btn btn-primary btn-outline" href="" data-bind="click: $root.resetRowView" role="button"><i class="icon fa-arrow-left" aria-hidden="true"></i> <span data-i18n="app:pages.table.back"></span></a>
+                        </p>
+                      
+                        <div class="well well-sm">
+                            <!-- ko foreach: $root.tableInfo.sortedFields -->
+                            <div class="form-view-wrap">
+                                <h4 class="form-view-title" data-bind="text: title"></h4>
+                                <p class="list-group-item-text markdown-content" data-bind="markdown:  {text:description,options:{truncate:true,highlight:true }}"></p>
+                                <div class="form-view-content">
+                                    <div data-bind="if: type == 6">
+                                        <div data-bind="with: $root.context.getUserById($root.currentRowView()[field])">
+                                            <span data-bind="text: fullName"></span>
+                                        </div>
+                                    </div>
+                                    <div data-bind="if: type== 4">
+                                        <div data-bind="with: $root.currentRowView()[field]">
+                                            <a target="_blank" data-bind="href: $data, text: $data"></a>
+                                        </div>
+                                    </div>
+                                    <div data-bind="if: type == 7">
+                                        <ul class="list-group" data-bind="foreach: $root.currentRowView()[field]">
+                                            <li class="list-group-item"><a href="" data-bind="href: $root.getAttachmentDownloadUrl($data), text: $data.name"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div data-bind="if: type == 9" >
+                                        <div data-bind="with:$root.currentRowView()[field]">
+                                            <a target="_blank" data-bind="href:$root.helpers.navigations.getTaskNavigationUrl($data.projectId,$data.id),text:$data.name"></a>
+                                        </div>
+                                    </div>
+                                    <div data-bind="if:type===8">
+                                        <span data-bind="visible:$root.currentRowView()[field],text:$root.utils.formatDateTime($root.currentRowView()[field])"></span>
+                                    </div>
+                                    <div data-bind="if:type==0 || type==1 || type==3 || type==5">
+                                        <span data-bind="text: $root.currentRowView()[field]"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+
+       
+        </div>
+    </div>
+</div>

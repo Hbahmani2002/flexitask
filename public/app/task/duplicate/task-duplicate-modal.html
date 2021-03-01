@@ -1,0 +1,158 @@
+﻿<div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.taskDuplicate.title"></h3>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-warning alert-dismissible" role="alert" data-bind="visible:hasAnyCustomFieldInConflictState ">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <span data-i18n="app:pages.taskDuplicate.customFieldsWarningMessage"></span>
+            </div>
+
+            <div class="alert alert-warning alert-dismissible" role="alert" data-bind="visible:!canDuplicateCollaborators() ">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  </button>
+                  <span data-i18n="app:pages.taskDuplicate.collaboratorsCannotCopyPersonalProject"></span>
+            </div>
+            <div class="row">
+                <form>
+                    <div class="row">
+                        <div class="form-group  col-sm-12" data-bind="validationElement:targetProjectId">
+                            <label class="control-label" data-i18n="app:pages.taskDuplicate.targetprojectname"></label>
+                            <select id="select-project"  data-bind="select2Data: targetProjectId, select2:  projectAutocomplete" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12" data-bind="if: targetProjectId">
+                            <label class="control-label" data-i18n="app:pages.taskDuplicate.targetparenttaskname"></label>
+                            <select id="select-task" data-i18n="[placeholder]app:pages.taskDuplicate.entertaskname"  data-bind="disable: targetProjectId() == null,select2Data: targetParentTaskId, select2:  getTaskTypeahead" class="form-control"></select>
+
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="visible: targetProjectId,validationElement:taskName">
+                        <label class="control-label" data-i18n="app:pages.taskDuplicate.newTaskName"></label>
+                        <input type="text" class="form-control" placeholder="enter new task name"  data-bind="value:taskName" />
+                    </div>
+                    <div class="form-group" data-bind="visible: targetProjectId">
+                        <label class="control-label" data-i18n="app:pages.taskDuplicate.prefixForTasks"></label>
+                        <input type="text" class="form-control" data-i18n="[placeholder]app:pages.taskDuplicate.enterPrefix" placeholder="enter prefix"  data-bind="value:taskNamePrefix,valueUpdate:'afterkeydown'" />
+                    </div>
+                    <div class="row" data-bind="visible: targetProjectId">
+                        <label  class="control-label col-sm-12" data-i18n="app:pages.taskDuplicate.include"></label>
+                        <div class="form-group col-sm-6" >
+                            <div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-archivedTasks" data-bind="checked: includeArchivedTasks" />
+                                    <label for="cb-archivedTasks" data-i18n="app:pages.taskDuplicate.archivedTasks"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeSubtasks" data-bind="checked: includeSubtasks" />
+                                    <label for="cb-includeSubtasks" data-i18n="app:pages.taskDuplicate.subtasks"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeCollaborators" data-bind="checked: includeCollaborators,disable:!canDuplicateCollaborators()" />
+                                    <label for="cb-includeCollaborators" data-i18n="app:pages.taskDuplicate.collaborators"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeDates" data-bind="checked: includeDates" />
+                                    <label for="cb-includeDates" data-i18n="app:pages.taskDuplicate.dates"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeStatus" data-bind="checked: includeStatus" />
+                                    <label for="cb-includeStatus" data-i18n="app:pages.taskDuplicate.status"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTags" data-bind="checked: includeTags" />
+                                    <label for="cb-includeTags" data-i18n="app:pages.taskDuplicate.tags"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeNotes" data-bind="checked: includeNotes" />
+                                    <label for="cb-includeNotes" data-i18n="app:pages.taskDuplicate.notes"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTodos" data-bind="checked: includeTodos" />
+                                    <label for="cb-includeTodos" data-i18n="app:pages.taskDuplicate.todos"></label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6" >
+                            <div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeComments" data-bind="checked: includeComments" />
+                                    <label for="cb-includeComments" data-i18n="app:pages.taskDuplicate.comments"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                        <input type="checkbox" id="cb-includeAttachments" data-bind="checked: includeAttachments" />
+                                        <label for="cb-includeAttachments" data-i18n="app:pages.taskDuplicate.attachments"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeExpenses" data-bind="checked: includeExpenses" />
+                                    <label for="cb-includeExpenses" data-i18n="app:pages.taskDuplicate.expenserecords"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTimeLogs" data-bind="checked: includeTimeLogs" />
+                                    <label for="cb-includeTimeLogs" data-i18n="app:pages.taskDuplicate.timetrackingrecords"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTables" data-bind="checked: includeTables" />
+                                    <label for="cb-includeTables" data-i18n="app:pages.taskDuplicate.tables"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeRelatedTasks" data-bind="checked: includeRelatedTasks" />
+                                    <label for="cb-includeRelatedTasks" data-i18n="app:pages.taskDuplicate.relatedtasks"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeDependedTasks" data-bind="checked: includeDependedTasks" />
+                                    <label for="cb-includeDependedTasks" data-i18n="app:pages.taskDuplicate.dependedtasks"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeCustomFields" data-bind="checked: includeCustomFields" />
+                                    <label for="cb-includeCustomFields" data-i18n="app:pages.taskDuplicate.customFields"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="visible: includeDates">
+                      <label class="control-label" data-i18n="app:pages.taskDuplicate.doYouWantRecalculateAllDates"></label>
+                      <div>
+                        <div class="radio-custom radio-default radio-inline">
+                          <input type="radio" id="cb-calculatedates-yes" name="calculate-dates" data-bind="checkedValue: true,checked: shiftDates">
+                          <label for="cb-calculatedates-yes" data-i18n="app:pages.taskDuplicate.yes"></label>
+                        </div>
+                        <div class="radio-custom radio-default radio-inline">
+                          <input type="radio" id="cb-calculatedates-no" name="calculate-dates" data-bind="checkedValue: false,checked: shiftDates">
+                          <label for="cb-calculatedates-no" data-i18n="app:pages.taskDuplicate.no"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" data-bind="visible:includeDates() && shiftDates()"  >
+                        <div class="col-sm-12">
+                            <label class="control-label" data-i18n="app:pages.taskDuplicate.shiftByDate"></label>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <div class="input-group">
+                                <input type="number"  class="form-control" data-bind="value:dateShiftingValueAsDay" >
+                                <span class="input-group-addon" data-i18n="app:pages.taskDuplicate.days"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-outline" data-bind="click: cancel" data-i18n="app:pages.taskDuplicate.cancel"></button>
+                            <button class="btn btn-primary" data-bind="activity: $root.startTaskDuplication.isExecuting, command: $root.startTaskDuplication" data-i18n="app:pages.taskDuplicate.ok"></button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

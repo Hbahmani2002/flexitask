@@ -1,0 +1,263 @@
+﻿<div class="modal-dialog ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: $root.cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.createtask.header"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form>
+                    <div>
+                        <div class="panel-group" id="accordion-task-sections" aria-multiselectable="false" role="tablist">
+                            <div class="panel panel-bordered panel-primary">
+                                <div class="panel-heading" id="panel-collapse-header-main" role="tab">
+                                    <a class="panel-title " data-toggle="collapse" href="#panel-collapse-main" aria-expanded="true" aria-controls="panel-collapse-main" data-i18n="app:pages.createtask.h-basics">
+                                        </a>
+                                </div>
+                                <div class="panel-collapse collapse in" id="panel-collapse-main">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="select-tasktype" class="control-label" data-i18n="app:pages.createtask.type"></label>
+                                            <select id="select-tasktype" class="form-control" data-bind="options: lookups.taskType.getAll(), value: taskType, optionsText: 'text', optionsValue: 'value'">
+                                            </select>
+                                        </div>
+                                        <div class="form-group" data-bind="validationElement: name">
+                                            <label for="txt-taskname" class="control-label" data-i18n="app:pages.createtask.taskname"></label>
+                                            <input autocomplete="off" autofocus type="text" id="txt-taskname" class="form-control input-lg focus" placeholder="" data-i18n="[placeholder]app:pages.createtask.entertaskname" data-bind="value: name"  />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 form-group ">
+                                                <label for="txt-parenttask" class="control-label" data-i18n="app:pages.createtask.parenttask"></label>
+                                                <select id="txt-parenttask"  data-bind="select2Data: parentTaskId, select2:  $root.autocomplete.getSelect2OptionsForTasks(projectId,1)" class="form-control"></select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-abovetask" class="control-label" data-i18n="app:pages.createtask.abovetask"></label>
+                                            <select id="select-abovetask" class="form-control" data-bind="options: tasksForCreateTasksScreen , value: selectedTaskForOrder , optionsText: 'name', optionsCaption: 'Choose...'">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txt-description" class="control-label" data-i18n="app:pages.createtask.description"></label>
+                                            <textarea class="form-control" rows="3" data-bind="value: description"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-assignee" class="control-label" data-i18n="app:pages.createtask.assignee"></label>
+                                            <select id="select-assignee" data-bind="optionsCaption: 'Choose...',select2Data: assigneeUserId,  select2:  $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="txt-startdate" class="control-label" data-i18n="app:pages.createtask.startdate"></label>
+                                                <div class="input-group date" data-bind="dateTimepicker: startDate">
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="icon wb-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="txt-duedate" class="control-label" data-i18n="app:pages.createtask.duedate"></label>
+                                                <div class="input-group date" data-bind="dateTimepicker: dueDate">
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="icon wb-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="select-status" class="control-label" data-i18n="app:pages.createtask.status"></label>
+                                                <select id="select-status" class="form-control" data-bind="options: lookups.taskStatus.getAll(), value: status, optionsText: 'text', optionsValue: 'value'"></select>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="select-status" class="control-label" data-i18n="app:pages.createtask.priority"></label>
+                                                <select class="form-control" data-bind="options: lookups.taskPriority.getAll(),
+                                           optionsText: 'text',
+                                           optionsValue:'value',
+                                           value: priority"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="pull-right clearfix">
+                                            <button type="reset" class="btn btn-default btn-outline" data-bind="click: cancel" data-i18n="app:pages.createtask.cancel"></button>
+                                                <button type="submit" class="btn btn-primary" data-bind="click: createTask" data-i18n="app:pages.createtask.save"></button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-bordered panel-primary">
+                                <div class="panel-heading" id="panel-collapse-header-collaborators" role="tab">
+                                    <a class="panel-title collapsed" data-toggle="collapse" href="#panel-collapse-collaborators" aria-expanded="false" aria-controls="panel-collapse-collaborators" data-i18n="app:pages.createtask.h-collaborators">
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-collapse-collaborators" aria-labelledby="panel-collapse-header-collaborators" role="tabpanel" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="select-coowners" class="control-label" data-i18n="app:pages.createtask.coowners"></label>
+                                            <select multiple="multiple" id="select-coowners" data-bind="select2Data: coowners, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-coassignees" class="control-label" data-i18n="app:pages.createtask.coassignees"></label>
+                                            <select multiple="multiple" id="select-coassignees" data-bind="select2Data: coassignees,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-follower1" class="control-label" data-i18n="app:pages.createtask.followers1"></label>
+                                            <select multiple="multiple" id="select-follower1" data-bind="select2Data: followers1,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-follower2" class="control-label" data-i18n="app:pages.createtask.followers2"></label>
+                                            <select multiple="multiple" id="select-follower2" data-bind="select2Data: followers2, select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-follower3" class="control-label" data-i18n="app:pages.createtask.followers3"></label>
+                                            <select multiple="multiple" id="select-follower3" data-bind="select2Data: followers3,  select2: $root.autocomplete.getSelect2OptionsForCollaborators(true)" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-bordered panel-primary">
+                                <div class="panel-heading" id="panel-collapse-header-collaborators2" role="tab">
+                                    <a class="panel-title collapsed" data-toggle="collapse" href="#panel-collapse-collaborators2" aria-expanded="false" aria-controls="panel-collapse-collaborators2" data-i18n="app:pages.createtask.h-estimations">
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-collapse-collaborators2" aria-labelledby="panel-collapse-header-collaborators2" role="tabpanel" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="txt-estimatedDurationDays" class="control-label" data-i18n="app:pages.createtask.durationDays"></label>
+                                                <input type="number" id="txt-estimatedDurationDays" class="form-control" data-bind="value:estimatedDurationDays">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="txt-estimatedEffordHours" class="control-label" data-i18n="app:pages.createtask.estimatedEfford"></label>
+                                                <input type="number" class="form-control" data-bind="value:estimatedEffordHours">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txt-completionPercentage" class="control-label" data-i18n="app:pages.createtask.completionPercentage">
+                                            </label>
+                                            <input type="number" id="txt-completionPercentage" max="100" min="0" class="form-control" data-bind="value:completionPercentage">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txt-estimatedBudget" class="control-label"  data-i18n="app:pages.createtask.estimatedBudget">
+                                            </label>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <input type="number" id="txt-estimatedBudget" class="form-control" data-bind="value:estimatedBudget">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <select class="form-control" data-bind="options: $root.lookups.currencyTypes, value: estimatedBudgetCurrencyCode, optionsText: 'currencyCode',optionsValue:'currencyCode'">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-bordered panel-primary">
+                                <div class="panel-heading" id="panel-collapse-header-tags" role="tab">
+                                    <a class="panel-title collapsed" data-toggle="collapse" href="#panel-collapse-tags" aria-expanded="false" aria-controls="panel-collapse-tags" data-i18n="app:pages.createtask.h-tags-customfields">
+                                          
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-collapse-tags" aria-labelledby="panel-collapse-header-tags" role="tabpanel" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="select-tags" class="control-label" data-i18n="app:pages.createtask.tags"></label>
+                                            <select id="select-tags" multiple="multiple" data-bind="select2Data: tags, select2: $root.autocomplete.getSelect2OptionsForProjectTags($root.projectId())">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-customfields" class="control-label" data-i18n="app:pages.createtask.customFields"></label>
+                                            <ul data-bind="foreach: customFieldDefinations" class="list-inline">
+                                                <li>
+                                                    <div class="checkbox-custom checkbox-primary">
+                                                        <input type="checkbox" data-bind="attr: { value: id }, checked: $root.selectedCustomFields,id:'cb_cf_'+id">
+                                                        <label for="cb-isBlocked" data-bind="text:title,for:'cb_cf_'+id"></label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-bordered panel-primary">
+                                <div class="panel-heading" id="panel-collapse-header-settings" role="tab">
+                                    <a class="panel-title collapsed" data-toggle="collapse" href="#panel-collapse-settings" aria-expanded="false" aria-controls="panel-collapse-settings"  data-i18n="app:pages.createtask.h-comment-module-settings">
+                                        
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-collapse-settings" aria-labelledby="panel-collapse-header-settings" role="tabpanel" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="select-commentreplylevel" class="control-label" data-i18n="app:pages.createtask.maxReplyLevel">
+                                            </label>
+                                            <select id="select-commentreplylevel" class="form-control" data-bind="value:commentReplyLevel">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" data-bind="visible:commentReplyLevel()>0">
+                                            <label for="select-commentViewMode" class="control-label" data-i18n="app:pages.createtask.commentViewMode">
+                                            </label>
+                                            <select class="form-control" id="select-commentViewMode" data-bind="options: lookups.commentViewModes.getAll(),value:commentViewMode,optionsText:'text',optionsValue:'value'"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-votestatus" class="control-label" data-i18n="app:pages.createtask.commentVoteStatus"></label>
+                                            <select class="form-control" id="select-votestatus" data-bind="options: lookups.commentVoteStatus.getAll(),value:commentVoteStatus,optionsText:'text',optionsValue:'value'">
+                                            </select>
+                                        </div>
+                                        <div class="form-group" data-bind="visible:commentVoteStatus().toString()==='1'">
+                                            <label for="select-votemode" class="control-label" data-i18n="app:pages.createtask.commentVoteMode"></label>
+                                            <select class="form-control" id="select-votemode" data-bind="options: lookups.commentVoteModes.getAll(),value:commentVoteMode,optionsText:'text',optionsValue:'value'"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-commentDefaultSortingMode" class="control-label"  data-i18n="app:pages.createtask.commentSortMode">
+                                            </label>
+                                            <select class="form-control" id="select-commentDefaultSortingMode" data-bind="options: lookups.commentSortModes.getAll(),value:commentDefaultSortingMode,optionsText:'text',optionsValue:'value'"></select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Here -->
+                            <div class="panel panel-bordered panel-primary">
+                                <div class="panel-heading" id="panel-collapse-header-module" role="tab">
+                                    <a class="panel-title collapsed" data-toggle="collapse" href="#panel-collapse-module" aria-expanded="false" aria-controls="panel-collapse-module" data-i18n="app:pages.createtask.modules">
+
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" id="panel-collapse-module" aria-labelledby="panel-collapse-header-module" role="tabpanel" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="cbl-modules" class="control-label" data-i18n="app:pages.createtask.modules"></label>
+                                            <ul data-bind="foreach: taskModules" class="list-inline">
+                                                <li>
+                                                    <div class="checkbox-custom checkbox-primary">
+                                                        <input type="checkbox" data-bind="attr: { value: value }, checked: $root.selectedModules,id:'cb_m_'+value">
+                                                        <label for="cb-isBlocked" data-bind="text:text,for:'cb_m_'+value"></label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <span class="help-block" data-i18n="app:pages.createtask.module_help"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- here -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

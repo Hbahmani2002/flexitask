@@ -1,0 +1,80 @@
+<div>
+<div data-bind="collapseVisible:$root.shouldShowSearchForm">
+    <div class="panel panel-card panel-card-saved-search">
+        <div class="panel-heading">
+            <h3 class="panel-title" data-i18n="app:pages.savedSearch.title"></h3>
+            <div class="panel-actions">
+                <div class="dropdown">
+                    <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="true" role="button"></a>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                        <li role="presentation">
+                           
+                            <a href="#" data-bind="click:$root.createMergedSearchFromSelected" data-i18n="app:pages.savedSearch.createNewSearchFromSelectedSearches"></a>
+                            <a href="#" data-bind="click:$root.runSelectedSavedSearch" data-i18n="app:pages.savedSearch.runSelectedSavedSearch"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover ">
+            <tbody data-bind="foreach:allSearchTemplates ">
+            <tr data-bind="css:{ 'active': $data.isSelected ||false }">
+                <td style="width: 50px;">
+                    <i class="icon fa-check" data-bind="visible: $data.isSelected"></i>
+                </td>
+                <td>
+                    <a class="saved-search-link"  href="javascript:void(0)" data-bind="click: $parent.useSavedSearch" >
+                        <h4  data-bind="text:name"> </h4>
+                    </a>
+                    <p class="saved-search-description" data-bind="visible:$data.description,text:$data.description || ''"></p>
+                </td>
+                <td>
+                    <div class="panel-actions panel-action-saved-search">
+                        <div class="dropdown dropdown-saved-search" data-bind="if: $data.id || false">
+                            <a class="dropdown-toggle panel-action icon wb-more-vertical" data-toggle="dropdown" href="#"></a>
+                            <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250">
+                                <li role="presentation">
+                                    <a href="#" data-bind="click:$parent.deleteSavedSearch" data-i18n="app:pages.savedSearch.deleteSavedSearch"></a>
+                                </li>
+
+                                <li role="presentation" data-bind="visible:$data.isStarred()==false">
+                                    <a href="#"  data-bind="click:$parent.starSearch" data-i18n="app:pages.savedSearch.starSearch"></a>
+                                </li>
+                                <li role="presentation" data-bind="visible:$data.isStarred()">
+                                    <a href="#"  data-bind="click:$parent.unstarSearch" data-i18n="app:pages.savedSearch.unstarSearch"></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#"  data-bind="click:$parent.editSavedSearch" data-i18n="app:pages.savedSearch.editSavedSearch"></a>
+                                </li>
+                                <li role="presentation" data-bind="visible:$data.isSelected()==false">
+                                    <a href="#"  data-bind="click:$parent.selectSavedSearch" data-i18n="app:pages.savedSearch.selectSearch"></a>
+                                </li>
+                                <li role="presentation" data-bind="visible:$data.isSelected()">
+                                    <a href="#"  data-bind="click:$parent.unselectSavedSearch" data-i18n="app:pages.savedSearch.unselectSearch"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <div class="panel" data-bind="fadeVisible:!shouldShowSearchForm()">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="btn btn-primary btn-outline" href="" data-bind="toggleClick:shouldShowSearchForm" role="button"><i class="icon fa-arrow-left" aria-hidden="true"></i> <span data-i18n="app:pages.savedSearch.backToSearchForm"></span></a>
+                    <br>
+                    <br>
+
+                    <h3 class="font-size-18"><span data-i18n="app:pages.savedSearch.searchResults"></span></h3>
+                    
+                </div>
+            </div>
+            <div class="panel-body">
+                <div data-bind="widget: {kind:'taskgrid',toolbarTemplate:'#grid-toolbar-template',columns:['project','name','assignee','status','dueDate'], tasks:results,filter:viewFilter,gridId: $root.gridUniqueName}"></div>
+            </div>
+    </div>
+</div>

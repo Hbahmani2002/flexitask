@@ -1,0 +1,74 @@
+﻿
+        <div class="left-column durandal-column" data-bind="css:$root.prefs.middleColumnSizeClass">
+            <div class="panel panel-bordered panel-column-header panel-search" data-bind="panelActions :{}" id="search-header-panel">
+                <div class="panel-heading" style="background-color:white">
+                    <h3 class="panel-title"><i class="icon fa-search" aria-hidden="true"></i> <span data-i18n="app:pages.search.title"></span></h3>
+                    <div class="panel-actions">
+
+                    </div>
+                </div>
+                <div class="panel-toolbar"  role="toolbar">
+                     <div class="list-group-item">
+                        <ul class="nav nav-pills" data-tabs="tabs" role="tablist">
+                            <li role="presentation" data-bind="css:{'active': $root.activeTab() == $root.tabs.SAVED }">
+                                <a href="#search-saved" data-bind="click:activateTab.bind($data,$root.tabs.SAVED),tooltip:'Saved search'" role="tab" data-toggle="tab" data-i18n="app:pages.search.savedSearch"></a>
+                            </li>
+                            <li role="presentation" data-bind="css:{'active': $root.activeTab() == $root.tabs.TASK }">
+                                <a href="#search-task" data-toggle="tab" data-bind="click:activateTab.bind($data,$root.tabs.TASK),tooltip:'Search task'" role="tab" data-i18n="app:pages.search.searchTask"></a>
+                            </li>
+                            <li role="presentation" data-bind="css:{'active': $root.activeTab() == $root.tabs.ATTACHMENT }">
+                                <a href="#search-attachment" data-toggle="tab" data-bind="click:activateTab.bind($data,$root.tabs.ATTACHMENT),tooltip:'Search attachment',placement:'bottom'" role="tab" data-i18n="app:pages.search.searchAttachment"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-column-content" data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main'}">
+                <div class="panel-body">
+                     <div class="tab-content">
+                        <div class="tab-pane" id="search-saved" data-bind="css:{'active': $root.activeTab() === $root.tabs.SAVED }">
+                            <div data-bind="compose: { model:'search/search_saved' }">
+
+                            </div>
+                        </div>
+                        <div class="tab-pane " id="search-task" data-bind="css:{'active': $root.activeTab() === $root.tabs.TASK }">
+                          <div data-bind="compose: { model:'search/search_task' }">
+
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="search-attachment" data-bind="css:{'active': $root.activeTab() == $root.tabs.ATTACHMENT }">
+                            <div data-bind="compose: { model:'search/search_attachment' }">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="middle-column durandal-column" data-bind="css:$root.prefs.rightColumnSizeClass">
+            <div data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main'}"><!-- ko compose: selectedTask --><!--/ko--></div>
+
+
+        </div>
+
+<script type="text/x-kendo-template" id="grid-toolbar-template">
+    <div>
+        <a class="k-button k-button-icontext k-grid-excel" data-export-type="excel"><span class="k-icon k-i-excel"></span>&nbsp;<span class="js--localize" data-i18n="app:pages.taskSearch.gridExportToExcel" ></a>
+
+        <a class="k-button k-button-icontext  " data-export-type="calendar"><span class="k-icon k-i-calendar"></span>&nbsp;<span class="js--localize" data-i18n="app:pages.taskSearch.gridShowOnCalendar"></span></a>
+
+        <a class="k-button k-button-icontext  " data-export-type="ganttByAssignee"><span class="icon fa-bar-chart"></span>&nbsp;<span data-i18n="app:pages.taskSearch.gridGanttByAssignee" class="js--localize"></span></a>
+
+        <a class="k-button k-button-icontext  " data-export-type="ganttByStatus"><span class="icon fa-bar-chart"></span>&nbsp;<span data-i18n="app:pages.taskSearch.gridGanttByStatus" class="js--localize"></span></a>
+
+        <a class="k-button k-button-icontext " data-export-type="gantt"><span class="icon fa-bar-chart"></span>&nbsp;<span data-i18n="app:pages.taskSearch.gridGantt" class="js--localize"></span></a>
+
+        <a class="k-button k-button-icontext " data-export-type="ganttByProject"><span class="icon fa-bar-chart"></span>&nbsp;<span data-i18n="app:pages.taskSearch.gridGanttByProject" class="js--localize"></span></a>
+
+        <a class="k-button k-button-icontext " data-export-type="report"><span class="icon fa-bar-chart"></span>&nbsp;<span data-i18n="app:pages.taskSearch.gridShowOnReportCharts" class="js--localize"></span></a>
+
+
+
+
+    </div>
+</script>

@@ -1,0 +1,341 @@
+﻿
+<div>
+    <div class="panel panel-bordered panel-column-header  panel-task" data-bind="panelActions:{}" id="task-header-panel">
+        <div class="panel-heading " >
+            <h3 class="panel-title">
+                <i class="icon fa-list" aria-hidden="true"></i> <span  data-bind="text:details.name.cached"></span>
+                <small class="panel-desc " data-bind="visible:details.parentTaskName,with: details.parentTask">
+                    <a data-type="task" class="white"  data-bind="href: $root.helpers.navigations.getTaskNavigationUrl($data.projectId, $data.id),text:name"></a>
+                </small>
+            </h3>
+            <div class="panel-actions">
+                <a class="panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-chevron-up" data-toggle="panel-collapse" aria-expanded="true" aria-hidden="true"></a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle panel-action btn btn-sm btn-icon btn-default btn-outline btn-round icon wb-more-vertical" data-toggle="dropdown" href="#" aria-expanded="false" role="button">
+                    </a>
+                    <ul class="dropdown-menu bullet dropdown-menu-right animation-scale-up animation-top-right animation-duration-250" role="menu">
+                        <li role="presentation" data-bind="visible:!showDescription(),click:addDescriptionField"><a href="#" data-i18n="app:pages.task.addDescription"></a></li>
+                        <li role="presentation" data-bind="visible:!showTags(),toggleClick:showTags"><a href="#" data-i18n="app:pages.task.addTags"></a></li>
+                        <li role="presentation" data-bind="visible:!showCustomFields(),toggleClick:showCustomFields"><a href="#"  data-i18n="app:pages.task.addCustomFields"></a></li>
+                        <li role="presentation" class="divider" data-bind="visible:showActionDivider"></li>
+                        <li role="presentation" data-bind="visible:showDescription() && !$root.descriptionSectionVisibility()">
+                            <a href="#" data-bind=" toggleClick: $root.descriptionSectionVisibility" data-i18n="app:pages.task.showDescription"></a>
+                        </li>
+                        <li role="presentation" data-bind="visible:showDescription() && $root.descriptionSectionVisibility">
+                            <a href="#" data-bind="toggleClick: $root.descriptionSectionVisibility" data-i18n="app:pages.task.hideDescription"></a>
+                        </li>
+                        <li role="presentation" class="divider" data-bind="visible:showDescription"></li>
+                        <li role="presentation" data-bind="visible: $root.details.isStarred()">
+                            <a href="#" data-bind="click:unstarTask"><i class="icon wb-star"></i> <span data-i18n="app:pages.task.unstar"></span></a>
+                        </li>
+                        <li role="presentation" data-bind="visible: $root.details.isStarred()==false">
+                            <a href="#" data-bind="click:starTask"><i class="icon wb-star-outline"></i> <span data-i18n="app:pages.task.star"></span></a>
+                        </li>
+                        <li class="dropdown-submenu dropdown-menu-left">
+                            <a href="javascript:void(0)" tabindex="-1" data-i18n="app:pages.task.subscription"></a>
+                            <ul class="dropdown-menu" role="menu" data-bind="foreach:lookups.taskSubscriptionTypes.getAll()">
+                                <li role="presentation" data-bind="css:{ 'active': $root.details.taskSubscriptionType() == $data.value && $data.includeSubTasks == false }">
+                                    <a href="#" data-bind="text:text,click:$root.changeTaskSubscription"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu dropdown-menu-left">
+                            <a href="javascript:void(0)" tabindex="-1" data-i18n="app:pages.task.category"></a>
+                            <ul class="dropdown-menu" role="menu" data-bind="foreach:lookups.categories.getAll()">
+                                <li role="presentation" data-bind="css:{ 'active': $root.details.category() == $data.value }">
+                                    <a href="#" data-bind="click:$root.changeTaskCategory,html:text"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click: $root.deleteTask" data-i18n="app:pages.task.deleteTask"></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click:$root.duplicateTask" data-i18n="app:pages.task.duplicateTask"></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" data-bind="click:$root.showTaskDateShiftingWindow" data-i18n="app:pages.task.shiftWorkItemDates">Shift task dates...</a>
+                        </li>
+                        <li role="presentation" data-bind="visible: details.isArchived() == false">
+                            <a href="#" data-bind="click: $root.archiveTask" data-i18n="app:pages.task.archiveTask"></a>
+                        </li>
+                        <li role="presentation" data-bind="visible: details.isArchived">
+                            <a href="#" data-bind="click: $root.unarchiveTask" data-i18n="app:pages.task.unarchiveTask"></a>
+                        </li>
+                        <li role="presentation" data-bind="visible: details.isBlocked()==false">
+                            <a href="#" data-bind="click: $root.blockTask" data-i18n="app:pages.task.markAsBlocked"></a>
+                        </li>
+                        <li role="presentation" data-bind="visible: details.isBlocked">
+                            <a href="#" data-bind="click: $root.unblockTask" data-i18n="app:pages.task.clearBlocking"></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel-collapse">
+            <div class="panel-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                    <a data-bind="visible: $root.details.isStarred()" class="btn" href="javascript:void(0)" role="button">
+                        <i class="icon wb-star" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn" href="javascript:void(0)" role="button" data-bind="html:lookups.categories.get($root.details.category()).text">
+                    </a>
+                    <a class="btn" href="javascript:void(0)" role="button">
+                        <i data-bind="'class': lookups.taskSubscriptionTypes.get($root.details.taskSubscriptionType).icon"></i>
+                    </a>
+                    <a data-bind="visible: details.waitingForAnotherTask" class="btn" href="javascript:void(0)" role="button">
+                        <i class="icon wb-lock" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn" href="javascript:void(0)" role="button" data-bind="visible:details.completionPercentage.cached()!==null">
+                        <span data-bind="text:details.completionPercentage.cached() + '%'" class="label label-round label-success"></span>
+                    </a>
+                    <a class="btn" href="javascript:void(0)" role="button" data-bind="visible:details.isArchived">
+                        <i class="icon fa-archive" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="btn-group  pull-right" role="group">
+                    <button type="button" class="btn btn-floating btn-danger btn-xs" data-bind=" click: createNewTask" style="padding:0;color:white;">
+                        <i class="icon wb-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-section panel-section-bordered">
+
+                <div class="btn-group" >
+                  <button type="button" id="btn-task-assignee" data-bind="css:{'btn-labeled-empty' : !details.assignee.cached() }" class="btn btn-sm btn-labeled btn-outline btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="btn-label"><i class="icon fa-user" aria-hidden="true"></i></span>
+                    <span data-bind="text:$root.getUserFullName(details.assignee.cached)"></span>
+                  </button>
+                  <ul class="dropdown-menu " style="width:200px;">
+                        <li role="presentation" class="js--prevent-close">
+                            <select  data-bind="select2Data: details.assignee, select2:  $root.autocomplete.getSelect2OptionsForCollaborators(),select2Selected:$root.changeTaskAssignee" class="form-control"></select>
+                        </li>
+                        <li class="divider" role="presentation"></li>
+                        <li role="presentation" >
+                            <a href="" data-bind="click:$root.assignTaskTo.bind($data,$root.context.user())" data-i18n="app:pages.task.assignToMe"></a>
+                        </li>
+                        <li role="presentation" >
+                            <a href="" data-i18n="app:pages.task.removeAssignee" data-bind="click:$root.clearTaskAssignee"></a>
+                        </li>
+                  </ul>
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" data-bind="css:{'btn-labeled-empty' : !details.status.cached() || details.status.cached()===0 }" class="btn btn-sm btn-labeled btn-outline btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="btn-label"><i data-bind="'class':$root.lookups.taskStatus.get(details.status.cached).icon" aria-hidden="true"></i></span>
+                    <span data-bind="text:$root.lookups.taskStatus.get(details.status.cached).text,visible:details.status.cached() && details.status.cached()!==0 "></span>
+                  </button>
+                  <ul class="dropdown-menu" data-bind="foreach:$root.lookups.taskStatus.getAll()">
+                    <li role="presentation" >
+                        <a  href="javascript:void(0)" data-bind="click: $root.saveStatusCommand">
+                            <i data-bind="'class':$data.icon" aria-hidden="true"></i>
+                            <span data-bind="text:text"></span>
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" data-bind="css:{'btn-labeled-empty' : !details.startDate.cached() }" class="btn btn-sm btn-labeled btn-outline btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="btn-label"><i class="icon fa-calendar-o" aria-hidden="true"></i></span>
+                    <span data-bind="visible:details.startDate.cached,text:$root.utils.formatDateTime(details.startDate.cached)"></span>
+                  </button>
+                  <ul class="dropdown-menu" >
+                    <li >
+                        <div data-bind="dateTimepicker: $root.details.startDate, dateTimePickerOptions: { inline:true }"></div>
+                    </li>
+                    <li>
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.reschedule" data-i18n="app:pages.task.save"></button>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" data-bind="css:{'btn-labeled-empty' : !details.dueDate.cached() }" class="btn btn-sm btn-labeled btn-outline btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="btn-label"><i class="icon fa-calendar-check-o" aria-hidden="true"></i></span>
+                    <span data-bind="visible:details.dueDate.cached,text:$root.utils.formatDateTime(details.dueDate.cached)"></span>
+                  </button>
+                  <ul class="dropdown-menu" >
+                    <li >
+                        <div data-bind="dateTimepicker: $root.details.dueDate, dateTimePickerOptions: { inline:true }"></div>
+                    </li>
+                    <li>
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <button type="button" class="btn btn-primary" data-bind="click:$root.reschedule" data-i18n="app:pages.task.save"></button>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+
+
+
+
+            </div>
+            <div class="panel-section panel-section-bordered section-task-description" data-bind="visible:showDescription() && descriptionSectionVisibility(),css:{'editor-active':$root.descriptionEditStatus}">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="btn-group" >
+                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round fa-file-text-o" data-bind="toggleClick:$root.descriptionEditStatus" ></button>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-11" data-bind="markdownEditor:{ data: details.description,editStatus:$root.descriptionEditStatus, onSave:$root.onDescriptionSave,onCancel:$root.onDescriptionCancel}">
+                        <div class="view section-task-description" data-bind="markdown:  {text:details.description }">
+                        </div>
+                        <div class="editor"></div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="panel-section panel-section-bordered" data-bind="visible:showTags">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="btn-group" >
+                            <button class="btn btn-sm btn-icon btn-default btn-outline btn-round fa-tags" data-bind="toggleClick:$root.editTags" ></button>
+                        </div>
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="input-group select2-bootstrap-append" data-bind="visible:$root.editTags">
+                            <select class="form-control" multiple="multiple" data-bind="select2Data: $root.details.tags,hasFocus:$root.editTags(), select2: $root.autocomplete.getSelect2OptionsForProjectTags($root.projectId)"></select>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary " data-bind="click:$root.saveTags">
+                                    <i class="icon fa-check" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-default btn-outline  " data-bind="toggleClick:$root.editTags">
+                                    <i class="icon fa-times" aria-hidden="true"></i>
+                                </button>
+                            </span><!-- /btn-group -->
+                        </div>
+
+                        <ul class="list-inline" data-bind="foreach:details.tags.cached,visible:!$root.editTags()" >
+                            <li><span class="label label-primary label-round label-outline" data-bind="text:$data"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-section panel-section-bordered panel-section-custom-fields" data-bind="visible:showCustomFields">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button id="dropdown-customfield" class="btn btn-sm btn-icon btn-default btn-outline btn-round dropdown-toggle" data-bind="css:{'disabled' : !$root.canAddNewField() }" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="icon fa-plug"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown-customfield" data-bind="visible:$root.canAddNewField(),foreach:customFields">
+                                    <li data-bind="visible:$root.canShowThisFieldForAddNew($data)">
+                                        <a href="#" data-bind="text:title,click:$root.addNewCustomField"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-11">
+                        <ul class="list-inline" data-bind="foreach: details.customFields">
+                            <!-- ko if:detail -->
+                            <li style = "padding-top: 5px">
+                                <div>
+                                    <a class="btn btn-sm btn-labeled btn-outline btn-primary btn-customFields" href="javascript:void(0);" data-bind="click:$root.editCustomField">
+                                        <span class="btn-label" data-bind="text:detail.title"></span>
+                                        <span data-bind="text:$root.helpers.getFormattedCustomFieldValue($root.context,detail,$data.value.cached,$root.lookups)"></span>
+                                    </a>
+                                </div>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                        <div class="well well-sm" data-bind="visible:editingCustomField,with:editingCustomField">
+                            <form autocomplete="off">
+                                <div class="form-group" data-bind="validationElement: value,if:type === $root.lookups.customFieldTypes.TEXT">
+                                    <label class="control-label" for="txt-custom-field-input" data-bind="text:detail.title"></label>
+                                    <input type="text" class="form-control" id="txt-custom-field-input" autocomplete="off" data-bind="valueUpdate: 'afterkeydown',value:value">
+                                </div>
+                                <div class="form-group" data-bind="validationElement: value,if:type === $root.lookups.customFieldTypes.NUMBER">
+                                    <label class="control-label" for="txt-custom-field-input" data-bind="text:detail.title"></label>
+                                    <input type="number" class="form-control" id="txt-custom-field-input" autocomplete="off" data-bind="valueUpdate: 'afterkeydown',value:value,attr:{max:detail.attributes.maxValue || null ,min:detail.attributes.minValue || null }">
+                                </div>
+                                <div class="form-group" data-bind="validationElement: value,if:type === $root.lookups.customFieldTypes.DATE">
+                                    <label class="control-label" for="txt-custom-field-input" data-bind="text:detail.title"></label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" id="txt-custom-field-input" autocomplete="off" data-bind="valueUpdate: 'afterkeydown',datepicker: value, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true,format:$root.utils.getDateFormat().toLowerCase() },format:$root.utils.getDateFormat().toLowerCase()">
+                                        <span class="input-group-addon"><i class="icon fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="validationElement: value,if:type === $root.lookups.customFieldTypes.DROPDOWN">
+                                    <label class="control-label" for="txt-custom-field-input" data-bind="text:detail.title"></label>
+                                    <div class="btn-group btn-block">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dd-cf-{{detail.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="text-align:left;">
+                                                <span data-bind="text:value"></span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="max-height:150px;overflow:auto;" aria-labelledby="dd-cf-{{detail.id}}" data-bind="foreach:detail.attributes.values">
+                                                <li>
+                                                    <a href="#" data-bind="text:$data,click:$root.setDropdownItem.bind($data,$data,$parent)"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="validationElement:value,if:type===$root.lookups.customFieldTypes.USER">
+                                    <label class="control-label" for="txt-custom-field-input" data-bind="text:detail.title"></label>
+                                    <select  data-bind="select2Data: value, select2:  $root.autocomplete.getSelect2OptionsForCollaborators()" class="form-control"></select>
+
+                                </div>
+                                <div class="form-group" data-bind="validationElement:value,if:type===$root.lookups.customFieldTypes.TASK">
+
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" data-bind="activity: $root.saveCustomFieldCommand.isExecuting, command: $root.saveCustomFieldCommand" data-i18n="app:pages.task.save"></button>
+                                    <button type="reset" class="btn btn-default btn-outline" data-bind="click:$root.resetCustomFieldForm" data-i18n="app:pages.task.cancel"></button>
+                                    <button type="button" class="btn btn-default btn-danger pull-right" data-bind="click:$root.deleteCustomField" data-i18n="app:pages.task.delete"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" >
+            <div class="horizontal-scrollable-tabs" data-bind="horizontalTabs: {}">
+                <div class="scroller arrow-left"><i class="icon fa-arrow-left"></i></div>
+                <div class="scroller arrow-right"><i class="icon fa-arrow-right"></i></div>
+                <div class="horizontal-tabs">
+                    <ul class="nav-quick nav-quick-sm row nav-tabs-horizontal"  >
+                        <!-- ko foreach:$root.activeModules -->
+                        <li class="col-xs-2 col-sm-1" >
+                          <a href="javascript:void(0)" data-bind="click:execute,css:{'active':$data.isActive}">
+                            <i aria-hidden="true" data-bind="'class':$data.detail.icon"></i> <span data-bind="text:$data.detail.text,visible:false"></span>
+                          </a>
+                        </li>
+                        <!-- /ko -->
+                        <li class="col-xs-2  col-sm-1 hidden">
+                          <a href="javascript:void(0);" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                          <i class="icon wb-lock" aria-hidden="true"></i> <span data-i18n="app:pages.task.more"></span>
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li role="separator" class="divider"></li>
+                          </ul>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="taskpanel" data-bind="dynamicHeight: { resizeTrigger: window.FlexiTaskWindowHeight(), target: '#footer-main' ,onScroll:$root.onTaskModuleScroll}">
+                <div data-bind="visible:$root.activeModule() === $root.lookups.taskModules.DETAIL">
+                    <!-- ko  compose: {  view:'task/task-details.html'} -->
+                    <!--/ko-->
+                </div>
+
+                <div data-bind="compose: activeModuleVm">
+                </div>
+
+            </div>

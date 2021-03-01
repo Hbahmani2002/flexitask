@@ -1,0 +1,91 @@
+<div class="modal-dialog  modal-lg ">
+    <div class="modal-content  ">
+        <div class="modal-header">
+           <button type="button" class="close"  data-bind="click: cancel" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only" data-i18n="app:pages.table.close"></span>
+        </button>
+        <h4 class="modal-title" data-i18n="app:pages.table.createTable"></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <form>
+                <div class="form-group">
+                    <label for="text-table-name" data-i18n="app:pages.table.name"></label>
+                    <input type="text" class="form-control" id="text-table-name" data-i18n="[placeholder]app:pages.table.name" placeholder="" data-bind="value: table.name" />
+                </div>
+                <div class="form-group">
+                    <label for="text-note-description" data-i18n="app:pages.table.description"></label>
+                    <textarea rows="3" id="text-note-description" class="form-control" data-i18n="[placeholder]app:pages.table.description" placeholder=""  data-bind="value: table.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <table class="table table-striped table-condensed ">
+                        <thead>
+                            <tr>
+                                <th data-i18n="app:pages.table.title"></th>
+                                <th data-i18n="app:pages.table.datatype"></th>
+                                <th data-i18n="app:pages.table.isrequired"></th>
+                                <th data-i18n="app:pages.table.isvisible"></th>
+                                <th data-i18n="app:pages.table.position"></th>
+                                <th data-i18n="app:pages.table.description"></th>
+                                <th data-i18n="app:pages.table.remove"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: table.sortedFields">
+                            <tr data-bind="css: bgColor">
+                                <td data-bind="validationElement: title">
+                                    <input type="text" class="form-control" data-bind="value: title" /></td>
+
+                                        <td data-bind="validationElement: type">
+                                            <select class="form-control" data-bind="options: $root.lookups.tableFieldTypes.getAll(), optionsText: 'text', optionsValue: 'value', value: type"></select>
+                                            <div data-bind="visible: type() === 5">
+                                                <input type="text" class="form-control" data-bind="value: valuesText" />
+                                            </div>
+
+
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-custom checkbox-primary">
+                                                <input type="checkbox" data-bind="checked: isRequired" />
+                                                  <label></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-custom checkbox-primary">
+                                                <input type="checkbox" data-bind="checked: isVisible" />
+                                                  <label></label>
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <input type="number" class="form-control" name="quantity" min="1" max="30"  data-bind="value: position" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" data-bind="value: description" /></td>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-custom checkbox-danger">
+                                                <input type="checkbox" data-bind="checked: isDeleted" />
+                                                <label></label>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="pull-right">
+                                <a href="javascript:void(0);" data-bind="click: table.addField" data-i18n="app:pages.table.addfield"></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-outline" data-bind="click: cancel" data-i18n="app:pages.table.close">Cancel</button>
+                                 <button data-bind="click: save" class="btn btn-primary" data-i18n="app:pages.table.save">Save</button>
+                             
+                         </div>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+ </div>

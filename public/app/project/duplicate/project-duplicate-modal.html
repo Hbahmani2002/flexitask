@@ -1,0 +1,153 @@
+﻿<div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: cancel" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" data-i18n="app:pages.projectDuplicate.header"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form >
+                    <div class="form-group" data-bind="validationElement: newProjectFolderId">
+                        <label class="control-label" data-i18n="app:pages.projectDuplicate.targetprojectworkstructure"></label>
+                        <select class="form-control" id="select-folder" data-bind="value: newProjectFolderId, foreach: folders">
+                            <optgroup data-bind="attr: {label: name}, foreach: folders">
+                            <option data-bind="attr: {  value: id }, text: name"></option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group" data-bind="validationElement: newProjectName">
+                        <label for="" class="control-label" data-i18n="app:pages.projectDuplicate.targetprojectname"></label>
+                        <input type="text" class="form-control" placeholder="" data-i18n="[placeholder]app:pages.projectDuplicate.enterprojectname" data-bind="value: newProjectName" />
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label" data-i18n="app:pages.projectDuplicate.prefixForTasks"></label>
+                        <input type="text" class="form-control" placeholder="" data-i18n="[placeholder]app:pages.projectDuplicate.enterPrefix"  data-bind="value:taskNamePrefix,valueUpdate:'afterkeydown'" />
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-12" data-i18n="app:pages.projectDuplicate.include"></label>
+                        <div class="form-group col-sm-6">
+                            <div>
+                                 <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-archivedTasks" data-bind="checked: includeArchivedTasks" />
+                                    <label for="cb-archivedTasks" data-i18n="app:pages.projectDuplicate.includeArchivedTasks"></label>
+                                </div>
+
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeCollaborators" data-bind="checked: includeCollaborators" />
+                                    <label for="cb-includeCollaborators" data-i18n="app:pages.projectDuplicate.taskcollaborators"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTaskDates" data-bind="checked: includeDates" />
+                                    <label  for="cb-includeTaskDates"  data-i18n="app:pages.projectDuplicate.dates"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTaskStatus" data-bind="checked: includeStatus" />
+                                    <label for="cb-includeTaskStatus" data-i18n="app:pages.projectDuplicate.status"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTaskTags" data-bind="checked: includeTags" />
+                                    <label for="cb-includeTaskTags" data-i18n="app:pages.projectDuplicate.tags"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTaskNotes" data-bind="checked: includeNotes" />
+                                    <label for="cb-includeTaskNotes" data-i18n="app:pages.projectDuplicate.notes"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTaskTodos" data-bind="checked: includeTodos" />
+                                    <label for="cb-includeTaskTodos" data-i18n="app:pages.projectDuplicate.todos"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <div>
+
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeComments" data-bind="checked: includeComments" />
+                                    <label for="cb-includeComments" data-i18n="app:pages.projectDuplicate.comments"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeAttachments" data-bind="checked: includeAttachments" />
+                                    <label for="cb-includeAttachments" data-i18n="app:pages.projectDuplicate.attachments"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeExpenses" data-bind="checked: includeExpenses" />
+                                    <label for="cb-includeExpenses"  data-i18n="app:pages.projectDuplicate.expenserecords"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" id="cb-includeTimeLogs"  data-bind="checked: includeTimeLogs" />
+                                    <label for="cb-includeTimeLogs" data-i18n="app:pages.projectDuplicate.timetrackingrecords"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" data-bind="checked: includeTables" id="cb-includeTables" />
+                                    <label data-i18n="app:pages.projectDuplicate.tables" for="cb-includeTables"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" data-bind="checked: includeRelatedTasks" id="cb-includeRelatedTasks"/>
+                                    <label data-i18n="app:pages.projectDuplicate.relatedtasks" for="cb-includeRelatedTasks"></label>
+                                </div>
+                                <div class="checkbox-custom checkbox-default">
+                                    <input type="checkbox" data-bind="checked: includeDependedTasks" id="cb-includeDependedTasks"/>
+                                    <label  data-i18n="app:pages.projectDuplicate.dependedtasks" for="cb-includeDependedTasks"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="visible: includeDates">
+                      <label class="control-label" data-i18n="app:pages.projectDuplicate.doYouWantRecalculateAllDates"></label>
+                      <div>
+                        <div class="radio-custom radio-default radio-inline">
+                          <input type="radio" id="cb-calculatedates-yes" name="calculate-dates" data-bind="checkedValue: true,checked: calculateDates">
+                          <label for="cb-calculatedates-yes"  data-i18n="app:pages.projectDuplicate.yes"></label>
+                        </div>
+                        <div class="radio-custom radio-default radio-inline">
+                          <input type="radio" id="cb-calculatedates-no" name="calculate-dates" data-bind="checkedValue: false,checked: calculateDates">
+                          <label for="cb-calculatedates-no"  data-i18n="app:pages.projectDuplicate.no"></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" data-bind="visible:includeDates() && calculateDates(),validationElement: calculateMethod"  >
+                        <div class="col-sm-12">
+                            <label class="control-label"  data-i18n="app:pages.projectDuplicate.calculationMethod"></label>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <select class="form-control" data-bind="value:calculateMethod">
+                                <option value="shift" data-i18n="app:pages.projectDuplicate.shiftDate"></option>
+                                <option value="startdate" data-i18n="app:pages.projectDuplicate.byNewStartDate"></option>
+                                <option value="enddate" data-i18n="app:pages.projectDuplicate.byNewDueDate"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-5" data-bind="visible:calculateMethod">
+
+                            <div class="input-group" data-bind="visible:calculateMethod()==='shift'">
+                                <input type="number"  class="form-control" data-bind="value:dateShiftingValueAsDay" >
+                                <span class="input-group-addon"  data-i18n="app:pages.projectDuplicate.days"></span>
+                            </div>
+                            <div  data-bind="visible:(calculateMethod()==='startdate' || calculateMethod()==='enddate') && errors().length<=0">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon wb-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text"  class="form-control" data-bind="datepicker: calculateByDate, datepickerOptions: { type: 'component', todayHighlight: true, clearBtn: true, autoclose: true }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-3" data-bind="visible:dateShiftingValueAsDay() !== 0  && (calculateMethod()==='startdate' || calculateMethod()==='enddate')">
+                            <p class="form-control-static" data-bind="text:'('+dateShiftingValueAsDay() +'days)'"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class=" pull-right">
+                        <button class="btn btn-default btn-outline" data-bind="click: $root.cancel" data-i18n="app:pages.projectDuplicate.cancel"></button>
+                            <button class="btn btn-primary" data-bind="activity: $root.startProjectDuplication.isExecuting, command: $root.startProjectDuplication" data-i18n="app:pages.projectDuplicate.ok"></button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
