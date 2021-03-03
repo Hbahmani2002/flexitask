@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\gulp",
-    "\\gulp\\recipes",
-    "\\public",
-    "\\public\\app",
-    "\\public\\assets"
+    "\\public"
   ],
   "PreviewInSolutionExplorer": false
 }

@@ -133,7 +133,7 @@ define("config", ["fifi","moment","jquery" ,"knockout", "amplify", "underscore"]
         this.facebookAppId="";
         this.twitterAppId="";
         this.appDetails = ko.observable();
-        this.title = "FlexiTask";
+        this.title = "PEM";
         this.emojiPath = "";
         this.dateFormat = moment().localeData()._longDateFormat["L"];
         this.dateTimeFormat = moment().localeData()._longDateFormat["L"] + " " + moment().localeData()._longDateFormat["LT"];
